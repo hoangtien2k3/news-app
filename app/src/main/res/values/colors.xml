@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#FFFF0000</color>
+    <color name="green">#FF00FF00</color>
+    <color name="blue">#FF0000FF</color>
+    <color name="yellow">#FFFFFF00</color>
+    <color name="orange">#FFFFA500</color>
+    <color name="purple">#FF800080</color>
+    <color name="cyan">#FF00FFFF</color>
+    <color name="magenta">#FFFF00FF</color>
+    <color name="gray">#FF808080</color>
+    <color name="light_gray">#FFD3D3D3</color>
+    <color name="dark_gray">#FFA9A9A9</color>
+    <color name="brown">#FFA52A2A</color>
+    <color name="black_1">#1a2332</color>
+    <color name="black_2">#161c2a</color>
+    <color name="news_app_logo_background">#000000</color>
+    <color name="gold">#FFD700</color>
+    <color name="titleTextColor">#FF000000</color>
+    <color name="subTitleTextColor">#FF000000</color>
+    <color name="bgLineColor">#606470</color>
+</resources>
