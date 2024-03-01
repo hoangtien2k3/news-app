@@ -44,7 +44,6 @@ class BanTinAdapter(
             intent.putExtra("link", tinTuc.link)
             mContext.startActivity(intent)
         }
-
     }
 
     override fun getItemCount(): Int {
