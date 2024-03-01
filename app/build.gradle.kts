@@ -34,6 +34,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     buildFeatures {
         viewBinding = true
     }
@@ -66,7 +67,6 @@ dependencies {
     implementation("androidx.room:room-runtime:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
 
-
 //     Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:2.4.2")
 
@@ -94,5 +94,6 @@ dependencies {
     //chrome
     implementation("androidx.browser:browser:1.4.0")
 
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 
 }

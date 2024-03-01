@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import com.hoangtien2k3.news_app.R
@@ -12,6 +13,7 @@ class WebviewActivity : AppCompatActivity() {
 
     private lateinit var mWebView: WebView
     private lateinit var progressBarWebView: ProgressBar
+    private lateinit var oke: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +21,11 @@ class WebviewActivity : AppCompatActivity() {
 
         progressBarWebView = findViewById(R.id.progressBarWebView)
         mWebView = findViewById(R.id.activityTinTuc_WebView)
+        oke = findViewById(R.id.ok)
+        oke.setOnClickListener {
+            finish()
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
+        }
 
         intent.getStringExtra("link")?.let { link ->
             mWebView.apply {

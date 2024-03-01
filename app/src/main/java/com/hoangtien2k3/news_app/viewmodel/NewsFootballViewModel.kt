@@ -1,6 +1,5 @@
 package com.hoangtien2k3.news_app.viewmodel
 
-import android.app.assist.AssistStructure.ViewNode
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,7 +15,6 @@ class NewsFootballViewModel : ViewModel() {
             ItemList = MutableLiveData<List<Football>>()
 
         }
-
 
         return ItemList
     }

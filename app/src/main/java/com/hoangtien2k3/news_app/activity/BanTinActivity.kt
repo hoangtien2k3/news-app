@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hoangtien2k3.news_app.R
-import com.hoangtien2k3.news_app.adapter.NewsMainAdapter
-import com.hoangtien2k3.news_app.models.News
+import com.hoangtien2k3.news_app.adapter.BanTinAdapter
+import com.hoangtien2k3.news_app.models.BanTin
 import com.hoangtien2k3.news_app.utils.XMLDOMParser
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -16,11 +16,14 @@ import java.net.URLConnection
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import org.w3c.dom.Element
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class BanTinActivity : AppCompatActivity() {
     private lateinit var mRecyclerView: RecyclerView
-    private lateinit var mListTinTuc: ArrayList<News>
-    private lateinit var mLinTucAdaper: NewsMainAdapter
+    private lateinit var mListTinTuc: ArrayList<BanTin>
+    private lateinit var mLinTucAdaper: BanTinAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +41,7 @@ class BanTinActivity : AppCompatActivity() {
     private fun initializeUI() {
         mRecyclerView = findViewById(R.id.banTin_recyclerView)
         mListTinTuc = ArrayList()
-        mLinTucAdaper = NewsMainAdapter(this, mListTinTuc)
+        mLinTucAdaper = BanTinAdapter(this, mListTinTuc)
 
         val linearLayout = LinearLayoutManager(this)
         mRecyclerView.layoutManager = linearLayout
@@ -63,6 +66,13 @@ class BanTinActivity : AppCompatActivity() {
                     val title = parser.getValue(element, "title")
                     val link = parser.getValue(element, "link")
                     var img = ""
+
+                    var txtpubDate = parser.getValue(element, "pubDate")
+                    val inputFormatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH)
+                    val zonedDateTime = ZonedDateTime.parse(txtpubDate, inputFormatter)
+                    val outputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH)
+                    val pubDate = outputFormatter.format(zonedDateTime)
+
                     val description = nodeListDescripton?.item(i + 1)?.textContent ?: ""
 
                     val p = Pattern.compile("<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>")
@@ -70,7 +80,7 @@ class BanTinActivity : AppCompatActivity() {
                     if (matcher.find())
                         img = matcher.group(1)
 
-                    val tinTuc = News(title, link, img)
+                    val tinTuc = BanTin(title, link, img, pubDate)
                     mListTinTuc.add(tinTuc)
                 }
             }
@@ -95,5 +105,8 @@ class BanTinActivity : AppCompatActivity() {
             return content.toString()
         }
     }
+
+
+
 }
 

@@ -9,13 +9,17 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navMenu"
-        style="@style/MNBOTTOM"
+        style="@style/CardBackground"
+        app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
+        app:itemIconSize="30dp"
+        app:itemIconTint="#8a96ee"
+        app:itemTextColor="#8a96ee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:menu="@menu/bottomnavigation" />
+        app:menu="@menu/bottom_menu" />
 
     <FrameLayout
         android:id="@+id/main_fragment"

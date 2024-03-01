@@ -2,14 +2,18 @@ package com.hoangtien2k3.news_app.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.activity.BanTinActivity
+import com.hoangtien2k3.news_app.fragment.BanTinFragment
 import com.hoangtien2k3.news_app.models.Category
 
 class CategoryAdapter(
@@ -27,9 +31,26 @@ class CategoryAdapter(
         holder.txtCategory.text = category.name
 
         holder.cardView.setOnClickListener {
-            val intent = Intent(context, BanTinActivity::class.java)
-            intent.putExtra("url", category.url)
-            context.startActivity(intent)
+//            val intent = Intent(context, BanTinActivity::class.java)
+//            intent.putExtra("url", category.url)
+//            context.startActivity(intent)
+
+
+            // Khởi tạo Fragment mới
+            val banTinFragment = BanTinFragment()
+
+            // Tạo một Bundle để truyền dữ liệu nếu cần
+            val bundle = Bundle()
+            bundle.putString("url", category.url)
+            banTinFragment.arguments = bundle
+
+            // Sử dụng FragmentManager để thêm Fragment mới vào vùng chứa
+            val fragmentManager = (context as AppCompatActivity).supportFragmentManager
+            fragmentManager.beginTransaction()
+                .replace(R.id.main_fragment, banTinFragment) // Thay "R.id.fragment_container" bằng ID của vùng chứa của bạn
+                .addToBackStack(null) // Đảm bảo Fragment trước đó không bị xóa khỏi stack khi thêm Fragment mới
+                .commit()
+
         }
 
     }
@@ -42,4 +63,5 @@ class CategoryAdapter(
         val txtCategory: TextView = itemView.findViewById(R.id.itemDanhMuc_txtDanhMuc)
         val cardView: CardView = itemView.findViewById(R.id.cardView)
     }
+
 }

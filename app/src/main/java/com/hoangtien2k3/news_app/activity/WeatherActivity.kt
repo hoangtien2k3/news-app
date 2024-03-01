@@ -29,6 +29,7 @@ class WeatherActivity : AppCompatActivity() {
     private lateinit var txtMay: TextView
     private lateinit var txtNgayCapNhat: TextView
     private lateinit var imgIcon: ImageView
+    private lateinit var oke: ImageView
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(Constants.BASE_URL_Weather)
@@ -40,6 +41,24 @@ class WeatherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_thoi_tiet)
+
+        initUI()
+        GetCurrentWeatherData("Hanoi")
+
+        btnSearch.setOnClickListener {
+            val city = edtSearch.text.toString()
+            GetCurrentWeatherData(if (city.isEmpty()) "Hanoi" else city)
+        }
+
+        oke = findViewById(R.id.ok)
+        oke.setOnClickListener {
+            finish()
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
+        }
+
+    }
+
+    private fun initUI() {
         edtSearch = findViewById(R.id.edittextSearch)
         btnSearch = findViewById(R.id.btnSearch)
         txtThanhpho = findViewById(R.id.textviewThanhpho)
@@ -51,19 +70,16 @@ class WeatherActivity : AppCompatActivity() {
         txtMay = findViewById(R.id.textviewMay)
         txtNgayCapNhat = findViewById(R.id.textviewNgayCapNhat)
         imgIcon = findViewById(R.id.imgIcon)
-
-        GetCurrentWeatherData("Hanoi")
-
-        btnSearch.setOnClickListener {
-            val city = edtSearch.text.toString()
-            GetCurrentWeatherData(if (city.isEmpty()) "Hanoi" else city)
-        }
+        oke = findViewById(R.id.ok)
     }
 
     private fun GetCurrentWeatherData(data: String) {
         val call = service.getCurrentWeather(data, apiKey)
         call.enqueue(object : Callback<WeatherResponse> {
-            override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {
+            override fun onResponse(
+                call: Call<WeatherResponse>,
+                response: Response<WeatherResponse>
+            ) {
                 if (response.isSuccessful) {
                     val weatherResponse = response.body()
                     weatherResponse?.let { updateUI(it) }
@@ -80,7 +96,8 @@ class WeatherActivity : AppCompatActivity() {
         txtThanhpho.text = weatherResponse.name
 
         val date = Date(weatherResponse.dt * 1000L)
-        val simpleDateFormat = SimpleDateFormat("EEEE yyyy-MM-dd \n           HH-mm-ss", Locale.getDefault())
+        val simpleDateFormat =
+            SimpleDateFormat("EEEE yyyy-MM-dd \n           HH-mm-ss", Locale.getDefault())
         val day = simpleDateFormat.format(date)
         txtNgayCapNhat.text = day
 
