@@ -1,0 +1,112 @@
+package com.hoangtien2k3.news_app.ui.menu
+
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import com.hoangtien2k3.news_app.R
+import com.hoangtien2k3.news_app.databinding.FragmentMenuBinding
+import com.hoangtien2k3.news_app.ui.calender.CalendarFragment
+import com.hoangtien2k3.news_app.ui.football.FootballFragment
+import com.hoangtien2k3.news_app.ui.webview.WebviewFragment
+import com.hoangtien2k3.news_app.ui.weather.WeatherFragment
+
+class MenuFragment : Fragment() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+    private lateinit var binding: FragmentMenuBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentMenuBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.thoiTiet.setOnClickListener {
+            loadFragment(WeatherFragment())
+        }
+        binding.foolBall .setOnClickListener {
+            loadFragment(FootballFragment())
+        }
+        binding.lichViet.setOnClickListener {
+            loadFragment(CalendarFragment())
+        }
+        binding.bieuMau.setOnClickListener {
+            showdialogbottom()
+        }
+    }
+
+    private fun loadFragment(fragmentReplace: Fragment) {
+        parentFragmentManager
+            .beginTransaction()
+            .replace(R.id.main_fragment, fragmentReplace)
+            .addToBackStack("MenuFragment")
+            .commit()
+    }
+
+    private fun openWebviewFragment(url: String) {
+        val fragment = WebviewFragment().apply {
+            arguments = Bundle().apply {
+                putString("linknews", url)
+            }
+        }
+
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.main_fragment, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+
+    private fun showdialogbottom() {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.bottomsheetlayout)
+//        val dangtinLayout = dialog.findViewById<LinearLayout>(R.id.layoutdkdangtin)
+//        val nguoithanLayout = dialog.findViewById<LinearLayout>(R.id.layoutTimnguoithan)
+//        val toasoanLayout = dialog.findViewById<LinearLayout>(R.id.layoutTQtoasoan)
+        val DKdangtin = dialog.findViewById<TextView>(R.id.tvDKDangtin)
+        val DKtimnguoithan = dialog.findViewById<TextView>(R.id.tvDKtimnguoithan)
+        val DKthamquan = dialog.findViewById<TextView>(R.id.tvDKTQToasoan)
+
+        DKdangtin.setOnClickListener {
+            val url = "https://docs.google.com/forms/d/e/1FAIpQLSfuKRLsZXFOJ8S3oakeDXDTKq0XAXScVJJMHU-T6znMbGz05Q/viewform?usp=sf_link"
+            openWebviewFragment(url)
+            dialog.dismiss()
+        }
+
+        DKtimnguoithan.setOnClickListener {
+            val url = "https://docs.google.com/forms/d/e/1FAIpQLSdb1LLWnuzk1oGqSiJcBPPogRWhoKIH6I4s5Fo7yJAtmsgW5g/viewform?pli=1"
+            openWebviewFragment(url)
+            dialog.dismiss()
+        }
+
+        DKthamquan.setOnClickListener {
+            val url = "https://docs.google.com/forms/d/e/1FAIpQLScgmYFj2NTmq53VWzNSA4OKAuxizD9UxYiaXVok_S_2k3favg/viewform"
+            openWebviewFragment(url)
+            dialog.dismiss()
+        }
+
+        dialog.show()
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+        dialog.window?.setGravity(Gravity.BOTTOM)
+    }
+
+}

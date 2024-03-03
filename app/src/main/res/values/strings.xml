@@ -12,21 +12,21 @@
 
     <string name="back_1"><![CDATA[<-]]></string>
     <string name="forward_1"><![CDATA[->]]></string>
-    <string name="news_detail">News Detail</string>
-    <string name="save_toolbar">Favorite News</string>
-    <string name="search_toolbar">Search News</string>
-    <string name="settings">Settings</string>
-    <string name="general">General</string>
-    <string name="leave_feedback">Leave feedback !</string>
-    <string name="leave_feedback2">Let us know how you like the app!</string>
-    <string name="themes">Switch Themes</string>
-    <string name="language">Language</string>
-    <string name="language2">You can change the application language from the device settings.</string>
-    <string name="faq">FAQ</string>
-    <string name="agreement">Agreement</string>
-    <string name="data_privacy">Data Privacy Terms</string>
-    <string name="terms">Terms and Conditions</string>
-    <string name="sign_out">Sign Out</string>
-    <string name="client_id">YOUR_CLIEND_ID</string>
+    <string name="news_detail">Chi tiết Tin Tức</string>
+    <string name="save_toolbar">Tin Tức Yêu Thích</string>
+    <string name="search_toolbar">Tìm Kiếm Tin Tức</string>
+    <string name="settings">Cài Đặt</string>
+    <string name="general">Chung</string>
+    <string name="leave_feedback">Để lại Phản Hồi!</string>
+    <string name="leave_feedback2">Hãy cho chúng tôi biết bạn thích ứng dụng như thế nào!</string>
+    <string name="themes">Chuyển Đổi Chủ Đề</string>
+    <string name="language">Ngôn Ngữ</string>
+    <string name="language2">Bạn có thể thay đổi ngôn ngữ ứng dụng từ cài đặt thiết bị.</string>
+    <string name="faq">Đăng Ký Biểu Mẫu</string>
+    <string name="agreement">Thỏa Thuận</string>
+    <string name="data_privacy">Thời Tiết Các Tỉnh Thành</string>
+    <string name="terms">Xem Lịch Việt Nam</string>
+    <string name="sign_out">Đăng Xuất</string>
+    <string name="client_id">MÃ_CLIENT_CỦA_BẠN</string>
 
 </resources>
