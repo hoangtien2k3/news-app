@@ -1,4 +1,4 @@
-package com.hoangtien2k3.news_app.ui.activity
+package com.hoangtien2k3.news_app.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -30,14 +30,14 @@ class MainActivity : AppCompatActivity() {
         val viewModelProviderFactory = NewsViewModelProviderFactory(newsRepository)
         viewModel = ViewModelProvider(this, viewModelProviderFactory)[SearchNewsViewModel::class.java]
 
-        loadFragment(HomeFragment())
+        loadFragment(MainFragment())
         clickButtonNavigation()
     }
 
     private fun clickButtonNavigation() {
         binding.navMenu.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.bottom_home -> loadFragment(HomeFragment())
+                R.id.bottom_home -> loadFragment(MainFragment())
                 R.id.bottom_category -> loadFragment(BanTinFragment())
                 R.id.bottom_save -> loadFragment(FootballFragment())
                 R.id.bottom_search -> loadFragment(SearchNewsFragment())

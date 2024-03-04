@@ -10,19 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.databinding.FragmentMenuBinding
+import com.hoangtien2k3.news_app.ui.main.MainFragment
 import com.hoangtien2k3.news_app.ui.calender.CalendarFragment
-import com.hoangtien2k3.news_app.ui.football.FootballFragment
 import com.hoangtien2k3.news_app.ui.webview.WebviewFragment
 import com.hoangtien2k3.news_app.ui.weather.WeatherFragment
 
 class MenuFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     private lateinit var binding: FragmentMenuBinding
 
@@ -37,11 +34,18 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.switchMode.isChecked =
+            AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_NO
+        binding.switchMode.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+
         binding.thoiTiet.setOnClickListener {
             loadFragment(WeatherFragment())
-        }
-        binding.foolBall .setOnClickListener {
-            loadFragment(FootballFragment())
         }
         binding.lichViet.setOnClickListener {
             loadFragment(CalendarFragment())
@@ -49,6 +53,10 @@ class MenuFragment : Fragment() {
         binding.bieuMau.setOnClickListener {
             showdialogbottom()
         }
+        binding.ngonNgu.setOnClickListener {
+            loadFragment(MainFragment())
+        }
+
     }
 
     private fun loadFragment(fragmentReplace: Fragment) {
@@ -77,33 +85,35 @@ class MenuFragment : Fragment() {
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.bottomsheetlayout)
-//        val dangtinLayout = dialog.findViewById<LinearLayout>(R.id.layoutdkdangtin)
-//        val nguoithanLayout = dialog.findViewById<LinearLayout>(R.id.layoutTimnguoithan)
-//        val toasoanLayout = dialog.findViewById<LinearLayout>(R.id.layoutTQtoasoan)
+
         val DKdangtin = dialog.findViewById<TextView>(R.id.tvDKDangtin)
         val DKtimnguoithan = dialog.findViewById<TextView>(R.id.tvDKtimnguoithan)
         val DKthamquan = dialog.findViewById<TextView>(R.id.tvDKTQToasoan)
 
         DKdangtin.setOnClickListener {
-            val url = "https://docs.google.com/forms/d/e/1FAIpQLSfuKRLsZXFOJ8S3oakeDXDTKq0XAXScVJJMHU-T6znMbGz05Q/viewform?usp=sf_link"
+            val url =
+                "https://docs.google.com/forms/d/e/1FAIpQLSfuKRLsZXFOJ8S3oakeDXDTKq0XAXScVJJMHU-T6znMbGz05Q/viewform?usp=sf_link"
             openWebviewFragment(url)
             dialog.dismiss()
         }
-
         DKtimnguoithan.setOnClickListener {
-            val url = "https://docs.google.com/forms/d/e/1FAIpQLSdb1LLWnuzk1oGqSiJcBPPogRWhoKIH6I4s5Fo7yJAtmsgW5g/viewform?pli=1"
+            val url =
+                "https://docs.google.com/forms/d/e/1FAIpQLSdb1LLWnuzk1oGqSiJcBPPogRWhoKIH6I4s5Fo7yJAtmsgW5g/viewform?pli=1"
             openWebviewFragment(url)
             dialog.dismiss()
         }
-
         DKthamquan.setOnClickListener {
-            val url = "https://docs.google.com/forms/d/e/1FAIpQLScgmYFj2NTmq53VWzNSA4OKAuxizD9UxYiaXVok_S_2k3favg/viewform"
+            val url =
+                "https://docs.google.com/forms/d/e/1FAIpQLScgmYFj2NTmq53VWzNSA4OKAuxizD9UxYiaXVok_S_2k3favg/viewform"
             openWebviewFragment(url)
             dialog.dismiss()
         }
 
         dialog.show()
-        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
         dialog.window?.setGravity(Gravity.BOTTOM)

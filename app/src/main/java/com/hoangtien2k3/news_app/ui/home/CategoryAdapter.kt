@@ -19,7 +19,7 @@ class CategoryAdapter(
 ) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_danh_muc, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_category, parent, false)
         return ViewHolder(view)
     }
 
@@ -54,7 +54,7 @@ class CategoryAdapter(
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val txtCategory: TextView = itemView.findViewById(R.id.itemDanhMuc_txtDanhMuc)
+        val txtCategory: TextView = itemView.findViewById(R.id.itemDanhMuc)
         val cardView: CardView = itemView.findViewById(R.id.cardView)
     }
 }

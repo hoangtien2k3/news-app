@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_1"
     android:orientation="vertical"
     tools:context=".activity.WeatherActivity">
 
@@ -19,10 +18,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="15dp"
             android:src="@drawable/back" />
 
         <EditText
+            style="@style/TextBlue"
             android:id="@+id/edittextSearch"
             android:layout_width="260dp"
             android:layout_height="wrap_content"
@@ -30,8 +30,7 @@
             android:layout_marginLeft="2dp"
             android:layout_marginTop="10dp"
             android:hint="@string/textAddress"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textStyle="italic"
             android:textSize="20dp" />
 
         <ImageView
@@ -41,17 +40,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:src="@drawable/search" />
-
-        <!--        <Button-->
-        <!--            android:id="@+id/btnSearch"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginStart="10dp"-->
-        <!--            android:layout_marginLeft="10dp"-->
-        <!--            android:layout_marginTop="7dp"-->
-        <!--            android:background="@color/cardview_shadow_start_color"-->
-        <!--            android:textStyle="bold"-->
-        <!--            android:text="Tìm kiếm" />-->
 
     </LinearLayout>
 
@@ -73,6 +61,7 @@
             android:padding="20dp">
 
             <TextView
+                style="@style/TEXT"
                 android:id="@+id/textviewQuocGia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

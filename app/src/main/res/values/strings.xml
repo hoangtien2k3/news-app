@@ -10,6 +10,12 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+    <string name="txt_support_facebook">Hỗ trợ tức thì qua Facebook Messenger</string>
+    <string name="txt_support_zalo">Hỗ trợ tức thì qua Zalo Messenger</string>
+
+    <string name="open_nav">Open Navigation Drawer</string>
+    <string name="close_nav">Close Navigation Drawer</string>
+
     <string name="back_1"><![CDATA[<-]]></string>
     <string name="forward_1"><![CDATA[->]]></string>
     <string name="news_detail">Chi tiết Tin Tức</string>
@@ -18,12 +24,12 @@
     <string name="settings">Cài Đặt</string>
     <string name="general">Chung</string>
     <string name="leave_feedback">Để lại Phản Hồi!</string>
-    <string name="leave_feedback2">Hãy cho chúng tôi biết bạn thích ứng dụng như thế nào!</string>
+    <string name="leave_feedback2">Bạn thích ứng dụng không ?</string>
     <string name="themes">Chuyển Đổi Chủ Đề</string>
     <string name="language">Ngôn Ngữ</string>
     <string name="language2">Bạn có thể thay đổi ngôn ngữ ứng dụng từ cài đặt thiết bị.</string>
     <string name="faq">Đăng Ký Biểu Mẫu</string>
-    <string name="agreement">Thỏa Thuận</string>
+    <string name="agreement">Xem Thêm</string>
     <string name="data_privacy">Thời Tiết Các Tỉnh Thành</string>
     <string name="terms">Xem Lịch Việt Nam</string>
     <string name="sign_out">Đăng Xuất</string>

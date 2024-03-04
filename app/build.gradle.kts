@@ -98,4 +98,6 @@ dependencies {
 
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
+//    implementation("com.miguelcatalan:materialsearchview:1.4.0")
+
 }

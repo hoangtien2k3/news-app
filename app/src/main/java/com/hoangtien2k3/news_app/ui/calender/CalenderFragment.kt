@@ -30,9 +30,9 @@ class CalendarFragment : Fragment(), CalendarAdapter.OnItemListener {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_calender, container, false)
-        imBackDocBaoC = view.findViewById(R.id.imgback_tintuc)
+        imBackDocBaoC = view.findViewById(R.id.back)
         imBackDocBaoC.setOnClickListener {
-            imBackDocBaoC
+            requireActivity().onBackPressed()
         }
         return view
     }
@@ -40,11 +40,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.OnItemListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initWidgets(view)
-        selectedDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            LocalDate.now()
-        } else {
-            LocalDate.now()
-        }
+        selectedDate = LocalDate.now()
         setMonthView()
     }
 

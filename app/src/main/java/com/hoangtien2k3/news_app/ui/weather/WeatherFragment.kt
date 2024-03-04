@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.databinding.FragmentWeatherBinding
 import com.hoangtien2k3.news_app.response.WeatherResponse
 import com.hoangtien2k3.news_app.utils.Constants
@@ -18,7 +17,8 @@ import java.util.Locale
 class WeatherFragment : Fragment() {
 
     private var _binding: FragmentWeatherBinding? = null
-    private val binding get() = _binding!!
+    private val binding
+        get() = _binding!!
 
     private val viewModel: WeatherViewModel by viewModels()
 
@@ -37,10 +37,8 @@ class WeatherFragment : Fragment() {
             val city = binding.edittextSearch.text.toString()
             viewModel.getCurrentWeatherData(if (city.isEmpty()) "Hanoi" else city)
         }
-
         binding.ok.setOnClickListener {
-            requireActivity().finish()
-            requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
+            requireActivity().onBackPressed()
         }
 
         viewModel.weatherResponse.observe(viewLifecycleOwner) { weatherResponse ->

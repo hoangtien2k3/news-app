@@ -39,8 +39,7 @@ class FootballFragment : Fragment() {
 
         model.footballNews.observe(viewLifecycleOwner) { footballList ->
             footballList?.let {
-                adapter = FoolballAdapter(
-                    requireContext(), it, object : FoolballAdapter.ShowDialoginterface {
+                adapter = FoolballAdapter(requireContext(), it, object : FoolballAdapter.ShowDialoginterface {
                         override fun itemClik(hero: Football) {
                             val dialogBuilder = AlertDialog.Builder(requireContext())
                             val inflater = layoutInflater

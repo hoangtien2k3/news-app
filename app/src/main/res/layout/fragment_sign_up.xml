@@ -62,6 +62,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                style="@style/TEXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/medium"
@@ -150,12 +151,12 @@
                 android:layout_height="10dp" />
 
             <TextView
+                style="@style/TEXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Or Sign up with"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
-
                 android:alpha="0.7" />
 
             <LinearLayout

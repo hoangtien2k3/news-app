@@ -3,9 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dialog_bg"
+    style="@style/SCREEN"
     android:orientation="vertical">
 
     <TextView
+        style="@style/TEXT"
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,6 +32,7 @@
             android:src="@drawable/baseline_newspaper_white" />
 
         <TextView
+            style="@style/TEXT"
             android:id="@+id/tvDKDangtin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,6 +58,7 @@
             android:src="@drawable/baseline_newspaper_white" />
 
         <TextView
+            style="@style/TEXT"
             android:id="@+id/tvDKtimnguoithan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,6 +84,7 @@
             android:src="@drawable/baseline_newspaper_white" />
 
         <TextView
+            style="@style/TEXT"
             android:id="@+id/tvDKTQToasoan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

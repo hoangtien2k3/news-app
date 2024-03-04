@@ -52,12 +52,9 @@
         <item name="android:background">@color/purple</item>
     </style>
 
-    <style name="SCREEN">
-        <item name="android:background">#FFF</item>
-    </style>
-
-    <style name="TEXT">
-        <item name="android:textColor">#000</item>
+    <style name="RoundedShapeAppearance" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -83,6 +80,31 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/subTitleTextColor</item>
         <item name="fontFamily">@font/newscycle_regular</item>
+    </style>
+
+    <style name="BackgroundMain">
+        <item name="android:background">#00BCD4</item>
+    </style>
+
+    <style name="BackgroundColorNav">
+        <item name="android:background">#FFF</item>
+    </style>
+
+    <style name="SCREEN">
+        <item name="android:background">#FFF</item>
+    </style>
+
+    <style name="TEXT">
+        <item name="android:textColor">#000</item>
+    </style>
+
+    <style name="TextBlue">
+        <item name="android:textColor">#FF0000FF</item>
+    </style>
+
+    <style name="BUTTON">
+        <item name="android:textColor">#FFF</item>
+        <item name="android:background">@android:color/background_dark</item>
     </style>
 
 </resources>

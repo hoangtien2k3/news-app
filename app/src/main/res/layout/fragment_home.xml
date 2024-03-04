@@ -4,77 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/SCREEN"
     tools:context=".fragment_news">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:src="@mipmap/news_app_logo_foreground"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/txtCategory"
-        android:layout_width="110dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="100dp"
-        android:src="@drawable/name_app"
-        android:textColor="@color/blue"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <ImageView
-        android:id="@+id/search"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/ic_home_search"
-        app:layout_constraintBottom_toBottomOf="@+id/txtCategory"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.352"
-        app:layout_constraintStart_toEndOf="@+id/txtCategory"
-        app:layout_constraintTop_toTopOf="@+id/txtCategory"
-        app:layout_constraintVertical_bias="1.0" />
-
     <TextView
-        android:id="@+id/textView"
+        style="@style/TEXT"
+        android:id="@+id/tvFootball"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Tin bóng đá"
-        android:textColor="@color/black"
         android:textSize="18dp"
         android:textStyle="bold"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerTinTuc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/danh_muc"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/detail1"
+        style="@style/TextBlue"
+        android:id="@+id/detailFootball"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Xem thêm"
-        android:textColor="@color/blue"
+        android:text="Tin mới"
         android:textSize="15dp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageBackFootball"
+        app:layout_constraintEnd_toStartOf="@+id/imageBackFootball"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+        app:layout_constraintStart_toEndOf="@+id/tvFootball"
+        app:layout_constraintTop_toTopOf="@+id/imageBackFootball" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:src="@drawable/ic_right_black"
         app:layout_constraintBottom_toTopOf="@+id/swipe_layout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,10 +50,11 @@
         app:layout_constraintVertical_bias="0.875" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageBackFootball"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="5dp"
         android:src="@drawable/ic_right_black"
         app:layout_constraintBottom_toTopOf="@+id/recyclerTinTuc"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,42 +62,32 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/detail2"
+        android:id="@+id/detailHot"
+        style="@style/TextBlue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="188dp"
-        android:text="Xem thêm"
-        android:textColor="@color/blue"
+        android:layout_marginBottom="8dp"
+        android:text="Chi tiết"
         android:textSize="15dp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintEnd_toStartOf="@+id/imageView4"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView4" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginStart="12dp"
-        android:src="@drawable/profile"
-        app:layout_constraintBottom_toBottomOf="@+id/search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/search"
-        app:layout_constraintTop_toTopOf="@+id/search"
+        app:layout_constraintStart_toEndOf="@+id/tvHots"
+        app:layout_constraintTop_toTopOf="@+id/imageView4"
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/danh_muc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:orientation="horizontal"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCategory" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerTinTuc"
@@ -139,13 +98,13 @@
         app:layout_constraintTop_toBottomOf="@+id/danh_muc" />
 
     <TextView
-        android:id="@+id/textView2"
+        style="@style/TEXT"
+        android:id="@+id/tvHots"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:text="Tin nóng: "
-        android:textColor="@color/black"
         android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/swipe_layout"
@@ -169,9 +128,123 @@
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:listitem="@layout/item_news" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/menuZalo"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/menuFacebook"
+        android:layout_alignLeft="@+id/menuFacebook"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fab"
+        app:layout_constraintEnd_toEndOf="@+id/menuFacebook"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_vertical|end"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="15dp">
+
+            <TextView
+                style="@style/TextBlue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|end"
+                android:layout_marginRight="10dp"
+                android:gravity="right|end"
+                android:text="@string/txt_support_zalo"
+                android:textAllCaps="false" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/zalo_sharelogo" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/menuFacebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fab"
+        app:layout_constraintEnd_toEndOf="@+id/fab"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="15dp">
+
+            <TextView
+                style="@style/TextBlue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|end"
+                android:layout_marginRight="10dp"
+                android:gravity="right|end"
+                android:text="@string/txt_support_facebook"
+                android:textAllCaps="false" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/logo_messenger_new" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/main_tabs"
+        app:backgroundTint="@color/color_tin"
+        app:borderWidth="0dp"
+        app:fabCustomSize="55dp"
+        android:layout_marginTop="400dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/danh_muc"
+        app:srcCompat="@drawable/ic_support_chat"
+        app:shapeAppearanceOverlay="@style/RoundedShapeAppearance" />
+
+    <View
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
