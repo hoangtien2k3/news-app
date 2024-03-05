@@ -4,42 +4,42 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.widget.ImageView
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
-import com.hoangtien2k3.news_app.R
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.navigation.NavigationView
+import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.data.models.BanTin
-import com.hoangtien2k3.news_app.ui.football.adapter.FoolballAdapter
 import com.hoangtien2k3.news_app.data.models.Football
 import com.hoangtien2k3.news_app.databinding.FragmentHomeBinding
 import com.hoangtien2k3.news_app.ui.bantin.BanTinFragment
 import com.hoangtien2k3.news_app.ui.bantin.BanTinViewModel
 import com.hoangtien2k3.news_app.ui.bantin.adapter.BanTinAdapter
 import com.hoangtien2k3.news_app.ui.football.FootballFragment
-import com.hoangtien2k3.news_app.ui.search.SearchNewsFragment
+import com.hoangtien2k3.news_app.ui.football.adapter.FoolballAdapter
 import com.hoangtien2k3.news_app.utils.Constants
 
-class HomeFragment : Fragment(){
+
+class HomeFragment : Fragment() {
+
     private lateinit var viewModel: HomeViewModel
     private lateinit var binding: FragmentHomeBinding
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var footballAdapter: FoolballAdapter
+
     private lateinit var mBanTinAdapter: BanTinAdapter
     private lateinit var viewModelBanTin: BanTinViewModel
     private lateinit var mListTinTuc: ArrayList<BanTin>
-    private var isFirst = false
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,19 +52,12 @@ class HomeFragment : Fragment(){
 
         setupUI()
         observeViewModel()
-        isFirst = true
+        floatingTab()
 
         return rootView
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        if (isFirst) floatingTab()
-    }
-
-
     private fun setupUI() {
-        // hiện thị các danh mục
         categoryAdapter = CategoryAdapter(requireContext(), emptyList())
         binding.danhMuc.apply {
             layoutManager = GridLayoutManager(requireContext(), 1).apply {
@@ -74,54 +67,6 @@ class HomeFragment : Fragment(){
         }
 
 
-        // hiển thị recyclerView bản tin
-        viewModelBanTin = ViewModelProvider(this)[BanTinViewModel::class.java]
-        mListTinTuc = ArrayList()
-        mBanTinAdapter = BanTinAdapter(requireContext(), mListTinTuc)
-        val gridLayoutManager = GridLayoutManager(requireContext(), 1)
-        gridLayoutManager.orientation = GridLayoutManager.VERTICAL
-        binding.NewsRecycler.layoutManager = gridLayoutManager
-        binding.NewsRecycler.adapter = mBanTinAdapter
-
-
-        // hiển thị recyclerView Tin bóng đá
-        binding.recyclerTinTuc.apply {
-            setHasFixedSize(true)
-            val gridLayoutManager = GridLayoutManager(requireContext(), 1)
-            gridLayoutManager.orientation = GridLayoutManager.HORIZONTAL
-            layoutManager = gridLayoutManager
-            footballAdapter = FoolballAdapter(
-                requireContext(),
-                emptyList(),
-                object : FoolballAdapter.ShowDialoginterface {
-                    override fun itemClik(hero: Football) {
-                        val dialogBuilder = AlertDialog.Builder(requireContext())
-                        val inflater = layoutInflater
-                        val dialogView = inflater.inflate(R.layout.web_show, null)
-                        dialogBuilder.setView(dialogView)
-
-                        val mWebView: WebView = dialogView.findViewById(R.id.WebConnect)
-                        val button: ImageView = dialogView.findViewById(R.id.ok)
-
-                        val webSettings: WebSettings = mWebView.settings
-                        webSettings.javaScriptEnabled = true
-
-                        mWebView.loadData(hero.embed, "text/html", "UTF-8")
-
-                        val alertDialog: AlertDialog = dialogBuilder.create()
-                        button.setOnClickListener {
-                            alertDialog.dismiss()
-                        }
-                        alertDialog.show()
-                    }
-                })
-            adapter = footballAdapter
-        }
-
-
-//        binding.search.setOnClickListener {
-//            loadFragment(SearchNewsFragment())
-//        }
         binding.detailFootball.setOnClickListener {
             loadFragment(FootballFragment())
         }
@@ -135,125 +80,88 @@ class HomeFragment : Fragment(){
             loadFragment(banTinFragment)
         }
 
-        // Khởi tạo RecyclerView.OnScrollListener để ẩn và hiển thị recyclerTinTuc khi cuộn
+
+        viewModelBanTin = ViewModelProvider(this)[BanTinViewModel::class.java]
+        mListTinTuc = ArrayList()
+        mBanTinAdapter = BanTinAdapter(requireContext(), mListTinTuc)
+        val gridLayoutManager = GridLayoutManager(requireContext(), 1)
+        gridLayoutManager.orientation = GridLayoutManager.VERTICAL
+        binding.NewsRecycler.layoutManager = gridLayoutManager
+        binding.NewsRecycler.adapter = mBanTinAdapter
+
+
+        binding.recyclerTinTuc.apply {
+            setHasFixedSize(true)
+            val gridLayoutManager = GridLayoutManager(requireContext(), 1)
+            gridLayoutManager.orientation = GridLayoutManager.HORIZONTAL
+            layoutManager = gridLayoutManager
+            footballAdapter = FoolballAdapter(requireContext(), emptyList(), object : FoolballAdapter.ShowDialoginterface {
+                override fun itemClik(hero: Football) {
+                    val dialogBuilder = AlertDialog.Builder(requireContext())
+                    val inflater = layoutInflater
+                    val dialogView = inflater.inflate(R.layout.web_show, null)
+                    dialogBuilder.setView(dialogView)
+
+                    val mWebView: WebView = dialogView.findViewById(R.id.WebConnect)
+                    val button: ImageView = dialogView.findViewById(R.id.ok)
+
+                    val webSettings: WebSettings = mWebView.settings
+                    webSettings.javaScriptEnabled = true
+
+                    mWebView.loadData(hero.embed, "text/html", "UTF-8")
+
+                    val alertDialog: AlertDialog = dialogBuilder.create()
+                    button.setOnClickListener {
+                        alertDialog.dismiss()
+                    }
+                    alertDialog.show()
+                }
+            })
+            adapter = footballAdapter
+        }
+
+
         binding.NewsRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
+
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
                 val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
-
                 if (firstVisibleItemPosition == 0) {
-                    animateViews(true)
+                    showAndCloseUI(false)
                 } else {
-                    animateViews(false)
+                    showAndCloseUI(true)
                 }
+
             }
         })
 
     }
 
-
-    private var isFABOpen = false
-    private fun floatingTab() {
-        binding.fab.setOnClickListener {
-            if (!isFABOpen) {
-                showFABMenu()
-                binding.overlay.visibility = View.VISIBLE
-                binding.overlay.setOnClickListener {
-                    closeFABMenu()
-                    binding.overlay.visibility = View.GONE
-                }
-            } else {
-                closeFABMenu()
-                binding.overlay.visibility = View.GONE
-            }
-        }
-        binding.menuZalo.setOnClickListener {
-            closeFABMenu()
-            val zaloID = "0828007853"
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://zalo.me/$zaloID"))
-            startActivity(browserIntent)
-        }
-        binding.menuFacebook.setOnClickListener {
-            closeFABMenu()
-            val facebookID = "109216984946230"
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://m.me/$facebookID"))
-            startActivity(intent)
-        }
-    }
-
-    private fun showFABMenu() {
-        isFABOpen = true
-        binding.fab.apply {
-            hide()
-            setImageResource(R.drawable.ic_floating_btn_close)
-            show()
-        }
-        binding.menuZalo.apply {
-            animate().translationY(-resources.getDimension(R.dimen.marginBottom_zalo))
-            visibility = View.VISIBLE
-        }
-        binding.menuFacebook.apply {
-            animate().translationY(-resources.getDimension(R.dimen.marginBottom_facebook))
-            visibility = View.VISIBLE
-        }
-    }
-
-    private fun closeFABMenu() {
-        isFABOpen = false
-        binding.menuFacebook.apply {
-            animate().translationY(0F)
-            visibility = View.GONE
-        }
-        binding.menuZalo.apply {
-            animate().translationY(0F)
-            visibility = View.GONE
-        }
-        binding.fab.apply {
-            hide()
-            setImageResource(R.drawable.ic_support_chat)
-            show()
-        }
-    }
-
-    private fun animateViews(shouldShow: Boolean) {
-        if (shouldShow) {
-            binding.recyclerTinTuc.visibility = View.VISIBLE
-            binding.tvFootball.visibility = View.VISIBLE
-            binding.detailFootball.visibility = View.VISIBLE
-            binding.imageBackFootball.visibility = View.VISIBLE
-
-            binding.fab.apply {
-                setImageResource(R.drawable.ic_support_chat)
-                setOnClickListener {
-                    if (!isFABOpen) {
-                        showFABMenu()
-                        binding.overlay.visibility = View.VISIBLE
-                        binding.overlay.setOnClickListener {
-                            closeFABMenu()
-                            binding.overlay.visibility = View.GONE
-                        }
-                    } else {
-                        closeFABMenu()
-                        binding.overlay.visibility = View.GONE
-                    }
-                }
-            }
-
-        } else {
-            binding.recyclerTinTuc.visibility = View.GONE
+    private fun showAndCloseUI(boolean: Boolean) {
+        if (boolean) {
             binding.tvFootball.visibility = View.GONE
             binding.detailFootball.visibility = View.GONE
             binding.imageBackFootball.visibility = View.GONE
-
-            binding.fab.apply {
-                visibility = View.VISIBLE
-                setImageResource(R.drawable.ic_arrow_upward_white_24dp)
-                setOnClickListener {
-                    binding.NewsRecycler.smoothScrollToPosition(0)
-                    binding.recyclerTinTuc.smoothScrollToPosition(0)
-                }
+            binding.recyclerTinTuc.visibility = View.GONE
+            binding.fab.setImageResource(R.drawable.ic_arrow_upward_white_24dp)
+            binding.fab.setOnClickListener {
+                binding.NewsRecycler.smoothScrollToPosition(0);
+                binding.recyclerTinTuc.smoothScrollToPosition(0);
+                binding.fab.setImageResource(R.drawable.ic_support_chat)
             }
+        } else {
+            binding.fab.setImageResource(R.drawable.ic_support_chat)
+            binding.fab.setOnClickListener {
+                if (!isFABOpen)
+                    showFABMenu()
+                else
+                    closeFABMenu()
+            }
+            binding.tvFootball.visibility = View.VISIBLE
+            binding.detailFootball.visibility = View.VISIBLE
+            binding.imageBackFootball.visibility = View.VISIBLE
+            binding.recyclerTinTuc.visibility = View.VISIBLE
         }
     }
 
@@ -281,6 +189,70 @@ class HomeFragment : Fragment(){
         })
     }
 
+
+    var isFABOpen = false
+    private fun floatingTab() {
+        binding.fab.setOnClickListener {
+            if (!isFABOpen) {
+                showFABMenu()
+            } else {
+                closeFABMenu()
+            }
+        }
+        binding.overlay.setOnClickListener {
+            closeFABMenu()
+            val githubUsername = "hoangtien2k3qx1"
+            val githubUrl = "https://github.com/$githubUsername"
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(githubUrl))
+            startActivity(browserIntent)
+        }
+        binding.menuZalo.setOnClickListener {
+            closeFABMenu()
+            val zaloID = "0828007853"
+            val url = "http://zalo.me/$zaloID"
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(browserIntent)
+        }
+        binding.menuFacebook.setOnClickListener {
+            closeFABMenu()
+            val facebookID = "103838294312468"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://m.me/$facebookID"))
+            startActivity(intent)
+        }
+        binding.overlay.setOnClickListener {
+            closeFABMenu()
+        }
+    }
+
+    private fun showFABMenu() {
+        isFABOpen = true
+        binding.fab.hide()
+        binding.fab.setImageResource(R.drawable.ic_floating_btn_close)
+        binding.fab.show()
+        binding.menuGithub.animate().translationY(-resources.getDimension(R.dimen.marginBottom_github))
+        binding.menuZalo.animate().translationY(-resources.getDimension(R.dimen.marginBottom_zalo))
+        binding.menuFacebook.animate().translationY(-resources.getDimension(R.dimen.marginBottom_facebook))
+        binding.menuGithub.visibility = View.VISIBLE
+        binding.menuZalo.visibility = View.VISIBLE
+        binding.menuFacebook.visibility = View.VISIBLE
+        binding.overlay.visibility = View.VISIBLE
+    }
+
+    private fun closeFABMenu() {
+        isFABOpen = false
+        binding.menuGithub.animate().translationY(0F)
+        binding.menuZalo.animate().translationY(0F)
+        binding.menuFacebook.animate().translationY(0F)
+        binding.menuGithub.visibility = View.GONE
+        binding.menuZalo.visibility = View.GONE
+        binding.menuFacebook.visibility = View.GONE
+        binding.overlay.visibility = View.GONE
+        binding.fab.hide()
+        binding.fab.setImageResource(R.drawable.ic_support_chat)
+        binding.fab.show()
+    }
+
+
     private fun loadFragment(fragmentReplace: Fragment) {
         requireActivity().supportFragmentManager
             .beginTransaction()
@@ -288,6 +260,5 @@ class HomeFragment : Fragment(){
             .addToBackStack("HomeFragment")
             .commit()
     }
-
 }
 

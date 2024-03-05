@@ -12,11 +12,10 @@ import com.hoangtien2k3.news_app.ui.webview.WebviewFragment
 import com.hoangtien2k3.news_app.data.models.BanTin
 import com.hoangtien2k3.news_app.databinding.ItemRowArticleBinding
 import com.squareup.picasso.Picasso
-import java.util.ArrayList
 
 class BanTinAdapter(
     private val mContext: Context,
-    private val mListTinTuc: ArrayList<BanTin>
+    private var mListTinTuc: List<BanTin>
 ) : RecyclerView.Adapter<BanTinAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -56,6 +55,12 @@ class BanTinAdapter(
 
     override fun getItemCount(): Int {
         return mListTinTuc.size
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(newList: List<BanTin>) {
+        mListTinTuc = newList
+        notifyDataSetChanged()
     }
 
     inner class ViewHolder(val binding: ItemRowArticleBinding) : RecyclerView.ViewHolder(binding.root)

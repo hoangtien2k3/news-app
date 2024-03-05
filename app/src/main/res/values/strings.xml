@@ -12,6 +12,7 @@
 
     <string name="txt_support_facebook">Hỗ trợ tức thì qua Facebook Messenger</string>
     <string name="txt_support_zalo">Hỗ trợ tức thì qua Zalo Messenger</string>
+    <string name="txt_support_github">Nhận hỗ trợ Code uy tín qua Github</string>
 
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>

@@ -1,7 +1,7 @@
 package com.hoangtien2k3.news_app.data.source.api
 
 import com.hoangtien2k3.news_app.data.models.NewsResponse
-import com.hoangtien2k3.news_app.utils.Constants.Companion.API_KEY
+import com.hoangtien2k3.news_app.utils.Constants.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

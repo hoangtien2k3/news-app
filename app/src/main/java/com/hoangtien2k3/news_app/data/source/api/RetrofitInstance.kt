@@ -1,6 +1,6 @@
 package com.hoangtien2k3.news_app.data.source.api
 
-import com.hoangtien2k3.news_app.utils.Constants.Companion.BASE_URL
+import com.hoangtien2k3.news_app.utils.Constants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -17,16 +17,16 @@ class RetrofitInstance {
                 .build()
 
             Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(Constants.BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
 
-        val api by lazy {
+        val api: NewsAPI by lazy {
             retrofit.create(NewsAPI::class.java)
         }
-    }
 
+    }
 
 }
