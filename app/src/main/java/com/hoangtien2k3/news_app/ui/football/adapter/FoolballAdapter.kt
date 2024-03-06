@@ -1,6 +1,7 @@
 package com.hoangtien2k3.news_app.ui.football.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
 import com.hoangtien2k3.news_app.data.models.Football
 
 import android.text.TextUtils
@@ -17,6 +18,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class FoolballAdapter(
+    val mCtx: Context,
     private var heroList: List<Football>,
     private val showDialoginterface: ShowDialoginterface
 ) : RecyclerView.Adapter<FoolballAdapter.HeroViewHolder>() {

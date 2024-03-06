@@ -37,5 +37,6 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="text_color">#FF000000</color>
+    <color name="colorPrimaryDark_1">#009900</color>
 </resources>
 

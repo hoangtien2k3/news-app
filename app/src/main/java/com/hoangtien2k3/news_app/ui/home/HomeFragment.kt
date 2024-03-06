@@ -22,6 +22,7 @@ import com.hoangtien2k3.news_app.data.models.BanTin
 import com.hoangtien2k3.news_app.data.models.Football
 import com.hoangtien2k3.news_app.databinding.FragmentHomeBinding
 import com.hoangtien2k3.news_app.ui.bantin.BanTinFragment
+import com.hoangtien2k3.news_app.ui.bantin.BanTinViewModel
 import com.hoangtien2k3.news_app.ui.bantin.BanTinViewModel2
 import com.hoangtien2k3.news_app.ui.bantin.adapter.BanTinAdapter
 import com.hoangtien2k3.news_app.ui.football.FootballFragment
@@ -36,7 +37,7 @@ class HomeFragment : Fragment() {
     private lateinit var footballAdapter: FoolballAdapter
 
     private lateinit var mBanTinAdapter: BanTinAdapter
-    private lateinit var viewModelBanTin: BanTinViewModel2
+    private lateinit var viewModelBanTin: BanTinViewModel
     private lateinit var mListTinTuc: ArrayList<BanTin>
 
 
@@ -80,7 +81,7 @@ class HomeFragment : Fragment() {
         }
 
 
-        viewModelBanTin = ViewModelProvider(this)[BanTinViewModel2::class.java]
+        viewModelBanTin = ViewModelProvider(this)[BanTinViewModel::class.java]
         mListTinTuc = ArrayList()
         mBanTinAdapter = BanTinAdapter(requireContext(), mListTinTuc)
         val gridLayoutManager = GridLayoutManager(requireContext(), 1)
@@ -94,8 +95,7 @@ class HomeFragment : Fragment() {
             val gridLayoutManager = GridLayoutManager(requireContext(), 1)
             gridLayoutManager.orientation = GridLayoutManager.HORIZONTAL
             layoutManager = gridLayoutManager
-            footballAdapter = FoolballAdapter(emptyList(), object : FoolballAdapter.ShowDialoginterface {
-                @SuppressLint("SetJavaScriptEnabled")
+            footballAdapter = FoolballAdapter(requireContext(), emptyList(), object : FoolballAdapter.ShowDialoginterface {
                 override fun itemClik(hero: Football) {
                     val dialogBuilder = AlertDialog.Builder(requireContext())
                     val inflater = layoutInflater
@@ -137,7 +137,6 @@ class HomeFragment : Fragment() {
         })
 
     }
-
 
     private fun showAndCloseUI(boolean: Boolean) {
         if (boolean) {
@@ -189,15 +188,14 @@ class HomeFragment : Fragment() {
 //            mBanTinAdapter.notifyDataSetChanged()
 //        })
 
-        viewModelBanTin.fetchListTinTuc()
-        viewModelBanTin.listTinTuc.observe(viewLifecycleOwner, Observer { tinTucList ->
+//        viewModelBanTin.fetchListTinTuc()
+        viewModelBanTin.listTinTuc.observe(viewLifecycleOwner) { tinTucList ->
             mListTinTuc.clear()
             mListTinTuc.addAll(tinTucList)
             mBanTinAdapter.notifyDataSetChanged()
-        })
+        }
 
     }
-
 
     var isFABOpen = false
     private fun floatingTab() {
@@ -238,10 +236,10 @@ class HomeFragment : Fragment() {
         binding.fab.hide()
         binding.fab.setImageResource(R.drawable.ic_floating_btn_close)
         binding.fab.show()
-        binding.menuGithub.animate().translationY(-resources.getDimension(R.dimen.marginBottom_github))
+//        binding.menuGithub.animate().translationY(-resources.getDimension(R.dimen.marginBottom_github))
         binding.menuZalo.animate().translationY(-resources.getDimension(R.dimen.marginBottom_zalo))
         binding.menuFacebook.animate().translationY(-resources.getDimension(R.dimen.marginBottom_facebook))
-        binding.menuGithub.visibility = View.VISIBLE
+//        binding.menuGithub.visibility = View.VISIBLE
         binding.menuZalo.visibility = View.VISIBLE
         binding.menuFacebook.visibility = View.VISIBLE
         binding.overlay.visibility = View.VISIBLE
@@ -249,10 +247,10 @@ class HomeFragment : Fragment() {
 
     private fun closeFABMenu() {
         isFABOpen = false
-        binding.menuGithub.animate().translationY(0F)
+//        binding.menuGithub.animate().translationY(0F)
         binding.menuZalo.animate().translationY(0F)
         binding.menuFacebook.animate().translationY(0F)
-        binding.menuGithub.visibility = View.GONE
+//        binding.menuGithub.visibility = View.GONE
         binding.menuZalo.visibility = View.GONE
         binding.menuFacebook.visibility = View.GONE
         binding.overlay.visibility = View.GONE
@@ -261,7 +259,6 @@ class HomeFragment : Fragment() {
         binding.fab.show()
     }
 
-
     private fun loadFragment(fragmentReplace: Fragment) {
         requireActivity().supportFragmentManager
             .beginTransaction()
@@ -269,6 +266,5 @@ class HomeFragment : Fragment() {
             .addToBackStack("HomeFragment")
             .commit()
     }
-
 }
 

@@ -40,7 +40,7 @@ class FootballFragment : Fragment() {
 
         model.footballNews.observe(viewLifecycleOwner) { footballList ->
             footballList?.let {
-                adapter = FoolballAdapter(it, object : FoolballAdapter.ShowDialoginterface {
+                adapter = FoolballAdapter(requireContext(), it, object : FoolballAdapter.ShowDialoginterface {
                         override fun itemClik(hero: Football) {
                             openDialog(hero)
                         }

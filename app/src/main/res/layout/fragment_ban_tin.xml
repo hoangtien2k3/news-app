@@ -6,38 +6,33 @@
     style="@style/SCREEN"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark_1">
 
         <ImageView
             android:id="@+id/back"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="todo"
-            android:src="@drawable/back" />
-
-        <TextView
-            style="@style/TEXT"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bản Tin: "
-            android:textSize="20dp"
-            android:layout_marginStart="80dp" />
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:onClick="onclick"
+            android:paddingLeft="10dp"
+            android:paddingRight="45dp"
+            android:src="@mipmap/search_ic_back" />
 
         <TextView
             style="@style/TEXT"
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title"
-            android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:textSize="20dp"
-            android:textColor="@color/blue" />
-
-    </LinearLayout>
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Title bản tin"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/banTin_recyclerView"

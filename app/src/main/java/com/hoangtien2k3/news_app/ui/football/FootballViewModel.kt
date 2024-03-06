@@ -1,13 +1,8 @@
 package com.hoangtien2k3.news_app.ui.football
 
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.widget.ImageView
-import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.data.models.Football
 import com.hoangtien2k3.news_app.data.source.api.FootballClient
 import retrofit2.Call
