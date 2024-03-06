@@ -23,18 +23,21 @@
             android:layout_marginBottom="10dp">
 
             <TextView
-                style="@style/TEXT"
                 android:id="@+id/date"
+                style="@style/TEXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_margin="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:elevation="5dp"
                 android:shadowColor="@android:color/white"
                 android:shadowDx="2"
                 android:shadowDy="2"
                 android:shadowRadius="3"
-                android:text="21.10.2020"
+                android:text="6-3-2024"
                 android:textColor="@android:color/white"
                 android:textSize="11sp" />
 

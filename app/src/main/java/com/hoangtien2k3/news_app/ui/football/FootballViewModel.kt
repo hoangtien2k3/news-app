@@ -1,16 +1,18 @@
 package com.hoangtien2k3.news_app.ui.football
 
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.hoangtien2k3.news_app.data.source.api.FootballService
+import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.data.models.Football
-import com.hoangtien2k3.news_app.utils.Constants
+import com.hoangtien2k3.news_app.data.source.api.FootballClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class FootballViewModel : ViewModel() {
 
@@ -22,13 +24,7 @@ class FootballViewModel : ViewModel() {
     }
 
     fun fetchFootballNews() {
-        // Fetch football news data using Retrofit
-        val retrofit = Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL_Foolball)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val service = retrofit.create(FootballService::class.java)
+        val service = FootballClient.apiService
         val call = service.getFootballData()
 
         call.enqueue(object : Callback<List<Football>> {
@@ -40,8 +36,9 @@ class FootballViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<List<Football>>, t: Throwable) {
-                // Handle failure
+
             }
         })
     }
+
 }

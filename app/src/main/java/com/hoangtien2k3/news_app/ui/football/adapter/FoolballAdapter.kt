@@ -3,11 +3,13 @@ package com.hoangtien2k3.news_app.ui.football.adapter
 import android.annotation.SuppressLint
 import com.hoangtien2k3.news_app.data.models.Football
 
-import android.content.Context
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.hoangtien2k3.news_app.databinding.ItemNewsBinding
 import com.squareup.picasso.Picasso
 import java.text.ParseException
@@ -15,7 +17,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class FoolballAdapter(
-    private val mCtx: Context,
     private var heroList: List<Football>,
     private val showDialoginterface: ShowDialoginterface
 ) : RecyclerView.Adapter<FoolballAdapter.HeroViewHolder>() {
@@ -30,18 +31,20 @@ class FoolballAdapter(
             binding.title.isSelected = true
             binding.title.isSingleLine = true
 
-            Picasso.get().load(hero.thumbnail).into(binding.image)
+            Glide.with(binding.image.context)
+                .load(hero.thumbnail)
+                .into(binding.image)
+
             binding.title.text = hero.title
 
-            val data = fromISO8601UTC(hero.date)
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd, HH:mm")
 
+            val data = fromISO8601UTC(hero.date)
+            val dateFormat = SimpleDateFormat("dd.MM.yyyy")
             if (data != null) {
                 val strDate = dateFormat.format(data)
                 binding.date.text = strDate
-                println(hero.date)
             } else {
-                println(hero.date)
+
             }
 
             binding.root.setOnClickListener {
@@ -59,7 +62,6 @@ class FoolballAdapter(
         holder.bind(heroList[position])
     }
 
-    // Update data function
     fun updateData(newList: List<Football>) {
         heroList = newList
         notifyDataSetChanged()

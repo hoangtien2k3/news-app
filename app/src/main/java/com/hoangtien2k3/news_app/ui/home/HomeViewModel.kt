@@ -1,5 +1,10 @@
 package com.hoangtien2k3.news_app.ui.home
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 import androidx.lifecycle.viewModelScope
+import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.data.models.Category
 import kotlinx.coroutines.launch
 
@@ -79,5 +85,6 @@ class HomeViewModel : ViewModel() {
             Category("Du Lịch", Constants.BASE_URL_TIN_DU_LICH)
         )
     }
+
 
 }

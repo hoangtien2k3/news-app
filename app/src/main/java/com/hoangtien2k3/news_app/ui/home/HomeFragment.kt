@@ -1,10 +1,10 @@
 package com.hoangtien2k3.news_app.ui.home
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,12 +22,11 @@ import com.hoangtien2k3.news_app.data.models.BanTin
 import com.hoangtien2k3.news_app.data.models.Football
 import com.hoangtien2k3.news_app.databinding.FragmentHomeBinding
 import com.hoangtien2k3.news_app.ui.bantin.BanTinFragment
-import com.hoangtien2k3.news_app.ui.bantin.BanTinViewModel
+import com.hoangtien2k3.news_app.ui.bantin.BanTinViewModel2
 import com.hoangtien2k3.news_app.ui.bantin.adapter.BanTinAdapter
 import com.hoangtien2k3.news_app.ui.football.FootballFragment
 import com.hoangtien2k3.news_app.ui.football.adapter.FoolballAdapter
 import com.hoangtien2k3.news_app.utils.Constants
-
 
 class HomeFragment : Fragment() {
 
@@ -37,7 +36,7 @@ class HomeFragment : Fragment() {
     private lateinit var footballAdapter: FoolballAdapter
 
     private lateinit var mBanTinAdapter: BanTinAdapter
-    private lateinit var viewModelBanTin: BanTinViewModel
+    private lateinit var viewModelBanTin: BanTinViewModel2
     private lateinit var mListTinTuc: ArrayList<BanTin>
 
 
@@ -81,7 +80,7 @@ class HomeFragment : Fragment() {
         }
 
 
-        viewModelBanTin = ViewModelProvider(this)[BanTinViewModel::class.java]
+        viewModelBanTin = ViewModelProvider(this)[BanTinViewModel2::class.java]
         mListTinTuc = ArrayList()
         mBanTinAdapter = BanTinAdapter(requireContext(), mListTinTuc)
         val gridLayoutManager = GridLayoutManager(requireContext(), 1)
@@ -95,7 +94,8 @@ class HomeFragment : Fragment() {
             val gridLayoutManager = GridLayoutManager(requireContext(), 1)
             gridLayoutManager.orientation = GridLayoutManager.HORIZONTAL
             layoutManager = gridLayoutManager
-            footballAdapter = FoolballAdapter(requireContext(), emptyList(), object : FoolballAdapter.ShowDialoginterface {
+            footballAdapter = FoolballAdapter(emptyList(), object : FoolballAdapter.ShowDialoginterface {
+                @SuppressLint("SetJavaScriptEnabled")
                 override fun itemClik(hero: Football) {
                     val dialogBuilder = AlertDialog.Builder(requireContext())
                     val inflater = layoutInflater
@@ -137,6 +137,7 @@ class HomeFragment : Fragment() {
         })
 
     }
+
 
     private fun showAndCloseUI(boolean: Boolean) {
         if (boolean) {
@@ -181,12 +182,20 @@ class HomeFragment : Fragment() {
             }
         }
 
-        viewModelBanTin.fetchListTinTuc(Constants.BASE_URL_TIN_NOI_BAT)
+//        viewModelBanTin.fetchListTinTuc(Constants.BASE_URL_TIN_NOI_BAT)
+//        viewModelBanTin.listTinTuc.observe(viewLifecycleOwner, Observer { tinTucList ->
+//            mListTinTuc.clear()
+//            mListTinTuc.addAll(tinTucList)
+//            mBanTinAdapter.notifyDataSetChanged()
+//        })
+
+        viewModelBanTin.fetchListTinTuc()
         viewModelBanTin.listTinTuc.observe(viewLifecycleOwner, Observer { tinTucList ->
             mListTinTuc.clear()
             mListTinTuc.addAll(tinTucList)
             mBanTinAdapter.notifyDataSetChanged()
         })
+
     }
 
 
@@ -260,5 +269,6 @@ class HomeFragment : Fragment() {
             .addToBackStack("HomeFragment")
             .commit()
     }
+
 }
 

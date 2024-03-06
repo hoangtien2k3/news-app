@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.ui.webview.WebviewFragment
 import com.hoangtien2k3.news_app.data.models.BanTin
@@ -31,10 +32,15 @@ class BanTinAdapter(
 
         if (tinTuc.img.isEmpty())
             holder.binding.ivArticle.setImageResource(R.drawable.world)
-        else
-            Picasso.get()
+        else {
+//            Picasso.get()
+//                .load(tinTuc.img)
+//                .into(holder.binding.ivArticle)
+
+            Glide.with(holder.binding.ivArticle.context)
                 .load(tinTuc.img)
                 .into(holder.binding.ivArticle)
+        }
 
 
         holder.binding.itemTinTucConstrantlayout.setOnClickListener {

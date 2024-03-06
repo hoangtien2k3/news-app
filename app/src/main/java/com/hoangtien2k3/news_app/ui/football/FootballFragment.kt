@@ -1,5 +1,6 @@
 package com.hoangtien2k3.news_app.ui.football
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,24 +40,9 @@ class FootballFragment : Fragment() {
 
         model.footballNews.observe(viewLifecycleOwner) { footballList ->
             footballList?.let {
-                adapter = FoolballAdapter(requireContext(), it, object : FoolballAdapter.ShowDialoginterface {
+                adapter = FoolballAdapter(it, object : FoolballAdapter.ShowDialoginterface {
                         override fun itemClik(hero: Football) {
-                            val dialogBuilder = AlertDialog.Builder(requireContext())
-                            val inflater = layoutInflater
-                            val dialogView = inflater.inflate(R.layout.web_show, null)
-                            dialogBuilder.setView(dialogView)
-
-                            val mWebView: WebView = dialogView.findViewById(R.id.WebConnect)
-                            val button: ImageView = dialogView.findViewById(R.id.ok)
-
-                            val webSettings: WebSettings = mWebView.settings
-                            webSettings.javaScriptEnabled = true
-
-                            mWebView.loadData(hero.embed, "text/html", "UTF-8")
-
-                            val alertDialog: AlertDialog = dialogBuilder.create()
-                            button.setOnClickListener { alertDialog.dismiss() }
-                            alertDialog.show()
+                            openDialog(hero)
                         }
                     })
                 newsRecycler.adapter = adapter
@@ -71,4 +57,25 @@ class FootballFragment : Fragment() {
 
         return rootView
     }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun openDialog(hero: Football) {
+        val dialogBuilder = AlertDialog.Builder(requireContext())
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.web_show, null)
+        dialogBuilder.setView(dialogView)
+
+        val mWebView: WebView = dialogView.findViewById(R.id.WebConnect)
+        val button: ImageView = dialogView.findViewById(R.id.ok)
+
+        val webSettings: WebSettings = mWebView.settings
+        webSettings.javaScriptEnabled = true
+
+        mWebView.loadData(hero.embed, "text/html", "UTF-8")
+
+        val alertDialog: AlertDialog = dialogBuilder.create()
+        button.setOnClickListener { alertDialog.dismiss() }
+        alertDialog.show()
+    }
+
 }
