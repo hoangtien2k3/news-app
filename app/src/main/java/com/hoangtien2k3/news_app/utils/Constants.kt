@@ -7,6 +7,7 @@ class Constants {
         const val BASE_URL = "https://newsapi.org/"
         const val SEARCH_TIME_DELAY = 500L
 
+
         const val BASE_URL_Foolball = "https://free-football-soccer-videos.p.rapidapi.com/"
         const val BASE_URL_Weather = "https://api.openweathermap.org/data/2.5/"
         const val apiKeyWeather = "037d21cb14640ecd9a4f4eca49e7ff3f"

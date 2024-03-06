@@ -10,6 +10,6 @@ interface FootballService {
         "x-rapidapi-host: free-football-soccer-videos.p.rapidapi.com",
         "x-rapidapi-key: 4877c410b9mshe7fe9517ac14094p1cd13ejsn6a566299c797"
     )
-    @GET("/")
+    @GET("/football")
     fun getFootballData(): Call<List<Football>>
 }
