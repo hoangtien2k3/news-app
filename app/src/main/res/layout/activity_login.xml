@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
                 android:fontFamily="@font/medium"
-                android:text="App đọc tin tức 24h xin chào bạn !" />
+                android:text="Hãy đăng nhâph thông tin của bạn" />
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -173,7 +173,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/medium"
-                    android:text="Chưa có tài khoản? Đăng ký"
+                    android:text="Are you a new user? Register"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 

@@ -1,6 +1,7 @@
 package com.hoangtien2k3.news_app.ui.menu
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.databinding.FragmentMenuBinding
+import com.hoangtien2k3.news_app.ui.auth.login.LoginActivity
 import com.hoangtien2k3.news_app.ui.main.MainFragment
 import com.hoangtien2k3.news_app.ui.calender.CalendarFragment
 import com.hoangtien2k3.news_app.ui.webview.WebviewFragment
@@ -55,6 +57,14 @@ class MenuFragment : Fragment() {
         }
         binding.ngonNgu.setOnClickListener {
             loadFragment(MainFragment())
+        }
+        binding.logout.setOnClickListener {
+            val intent = Intent(activity, LoginActivity::class.java)
+            requireActivity().supportFragmentManager
+                .beginTransaction()
+                .remove(this)
+                .commit()
+            startActivity(intent)
         }
 
     }

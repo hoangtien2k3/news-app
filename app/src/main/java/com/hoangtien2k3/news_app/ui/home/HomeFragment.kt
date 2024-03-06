@@ -1,6 +1,5 @@
 package com.hoangtien2k3.news_app.ui.home
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
@@ -12,7 +11,6 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,14 +28,13 @@ import com.hoangtien2k3.news_app.ui.football.adapter.FoolballAdapter
 import com.hoangtien2k3.news_app.utils.Constants
 
 class HomeFragment : Fragment() {
-
     private lateinit var viewModel: HomeViewModel
     private lateinit var binding: FragmentHomeBinding
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var footballAdapter: FoolballAdapter
 
     private lateinit var mBanTinAdapter: BanTinAdapter
-    private lateinit var viewModelBanTin: BanTinViewModel
+    private lateinit var viewModelBanTin: BanTinViewModel2
     private lateinit var mListTinTuc: ArrayList<BanTin>
 
 
@@ -81,7 +78,7 @@ class HomeFragment : Fragment() {
         }
 
 
-        viewModelBanTin = ViewModelProvider(this)[BanTinViewModel::class.java]
+        viewModelBanTin = ViewModelProvider(this)[BanTinViewModel2::class.java]
         mListTinTuc = ArrayList()
         mBanTinAdapter = BanTinAdapter(requireContext(), mListTinTuc)
         val gridLayoutManager = GridLayoutManager(requireContext(), 1)
@@ -95,7 +92,7 @@ class HomeFragment : Fragment() {
             val gridLayoutManager = GridLayoutManager(requireContext(), 1)
             gridLayoutManager.orientation = GridLayoutManager.HORIZONTAL
             layoutManager = gridLayoutManager
-            footballAdapter = FoolballAdapter(requireContext() ,emptyList(), object : FoolballAdapter.ShowDialoginterface {
+            footballAdapter = FoolballAdapter(emptyList(), object : FoolballAdapter.ShowDialoginterface {
                 override fun itemClik(hero: Football) {
                     val dialogBuilder = AlertDialog.Builder(requireContext())
                     val inflater = layoutInflater
@@ -108,7 +105,7 @@ class HomeFragment : Fragment() {
                     val webSettings: WebSettings = mWebView.settings
                     webSettings.javaScriptEnabled = true
 
-                    mWebView.loadData(hero.embed, "text/html", "UTF-8")
+                    mWebView.loadUrl(hero.url)
 
                     val alertDialog: AlertDialog = dialogBuilder.create()
                     button.setOnClickListener {

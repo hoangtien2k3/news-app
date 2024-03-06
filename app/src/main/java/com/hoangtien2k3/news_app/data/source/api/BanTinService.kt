@@ -5,6 +5,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface BanTinService {
-    @GET("/news")
+    @GET("/api/news")
     fun getBanTinData(): Call<List<BanTin>>
 }

@@ -10,7 +10,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class FootballViewModel : ViewModel() {
-
     private val _footballNews = MutableLiveData<List<Football>>()
     val footballNews: LiveData<List<Football>> = _footballNews
 
@@ -35,5 +34,4 @@ class FootballViewModel : ViewModel() {
             }
         })
     }
-
 }

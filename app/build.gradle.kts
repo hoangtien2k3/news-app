@@ -99,6 +99,7 @@ dependencies {
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
 //    implementation("com.miguelcatalan:materialsearchview:1.4.0")
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 
     // Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")

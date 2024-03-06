@@ -16,6 +16,7 @@
 
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>
+    <string name="login_failed">Đăng nhập thất bại</string>
 
     <string name="back_1"><![CDATA[<-]]></string>
     <string name="forward_1"><![CDATA[->]]></string>

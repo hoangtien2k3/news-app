@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="180dp"
     android:background="@drawable/bgadmin"
@@ -13,7 +14,8 @@
         android:id="@+id/img_avatar"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:src="@drawable/logo_tinnhanh1h" />
+        android:src="@drawable/logo_tinnhanh1h"
+        tools:ignore="MissingClass" />
 
     <TextView
         android:id="@+id/tv_name"

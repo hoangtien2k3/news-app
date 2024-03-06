@@ -2,14 +2,13 @@ package com.hoangtien2k3.news_app.utils
 
 object Constants {
     // api localhost
-    const val BASE_URL_NEWS_LOCAL = "http://192.168.1.254:9090"
+    const val BASE_URL_LOCAL = "http://192.168.1.254:9090"
 
     const val API_KEY = "bd81e7f01e744515b6db53690c2ff58b"
     const val BASE_URL = "https://newsapi.org/"
     const val SEARCH_TIME_DELAY = 500L
 
     const val BASE_URL_Foolball = "https://free-football-soccer-videos.p.rapidapi.com/"
-//    const val BASE_URL_Foolball = "http://192.168.1.254:9090"
     const val BASE_URL_Weather = "https://api.openweathermap.org/data/2.5/"
     const val apiKeyWeather = "037d21cb14640ecd9a4f4eca49e7ff3f"
     const val iconWeather = "https://openweathermap.org/img/wn/"

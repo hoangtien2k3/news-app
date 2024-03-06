@@ -4,6 +4,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.databinding.ActivityMainBinding
 import com.hoangtien2k3.news_app.data.source.db.ArticleDatabase

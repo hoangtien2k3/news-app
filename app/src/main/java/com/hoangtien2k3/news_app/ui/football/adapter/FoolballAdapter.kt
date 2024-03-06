@@ -1,18 +1,13 @@
 package com.hoangtien2k3.news_app.ui.football.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
 import com.hoangtien2k3.news_app.data.models.Football
-
 import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.hoangtien2k3.news_app.databinding.ItemNewsBinding
-import com.squareup.picasso.Picasso
+import com.hoangtien2k3.news_app.databinding.ItemNewsFootballBinding
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -26,7 +21,7 @@ class FoolballAdapter(
         fun itemClik(hero: Football)
     }
 
-    inner class HeroViewHolder(private val binding: ItemNewsBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class HeroViewHolder(private val binding: ItemNewsFootballBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(hero: Football) {
             binding.title.ellipsize = TextUtils.TruncateAt.MARQUEE
             binding.title.isSelected = true
@@ -54,7 +49,7 @@ class FoolballAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroViewHolder {
-        val binding = ItemNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemNewsFootballBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return HeroViewHolder(binding)
     }
 

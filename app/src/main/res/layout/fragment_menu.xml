@@ -9,6 +9,7 @@
     tools:context=".ui.menu.MenuFragment">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/logout"
         style="@style/CategoryFrame"
         android:layout_width="match_parent"
         android:layout_height="60dp"
