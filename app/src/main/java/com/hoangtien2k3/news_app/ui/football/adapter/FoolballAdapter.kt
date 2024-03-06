@@ -18,7 +18,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class FoolballAdapter(
-    val mCtx: Context,
     private var heroList: List<Football>,
     private val showDialoginterface: ShowDialoginterface
 ) : RecyclerView.Adapter<FoolballAdapter.HeroViewHolder>() {
@@ -38,7 +37,6 @@ class FoolballAdapter(
                 .into(binding.image)
 
             binding.title.text = hero.title
-
 
             val data = fromISO8601UTC(hero.date)
             val dateFormat = SimpleDateFormat("dd.MM.yyyy")

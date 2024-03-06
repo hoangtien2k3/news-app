@@ -95,7 +95,7 @@ class HomeFragment : Fragment() {
             val gridLayoutManager = GridLayoutManager(requireContext(), 1)
             gridLayoutManager.orientation = GridLayoutManager.HORIZONTAL
             layoutManager = gridLayoutManager
-            footballAdapter = FoolballAdapter(requireContext(), emptyList(), object : FoolballAdapter.ShowDialoginterface {
+            footballAdapter = FoolballAdapter(requireContext() ,emptyList(), object : FoolballAdapter.ShowDialoginterface {
                 override fun itemClik(hero: Football) {
                     val dialogBuilder = AlertDialog.Builder(requireContext())
                     val inflater = layoutInflater

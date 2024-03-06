@@ -1,6 +1,8 @@
 package com.hoangtien2k3.news_app.ui.football
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -40,11 +42,14 @@ class FootballFragment : Fragment() {
 
         model.footballNews.observe(viewLifecycleOwner) { footballList ->
             footballList?.let {
-                adapter = FoolballAdapter(requireContext(), it, object : FoolballAdapter.ShowDialoginterface {
+                adapter = FoolballAdapter(
+                    it,
+                    object : FoolballAdapter.ShowDialoginterface {
                         override fun itemClik(hero: Football) {
                             openDialog(hero)
                         }
-                    })
+                    },
+                )
                 newsRecycler.adapter = adapter
             }
             swipeRefreshLayoutNews.isRefreshing = false
@@ -76,6 +81,45 @@ class FootballFragment : Fragment() {
         val alertDialog: AlertDialog = dialogBuilder.create()
         button.setOnClickListener { alertDialog.dismiss() }
         alertDialog.show()
+
+
+//        val dialogBuilder = AlertDialog.Builder(requireContext())
+//        val inflater = layoutInflater
+//        val dialogView = inflater.inflate(R.layout.web_show, null)
+//        dialogBuilder.setView(dialogView)
+//
+//        val mWebView: WebView = dialogView.findViewById(R.id.WebConnect)
+//        val button: ImageView = dialogView.findViewById(R.id.ok)
+//
+//        val webSettings: WebSettings = mWebView.settings
+//        webSettings.javaScriptEnabled = true
+//
+//        // 1. Kiểm tra kết nối mạng trước khi load
+//        if (isNetworkAvailable()) {
+//            // 2. Thiết lập cache cho WebView
+//            webSettings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
+//
+//            // 3. Thiết lập thuộc tính giới hạn kích thước
+//            webSettings.setUseWideViewPort(true)
+//            webSettings.loadWithOverviewMode = true
+//
+//            // 4. Load dữ liệu web
+//            mWebView.loadData(hero.embed, "text/html", "UTF-8")
+//        } else {
+//            // Xử lý trường hợp mạng không có sẵn
+//            // Ví dụ: Hiển thị thông báo cho người dùng
+//        }
+//
+//        val alertDialog: AlertDialog = dialogBuilder.create()
+//        button.setOnClickListener { alertDialog.dismiss() }
+//        alertDialog.show()
+    }
+
+    // Hàm kiểm tra kết nối mạng
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager = requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo != null && networkInfo.isConnected
     }
 
 }
