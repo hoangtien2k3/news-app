@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/medium"
-                android:text="Chào Mừng"
+                android:text="Đăng nhập"
                 android:textColor="@color/purple"
                 android:textSize="32sp"
                 android:textStyle="bold" />
@@ -166,14 +166,14 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/txt_register"
+                    android:id="@+id/txtRegister"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/medium"
-                    android:text="Are you a new user? Register"
+                    android:text="Chưa có tài khoản ? Đăng ký"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 

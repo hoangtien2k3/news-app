@@ -7,7 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.hoangtien2k3.news_app.databinding.ActivityLoginBinding
 import com.hoangtien2k3.news_app.ui.main.MainActivity
-import com.hoangtien2k3.news_app.response.LoginResult
+import com.hoangtien2k3.news_app.network.result.LoginResult
+import com.hoangtien2k3.news_app.ui.auth.viewpager.SignupActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var viewModel: LoginViewModel
@@ -25,6 +26,11 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.textInputEdittextPasword.text.toString()
 
             viewModel.login(username, password)
+        }
+        binding.txtRegister.setOnClickListener {
+            val intent = Intent(this, SignupActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         observeViewModel()

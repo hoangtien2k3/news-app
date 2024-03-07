@@ -35,11 +35,19 @@ class BanTinFragment2 : Fragment() {
         binding.banTinRecyclerView.adapter = mBanTinAdapter
 
 
-        viewModel.listTinTuc.observe(viewLifecycleOwner, Observer { banTin->
+        // getString in bundle -> CategoryAdapter
+        val bundle = arguments
+        val category: String? = bundle?.getString("category")
+        val title: String? = bundle?.getString("title")
+        binding.title.text = title
+        if (category != null) {
+            viewModel.fetchListTinTuc(category)
+        }
+        viewModel.listTinTuc.observe(viewLifecycleOwner) { banTin ->
             banTin?.let {
                 mBanTinAdapter.updateData(it)
             }
-        })
+        }
 
         binding.back.setOnClickListener { requireActivity().onBackPressed() }
 

@@ -1,5 +1,6 @@
 package com.hoangtien2k3.news_app.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -13,7 +14,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 import com.hoangtien2k3.news_app.R
+import com.hoangtien2k3.news_app.ui.auth.viewpager.SignupActivity
 import com.hoangtien2k3.news_app.ui.home.HomeFragment
+import com.hoangtien2k3.news_app.ui.menu.MenuFragment
 
 class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener {
     private val FRAGMENT_HOME = 0
@@ -64,15 +67,18 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
         val id = item.itemId
         // Handle navigation view item clicks here.
         if (id == R.id.nav_trangchu_admin) {
-            // Handle the home action
+//            val intent = Intent(this, MainActivity::class.java)
+//            startActivity(intent)
+//            finish()
         } else if (id == R.id.nav_danhmuc_admin) {
             // Handle danh mục action
         } else if (id == R.id.nav_dangxuat_admin) {
-            // Handle đăng xuất action
+            val intent = Intent(requireContext(), SignupActivity::class.java)
+            startActivity(intent)
         } else if (id == R.id.nav_tintuc_admin) {
             // Handle tin tức action
         } else if (id == R.id.nav_user_admin) {
-            // Handle người dùng action
+            loadFragment(MenuFragment())
         } else if (id == R.id.nav_phanquyen_admin) {
             // Handle phân quyền action
         } else if (id == R.id.nav_pheduyet_admin) {
@@ -91,6 +97,13 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
             }
         }
         return permission
+    }
+
+    private fun loadFragment(fragmentReplace: Fragment) {
+        requireActivity().supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.main_fragment, fragmentReplace)
+            .commit()
     }
 
 }

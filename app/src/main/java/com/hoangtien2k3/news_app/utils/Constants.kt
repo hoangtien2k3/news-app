@@ -13,7 +13,11 @@ object Constants {
     const val apiKeyWeather = "037d21cb14640ecd9a4f4eca49e7ff3f"
     const val iconWeather = "https://openweathermap.org/img/wn/"
 
-    const val BASE_URL_TIN_NOI_BAT: String = "https://vnexpress.net/rss/tin-noi-bat.rss"
+
+    const val ROLE_USER = "USER"
+    const val ROLE_ADMIN = "ADMIN"
+
+/*    const val BASE_URL_TIN_NOI_BAT: String = "https://vnexpress.net/rss/tin-noi-bat.rss"
     const val BASE_URL_TIN_MOI_NHAT: String = "https://vnexpress.net/rss/tin-moi-nhat.rss"
     const val BASE_URL_TIN_THE_GIOI: String = "https://vnexpress.net/rss/the-gioi.rss"
     const val BASE_URL_TIN_STARUP: String = "https://vnexpress.net/rss/startup.rss"
@@ -27,6 +31,6 @@ object Constants {
     const val BASE_URL_TIN_KINH_DOANH: String = "https://vnexpress.net/rss/kinh-doanh.rss"
     const val BASE_URL_TIN_TAM_SU: String = "https://vnexpress.net/rss/tam-su.rss"
     const val BASE_URL_TIN_SO_HOA: String = "https://vnexpress.net/rss/so-hoa.rss"
-    const val BASE_URL_TIN_DU_LICH: String = "https://vnexpress.net/rss/du-lich.rss"
+    const val BASE_URL_TIN_DU_LICH: String = "https://vnexpress.net/rss/du-lich.rss"*/
 
 }

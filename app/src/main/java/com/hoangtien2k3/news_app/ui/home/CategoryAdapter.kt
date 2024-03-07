@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.ui.bantin.BanTinFragment
 import com.hoangtien2k3.news_app.data.models.Category
+import com.hoangtien2k3.news_app.ui.bantin.BanTinFragment2
 
 class CategoryAdapter(
     private val context: Context,
@@ -28,9 +29,10 @@ class CategoryAdapter(
         holder.txtCategory.text = category.name
 
         holder.cardView.setOnClickListener {
-            val banTinFragment = BanTinFragment()
+            val banTinFragment = BanTinFragment2()
             val bundle = Bundle().apply {
-                putString("url", category.url)
+//                putString("url", category.url)
+                putString("category", category.category)
                 putString("title", category.name)
             }
             banTinFragment.arguments = bundle

@@ -3,10 +3,10 @@ package com.hoangtien2k3.news_app.ui.auth.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.hoangtien2k3.news_app.response.LoginRequest
-import com.hoangtien2k3.news_app.data.models.LoginResponse
+import com.hoangtien2k3.news_app.network.request.LoginRequest
+import com.hoangtien2k3.news_app.network.response.LoginResponse
 import com.hoangtien2k3.news_app.data.source.auth.login.LoginClient
-import com.hoangtien2k3.news_app.response.LoginResult
+import com.hoangtien2k3.news_app.network.result.LoginResult
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -1,4 +1,4 @@
-package com.hoangtien2k3.news_app.response
+package com.hoangtien2k3.news_app.network.response
 
 data class WeatherResponse(
     val name: String,

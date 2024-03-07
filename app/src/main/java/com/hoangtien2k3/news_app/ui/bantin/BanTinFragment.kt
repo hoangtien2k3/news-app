@@ -41,11 +41,11 @@ class BanTinFragment : Fragment() {
 
 
         val bundle = arguments
-        val url: String? = bundle?.getString("url")
+        val category: String? = bundle?.getString("category")
         val title: String? = bundle?.getString("title")
         binding.title.text = title
-        if (url != null) {
-            viewModel.fetchListTinTuc(url)
+        if (category != null) {
+            viewModel.fetchListTinTuc(category)
         }
         viewModel.listTinTuc.observe(viewLifecycleOwner, Observer { tinTucList ->
             mListTinTuc.clear()

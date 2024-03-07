@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     private fun loadFragment(fragmentReplace: Fragment) {
         supportFragmentManager
             .beginTransaction()

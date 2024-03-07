@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.hoangtien2k3.news_app.databinding.FragmentWeatherBinding
-import com.hoangtien2k3.news_app.response.WeatherResponse
+import com.hoangtien2k3.news_app.network.response.WeatherResponse
 import com.hoangtien2k3.news_app.utils.Constants
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat

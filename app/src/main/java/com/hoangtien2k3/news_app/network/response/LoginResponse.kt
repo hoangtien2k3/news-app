@@ -1,4 +1,4 @@
-package com.hoangtien2k3.news_app.data.models
+package com.hoangtien2k3.news_app.network.response
 
 data class LoginResponse(
     val id: Int,

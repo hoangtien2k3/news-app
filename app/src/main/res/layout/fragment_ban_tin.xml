@@ -7,9 +7,9 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        style="@style/ToolbarBackground"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimaryDark_1">
+        android:layout_height="50dp">
 
         <ImageView
             android:id="@+id/back"

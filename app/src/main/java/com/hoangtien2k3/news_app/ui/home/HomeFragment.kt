@@ -20,6 +20,7 @@ import com.hoangtien2k3.news_app.data.models.BanTin
 import com.hoangtien2k3.news_app.data.models.Football
 import com.hoangtien2k3.news_app.databinding.FragmentHomeBinding
 import com.hoangtien2k3.news_app.ui.bantin.BanTinFragment
+import com.hoangtien2k3.news_app.ui.bantin.BanTinFragment2
 import com.hoangtien2k3.news_app.ui.bantin.BanTinViewModel
 import com.hoangtien2k3.news_app.ui.bantin.BanTinViewModel2
 import com.hoangtien2k3.news_app.ui.bantin.adapter.BanTinAdapter
@@ -55,6 +56,20 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupUI() {
+        binding.detailFootball.setOnClickListener {
+            loadFragment(FootballFragment())
+        }
+        binding.detailHot.setOnClickListener {
+            val banTinFragment = BanTinFragment2()
+            val bundle = Bundle().apply {
+                putString("category", "tin-noi-bat")
+                putString("title", "Nổi Bật")
+            }
+            banTinFragment.arguments = bundle
+            loadFragment(banTinFragment)
+        }
+
+
         categoryAdapter = CategoryAdapter(requireContext(), emptyList())
         binding.danhMuc.apply {
             layoutManager = GridLayoutManager(requireContext(), 1).apply {
@@ -62,21 +77,6 @@ class HomeFragment : Fragment() {
             }
             adapter = categoryAdapter
         }
-
-
-        binding.detailFootball.setOnClickListener {
-            loadFragment(FootballFragment())
-        }
-        binding.detailHot.setOnClickListener {
-            val banTinFragment = BanTinFragment()
-            val bundle = Bundle().apply {
-                putString("url", Constants.BASE_URL_TIN_NOI_BAT)
-                putString("title", "Nổi Bật")
-            }
-            banTinFragment.arguments = bundle
-            loadFragment(banTinFragment)
-        }
-
 
         viewModelBanTin = ViewModelProvider(this)[BanTinViewModel2::class.java]
         mListTinTuc = ArrayList()
@@ -87,6 +87,7 @@ class HomeFragment : Fragment() {
         binding.NewsRecycler.adapter = mBanTinAdapter
 
 
+        // tin tức bóng đá
         binding.recyclerTinTuc.apply {
             setHasFixedSize(true)
             val gridLayoutManager = GridLayoutManager(requireContext(), 1)
@@ -118,6 +119,7 @@ class HomeFragment : Fragment() {
         }
 
 
+        // tin tức trong ngày
         binding.NewsRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -178,20 +180,12 @@ class HomeFragment : Fragment() {
             }
         }
 
-//        viewModelBanTin.fetchListTinTuc(Constants.BASE_URL_TIN_NOI_BAT)
-//        viewModelBanTin.listTinTuc.observe(viewLifecycleOwner, Observer { tinTucList ->
-//            mListTinTuc.clear()
-//            mListTinTuc.addAll(tinTucList)
-//            mBanTinAdapter.notifyDataSetChanged()
-//        })
-
-//        viewModelBanTin.fetchListTinTuc()
+        viewModelBanTin.fetchListTinTuc("tin-noi-bat")
         viewModelBanTin.listTinTuc.observe(viewLifecycleOwner) { tinTucList ->
             mListTinTuc.clear()
             mListTinTuc.addAll(tinTucList)
             mBanTinAdapter.notifyDataSetChanged()
         }
-
     }
 
     var isFABOpen = false

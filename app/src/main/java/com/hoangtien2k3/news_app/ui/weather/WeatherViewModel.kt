@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hoangtien2k3.news_app.data.source.api.WeatherService
-import com.hoangtien2k3.news_app.response.WeatherResponse
+import com.hoangtien2k3.news_app.network.response.WeatherResponse
 import com.hoangtien2k3.news_app.utils.Constants
 import retrofit2.Call
 import retrofit2.Callback
