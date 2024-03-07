@@ -1,5 +1,6 @@
 package com.hoangtien2k3.news_app.ui.home
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
@@ -20,24 +21,19 @@ import com.hoangtien2k3.news_app.data.models.BanTin
 import com.hoangtien2k3.news_app.data.models.Football
 import com.hoangtien2k3.news_app.databinding.FragmentHomeBinding
 import com.hoangtien2k3.news_app.ui.bantin.BanTinFragment
-import com.hoangtien2k3.news_app.ui.bantin.BanTinFragment2
 import com.hoangtien2k3.news_app.ui.bantin.BanTinViewModel
-import com.hoangtien2k3.news_app.ui.bantin.BanTinViewModel2
 import com.hoangtien2k3.news_app.ui.bantin.adapter.BanTinAdapter
 import com.hoangtien2k3.news_app.ui.football.FootballFragment
 import com.hoangtien2k3.news_app.ui.football.adapter.FoolballAdapter
-import com.hoangtien2k3.news_app.utils.Constants
 
 class HomeFragment : Fragment() {
     private lateinit var viewModel: HomeViewModel
     private lateinit var binding: FragmentHomeBinding
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var footballAdapter: FoolballAdapter
-
     private lateinit var mBanTinAdapter: BanTinAdapter
-    private lateinit var viewModelBanTin: BanTinViewModel2
+    private lateinit var viewModelBanTin: BanTinViewModel
     private lateinit var mListTinTuc: ArrayList<BanTin>
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,20 +52,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupUI() {
-        binding.detailFootball.setOnClickListener {
-            loadFragment(FootballFragment())
-        }
-        binding.detailHot.setOnClickListener {
-            val banTinFragment = BanTinFragment2()
-            val bundle = Bundle().apply {
-                putString("category", "tin-noi-bat")
-                putString("title", "Nổi Bật")
-            }
-            banTinFragment.arguments = bundle
-            loadFragment(banTinFragment)
-        }
-
-
+        // category: danh mục
         categoryAdapter = CategoryAdapter(requireContext(), emptyList())
         binding.danhMuc.apply {
             layoutManager = GridLayoutManager(requireContext(), 1).apply {
@@ -78,7 +61,7 @@ class HomeFragment : Fragment() {
             adapter = categoryAdapter
         }
 
-        viewModelBanTin = ViewModelProvider(this)[BanTinViewModel2::class.java]
+        viewModelBanTin = ViewModelProvider(this)[BanTinViewModel::class.java]
         mListTinTuc = ArrayList()
         mBanTinAdapter = BanTinAdapter(requireContext(), mListTinTuc)
         val gridLayoutManager = GridLayoutManager(requireContext(), 1)
@@ -95,24 +78,7 @@ class HomeFragment : Fragment() {
             layoutManager = gridLayoutManager
             footballAdapter = FoolballAdapter(emptyList(), object : FoolballAdapter.ShowDialoginterface {
                 override fun itemClik(hero: Football) {
-                    val dialogBuilder = AlertDialog.Builder(requireContext())
-                    val inflater = layoutInflater
-                    val dialogView = inflater.inflate(R.layout.web_show, null)
-                    dialogBuilder.setView(dialogView)
-
-                    val mWebView: WebView = dialogView.findViewById(R.id.WebConnect)
-                    val button: ImageView = dialogView.findViewById(R.id.ok)
-
-                    val webSettings: WebSettings = mWebView.settings
-                    webSettings.javaScriptEnabled = true
-
-                    mWebView.loadUrl(hero.url)
-
-                    val alertDialog: AlertDialog = dialogBuilder.create()
-                    button.setOnClickListener {
-                        alertDialog.dismiss()
-                    }
-                    alertDialog.show()
+                    openDialogFootball(hero)
                 }
             })
             adapter = footballAdapter
@@ -131,10 +97,43 @@ class HomeFragment : Fragment() {
                 } else {
                     showAndCloseUI(true)
                 }
-
             }
         })
+        binding.detailFootball.setOnClickListener {
+            loadFragment(FootballFragment())
+        }
+        binding.detailHot.setOnClickListener {
+            val banTinFragment = BanTinFragment()
+            val bundle = Bundle().apply {
+                putString("category", "tin-noi-bat")
+                putString("title", "Nổi Bật")
+            }
+            banTinFragment.arguments = bundle
+            loadFragment(banTinFragment)
+        }
 
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun openDialogFootball(hero: Football) {
+        val dialogBuilder = AlertDialog.Builder(requireContext())
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.web_show, null)
+        dialogBuilder.setView(dialogView)
+
+        val mWebView: WebView = dialogView.findViewById(R.id.WebConnect)
+        val button: ImageView = dialogView.findViewById(R.id.ok)
+
+        val webSettings: WebSettings = mWebView.settings
+        webSettings.javaScriptEnabled = true
+
+        mWebView.loadUrl(hero.url)
+
+        val alertDialog: AlertDialog = dialogBuilder.create()
+        button.setOnClickListener {
+            alertDialog.dismiss()
+        }
+        alertDialog.show()
     }
 
     private fun showAndCloseUI(boolean: Boolean) {

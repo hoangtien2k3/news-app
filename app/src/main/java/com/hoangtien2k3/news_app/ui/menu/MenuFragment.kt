@@ -15,8 +15,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.databinding.FragmentMenuBinding
-import com.hoangtien2k3.news_app.ui.auth.login.LoginActivity
-import com.hoangtien2k3.news_app.ui.main.MainFragment
+import com.hoangtien2k3.news_app.ui.account.login.LoginActivity
+import com.hoangtien2k3.news_app.activity.main.MainFragment
 import com.hoangtien2k3.news_app.ui.calender.CalendarFragment
 import com.hoangtien2k3.news_app.ui.webview.WebviewFragment
 import com.hoangtien2k3.news_app.ui.weather.WeatherFragment

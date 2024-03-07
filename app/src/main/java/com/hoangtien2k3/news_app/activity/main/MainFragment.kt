@@ -1,4 +1,4 @@
-package com.hoangtien2k3.news_app.ui.main
+package com.hoangtien2k3.news_app.activity.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,7 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 import com.hoangtien2k3.news_app.R
-import com.hoangtien2k3.news_app.ui.auth.viewpager.SignupActivity
+import com.hoangtien2k3.news_app.ui.account.signup.SignupActivity
 import com.hoangtien2k3.news_app.ui.home.HomeFragment
 import com.hoangtien2k3.news_app.ui.menu.MenuFragment
 

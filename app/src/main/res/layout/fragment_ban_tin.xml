@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,45 +8,60 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         style="@style/ToolbarBackground"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="40dp"
+        tools:ignore="MissingConstraints">
 
         <ImageView
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:onClick="onclick"
-            android:paddingLeft="10dp"
-            android:paddingRight="45dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="45dp"
             android:src="@mipmap/search_ic_back" />
 
         <TextView
-            style="@style/TEXT"
             android:id="@+id/title"
+            style="@style/TEXT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="Title bản tin"
             android:textColor="@color/white"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/banTin_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
         tools:listitem="@layout/item_row_article" />
 
-    <ImageView
-        android:id="@+id/ok"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="17dp"
-        android:src="@drawable/back" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/main_tabs"
+        app:backgroundTint="@color/color_tin"
+        app:fabCustomSize="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.852"
+        app:shapeAppearanceOverlay="@style/RoundedShapeAppearance"
+        app:srcCompat="@drawable/ic_arrow_upward_white_24dp" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

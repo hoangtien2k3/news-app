@@ -1,11 +1,13 @@
-package com.hoangtien2k3.news_app.ui.auth.login
+package com.hoangtien2k3.news_app.ui.account.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
 import com.hoangtien2k3.news_app.network.request.LoginRequest
 import com.hoangtien2k3.news_app.network.response.LoginResponse
 import com.hoangtien2k3.news_app.data.source.auth.login.LoginClient
+import com.hoangtien2k3.news_app.network.response.LoginResponseError
 import com.hoangtien2k3.news_app.network.result.LoginResult
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,13 +30,17 @@ class LoginViewModel : ViewModel() {
                         LoginResult.Success(it)
                     }
                 } else {
-                    _loginResult.value = LoginResult.Error("Login failed")
+                    val errorBody = response.errorBody()?.string()
+                    val gson = Gson()
+                    val errorResponse = gson.fromJson(errorBody, LoginResponseError::class.java)
+                    _loginResult.value = LoginResult.Error(errorResponse)
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                _loginResult.value = LoginResult.Error("Network error")
+                _loginResult.value = LoginResult.Error(LoginResponseError("onFailure","BAD_REQUEST","Network error"))
             }
         })
     }
 }
+

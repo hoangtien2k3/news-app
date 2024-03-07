@@ -12,7 +12,6 @@ import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.ui.webview.WebviewFragment
 import com.hoangtien2k3.news_app.data.models.BanTin
 import com.hoangtien2k3.news_app.databinding.ItemRowArticleBinding
-import com.squareup.picasso.Picasso
 
 class BanTinAdapter(
     private val mContext: Context,
@@ -33,15 +32,10 @@ class BanTinAdapter(
         if (tinTuc.img.isEmpty())
             holder.binding.ivArticle.setImageResource(R.drawable.world)
         else {
-//            Picasso.get()
-//                .load(tinTuc.img)
-//                .into(holder.binding.ivArticle)
-
             Glide.with(holder.binding.ivArticle.context)
                 .load(tinTuc.img)
                 .into(holder.binding.ivArticle)
         }
-
 
         holder.binding.itemTinTucConstrantlayout.setOnClickListener {
             val fragment = WebviewFragment().apply {
@@ -56,7 +50,6 @@ class BanTinAdapter(
                 .addToBackStack("BanTinFragment")
                 .commit()
         }
-
     }
 
     override fun getItemCount(): Int {

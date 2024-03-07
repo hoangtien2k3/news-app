@@ -11,6 +11,7 @@
     <color name="cyan">#FF00FFFF</color>
     <color name="magenta">#FFFF00FF</color>
     <color name="gray">#FF808080</color>
+
     <color name="light_gray">#FFD3D3D3</color>
     <color name="dark_gray">#FFA9A9A9</color>
     <color name="brown">#FFA52A2A</color>
@@ -18,12 +19,14 @@
     <color name="black_2">#161c2a</color>
     <color name="news_app_logo_background">#000000</color>
     <color name="gold">#FFD700</color>
+
     <color name="titleTextColor">#FF000000</color>
     <color name="subTitleTextColor">#FF000000</color>
     <color name="bgLineColor">#606470</color>
     <color name="lavender">#03A9F4</color>
     <color name="brAll">#F3F3F3</color>
     <color name="color2">#EEF5FF</color>
+
     <color name="transparant_purple">#bf8a96ee</color>
     <color name="transparant_night">#bf1c1b1f</color>
     <color name="night">#1c1b1f</color>
@@ -38,5 +41,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="text_color">#FF000000</color>
     <color name="colorPrimaryDark_1">#009900</color>
+
+    <color name="dark_red">#CA0000</color>
 </resources>
 

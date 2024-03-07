@@ -1,4 +1,4 @@
-package com.hoangtien2k3.news_app.ui.auth.login
+package com.hoangtien2k3.news_app.ui.account.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,9 +6,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.hoangtien2k3.news_app.databinding.ActivityLoginBinding
-import com.hoangtien2k3.news_app.ui.main.MainActivity
+import com.hoangtien2k3.news_app.activity.main.MainActivity
 import com.hoangtien2k3.news_app.network.result.LoginResult
-import com.hoangtien2k3.news_app.ui.auth.viewpager.SignupActivity
+import com.hoangtien2k3.news_app.ui.account.signup.SignupActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var viewModel: LoginViewModel
@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
                     finish()
                 }
                 is LoginResult.Error -> {
-                    Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, result.loginResponseError.msg, Toast.LENGTH_SHORT).show()
                 }
             }
         }

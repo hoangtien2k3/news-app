@@ -1,14 +1,17 @@
 <resources>
     <string name="app_name">News App</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="textAddress">Thành phố/ khu vực</string>
     <string name="title_activity_main">MainActivity</string>
-    <!-- Strings used for fragments for navigation -->
+
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+
+    <string name="sign_in_account">Sign in to your</string>
+    <string name="register_text"><u>Register Now</u></string>
 
     <string name="txt_support_facebook">Hỗ trợ tức thì qua Facebook Messenger</string>
     <string name="txt_support_zalo">Hỗ trợ tức thì qua Zalo Messenger</string>

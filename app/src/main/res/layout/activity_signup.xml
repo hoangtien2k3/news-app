@@ -5,7 +5,7 @@
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.auth.login.LoginActivity">
+    tools:context=".ui.account.login.LoginActivity">
 
     <!--    <RelativeLayout-->
     <!--        style="@style/ToolbarBackground"-->
@@ -88,11 +88,11 @@
                 app:startIconDrawable="@drawable/ic_person">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TEXT"
                     android:id="@+id/txtName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/black"
                     android:textColorHint="@color/black" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -109,11 +109,11 @@
                 app:startIconDrawable="@drawable/ic_person">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TEXT"
                     android:id="@+id/txtUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/black"
                     android:textColorHint="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -129,11 +129,11 @@
                 app:startIconDrawable="@drawable/email">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TEXT"
                     android:id="@+id/txtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/black"
                     android:textColorHint="@color/black" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -150,11 +150,11 @@
                 app:startIconDrawable="@drawable/password">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TEXT"
                     android:id="@+id/txtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:textColor="@color/black"
                     android:textColorHint="@color/black" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -168,11 +168,12 @@
                 android:layout_height="10dp" />
 
             <com.google.android.material.button.MaterialButton
+                style="@style/TEXT_While"
                 android:id="@+id/sigUpButton"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="Đăng ký"
-                app:cornerRadius="32dp" />
+                app:cornerRadius="35dp" />
 
             <View
                 android:layout_width="wrap_content"
@@ -200,15 +201,15 @@
 
             <TextView
                 style="@style/TEXT"
+                android:id="@+id/txtBackLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="30dp"
                 android:alpha="0.7"
                 android:textStyle="bold"
-                android:textColor="@color/black"
                 android:textSize="15dp"
-                android:text="Đã có tài khoản ?, Đăng nhập" />
+                android:text="Đã có tài khoản? Đăng nhập" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

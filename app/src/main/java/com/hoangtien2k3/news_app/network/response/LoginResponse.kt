@@ -11,3 +11,9 @@ data class LoginResponse(
 data class Role(
     val authority: String
 )
+
+data class LoginResponseError (
+    val timestamp: String,
+    val httpStatus: String,
+    val msg: String
+)

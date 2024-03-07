@@ -23,8 +23,24 @@
         <item name="fontFamily">@font/newscycle_regular</item>
     </style>
 
+    <style name="TextColor">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextColorWhite">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TEXT_While">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="BackgroundMain">
         <item name="android:background">#212121</item>
+    </style>
+
+    <style name="AuthBackground">
+        <item name="android:backgroundTint">@color/night</item>
     </style>
 
     <style name="BackgroundColorNav">

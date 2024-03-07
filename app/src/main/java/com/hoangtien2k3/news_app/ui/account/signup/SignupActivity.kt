@@ -1,4 +1,4 @@
-package com.hoangtien2k3.news_app.ui.auth.viewpager
+package com.hoangtien2k3.news_app.ui.account.signup
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.hoangtien2k3.news_app.databinding.ActivitySignupBinding
 import com.hoangtien2k3.news_app.network.result.SignupResult
-import com.hoangtien2k3.news_app.ui.main.MainActivity
+import com.hoangtien2k3.news_app.ui.account.login.LoginActivity
 
 class SignupActivity : AppCompatActivity() {
 
@@ -28,6 +28,11 @@ class SignupActivity : AppCompatActivity() {
             val password = binding.txtPassword.text.toString()
 
             viewModel.signup(name, username, email, password)
+        }
+        binding.txtBackLogin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         observeViewModel()

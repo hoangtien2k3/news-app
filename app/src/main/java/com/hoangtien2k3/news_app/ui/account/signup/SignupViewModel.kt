@@ -1,4 +1,4 @@
-package com.hoangtien2k3.news_app.ui.auth.viewpager
+package com.hoangtien2k3.news_app.ui.account.signup
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

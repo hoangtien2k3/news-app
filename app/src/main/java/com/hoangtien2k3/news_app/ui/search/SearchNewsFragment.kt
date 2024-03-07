@@ -8,7 +8,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hoangtien2k3.news_app.R
-import com.hoangtien2k3.news_app.ui.main.MainActivity
+import com.hoangtien2k3.news_app.activity.main.MainActivity
 import com.hoangtien2k3.news_app.ui.NewsAdapter
 import com.hoangtien2k3.news_app.utils.Resource
 import kotlinx.coroutines.Job

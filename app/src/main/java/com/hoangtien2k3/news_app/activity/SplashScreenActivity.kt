@@ -1,22 +1,21 @@
-package com.hoangtien2k3.news_app.ui.main
+package com.hoangtien2k3.news_app.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.constraintlayout.motion.widget.MotionLayout
 import com.hoangtien2k3.news_app.R
-import com.hoangtien2k3.news_app.databinding.ActivityMainBinding
+import com.hoangtien2k3.news_app.ui.account.login.LoginActivity
 
+@SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
-
     private lateinit var motionLayout: MotionLayout
-    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_splash_screen)
 
         supportActionBar?.hide()
         this.window.setFlags(
@@ -45,7 +44,7 @@ class SplashScreenActivity : AppCompatActivity() {
             }
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
-                startActivity(Intent(this@SplashScreenActivity, NewsActivity::class.java))
+                startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
                 finish()
             }
 
@@ -57,7 +56,6 @@ class SplashScreenActivity : AppCompatActivity() {
             ) {
 
             }
-
         })
     }
 }

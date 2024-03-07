@@ -61,11 +61,12 @@
                 android:textStyle="bold" />
 
             <TextView
+                style="@style/TEXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
                 android:fontFamily="@font/medium"
-                android:text="Hãy đăng nhâph thông tin của bạn" />
+                android:text="Hãy đăng nhập thông tin của bạn" />
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -81,11 +82,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textInputEdittextEmail"
+                    style="@style/TEXT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -102,11 +102,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textInputEdittextPasword"
+                    style="@style/TEXT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <RelativeLayout
@@ -115,13 +114,13 @@
 
                 <TextView
                     android:id="@+id/forgot_password"
+                    style="@style/TEXT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:fontFamily="@font/medium"
                     android:text="Quên email hoặc password ?" />
-
 
             </RelativeLayout>
 
@@ -131,22 +130,16 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/loginButton"
+                style="@style/TEXT_While"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:layout_marginTop="20dp"
                 android:text="Đăng nhập"
                 app:cornerRadius="32dp" />
 
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="10dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:alpha="0.7"
-                android:text="hoặc đăng nhập với" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -167,6 +160,7 @@
 
                 <TextView
                     android:id="@+id/txtRegister"
+                    style="@style/TEXT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -174,15 +168,11 @@
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/medium"
                     android:text="Chưa có tài khoản ? Đăng ký"
-                    android:textColor="@color/black"
                     android:textSize="15sp" />
-
 
             </LinearLayout>
 
-
         </LinearLayout>
-
 
     </androidx.cardview.widget.CardView>
 
