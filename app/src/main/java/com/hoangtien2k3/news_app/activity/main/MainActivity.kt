@@ -9,12 +9,13 @@ import com.hoangtien2k3.news_app.databinding.ActivityMainBinding
 import com.hoangtien2k3.news_app.data.source.db.ArticleDatabase
 import com.hoangtien2k3.news_app.ui.football.FootballFragment
 import com.hoangtien2k3.news_app.ui.menu.MenuFragment
-import com.hoangtien2k3.news_app.ui.home.HomeFragment
+import com.hoangtien2k3.news_app.ui.home.fragment.HomeFragment
 import com.hoangtien2k3.news_app.ui.search.SearchNewsFragment
 import com.hoangtien2k3.news_app.data.repository.NewsRepository
 import com.hoangtien2k3.news_app.ui.search.SearchNewsViewModel
 import com.hoangtien2k3.news_app.data.NewsViewModelProviderFactory
 import com.hoangtien2k3.news_app.ui.bantin.BanTinFragment
+import com.hoangtien2k3.news_app.ui.home.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         binding.navMenu.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.bottom_home -> loadFragment(MainFragment())
-                R.id.bottom_category -> loadFragment(BanTinFragment())
+                R.id.bottom_category -> loadFragment(BanTinFragment("tin-noi-bat"))
                 R.id.bottom_save -> loadFragment(FootballFragment())
                 R.id.bottom_search -> loadFragment(SearchNewsFragment())
                 R.id.bottom_profile -> loadFragment(MenuFragment())

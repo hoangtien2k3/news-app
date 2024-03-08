@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hoangtien2k3.news_app.databinding.FragmentBanTinBinding
 import com.hoangtien2k3.news_app.ui.bantin.adapter.BanTinAdapter
 
-class BanTinFragment : Fragment() {
+class BanTinFragment(
+    val category: String
+) : Fragment() {
     private var _binding: FragmentBanTinBinding? = null
     private val binding
         get() = _binding!!
@@ -34,15 +36,7 @@ class BanTinFragment : Fragment() {
         binding.banTinRecyclerView.layoutManager = gridLayoutManager
         binding.banTinRecyclerView.adapter = mBanTinAdapter
 
-
-        // getString in bundle -> CategoryAdapter
-        val bundle = arguments
-        val title: String? = bundle?.getString("title")
-        binding.title.text = title
-        val category: String? = bundle?.getString("category")
-        if (category != null) {
-            viewModel.fetchListTinTuc(category)
-        }
+        viewModel.fetchListTinTuc(category)
         viewModel.listTinTuc.observe(viewLifecycleOwner) { banTin ->
             banTin?.let {
                 mBanTinAdapter.updateData(it)
@@ -50,7 +44,6 @@ class BanTinFragment : Fragment() {
         }
 
         binding.fab.visibility = View.GONE
-        binding.back.setOnClickListener { requireActivity().onBackPressed() }
         binding.banTinRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)

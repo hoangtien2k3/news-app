@@ -12,11 +12,6 @@ class MySharedPreferences(context: Context) {
     }
 
     fun putBooleanValue(key: String, value: Boolean) {
-        sharedPreferences.edit {
-            this.clear(
-
-            )
-        }
         sharedPreferences.edit().putBoolean(key, value).apply()
     }
 
@@ -24,7 +19,4 @@ class MySharedPreferences(context: Context) {
         return sharedPreferences.getBoolean(key, false)
     }
 
-    fun removeValue(key: String) {
-        sharedPreferences.edit().remove(key).apply()
-    }
 }

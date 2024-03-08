@@ -10,7 +10,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class BanTinViewModel : ViewModel() {
-
     private val _banTinNews = MutableLiveData<List<BanTin>>()
     val listTinTuc: LiveData<List<BanTin>> = _banTinNews
 

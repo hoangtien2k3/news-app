@@ -1,4 +1,4 @@
-package com.hoangtien2k3.news_app.ui.home
+package com.hoangtien2k3.news_app.ui.home.fragment
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -25,11 +25,11 @@ import com.hoangtien2k3.news_app.ui.bantin.BanTinViewModel
 import com.hoangtien2k3.news_app.ui.bantin.adapter.BanTinAdapter
 import com.hoangtien2k3.news_app.ui.football.FootballFragment
 import com.hoangtien2k3.news_app.ui.football.adapter.FoolballAdapter
+import com.hoangtien2k3.news_app.ui.home.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment() {
     private lateinit var viewModel: HomeViewModel
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var footballAdapter: FoolballAdapter
     private lateinit var mBanTinAdapter: BanTinAdapter
     private lateinit var viewModelBanTin: BanTinViewModel
@@ -52,15 +52,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupUI() {
-        // category: danh mục
-        categoryAdapter = CategoryAdapter(requireContext(), emptyList())
-        binding.danhMuc.apply {
-            layoutManager = GridLayoutManager(requireContext(), 1).apply {
-                orientation = GridLayoutManager.HORIZONTAL
-            }
-            adapter = categoryAdapter
-        }
-
+        // tin tức trong ngày
         viewModelBanTin = ViewModelProvider(this)[BanTinViewModel::class.java]
         mListTinTuc = ArrayList()
         mBanTinAdapter = BanTinAdapter(requireContext(), mListTinTuc)
@@ -89,7 +81,6 @@ class HomeFragment : Fragment() {
         binding.NewsRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
                 val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
                 if (firstVisibleItemPosition == 0) {
@@ -103,7 +94,7 @@ class HomeFragment : Fragment() {
             loadFragment(FootballFragment())
         }
         binding.detailHot.setOnClickListener {
-            val banTinFragment = BanTinFragment()
+            val banTinFragment = BanTinFragment("tin-noi-bat")
             val bundle = Bundle().apply {
                 putString("category", "tin-noi-bat")
                 putString("title", "Nổi Bật")
@@ -164,12 +155,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.categories.observe(viewLifecycleOwner) { categories ->
-            categories?.let {
-                categoryAdapter.updateData(it)
-            }
-        }
-
         viewModel.footballNews.observe(viewLifecycleOwner) { footballNews ->
             footballNews?.let {
                 if (::footballAdapter.isInitialized) {

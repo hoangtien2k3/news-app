@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.databinding.FragmentMenuBinding
-import com.hoangtien2k3.news_app.activity.main.MainFragment
+import com.hoangtien2k3.news_app.ui.home.MainFragment
 import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
 import com.hoangtien2k3.news_app.ui.account.AccountActivity
 import com.hoangtien2k3.news_app.ui.calender.CalendarFragment

@@ -7,41 +7,40 @@
     style="@style/SCREEN"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        style="@style/ToolbarBackground"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        tools:ignore="MissingConstraints">
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/relativeLayout"-->
+<!--        style="@style/ToolbarBackground"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="40dp"-->
+<!--        tools:ignore="MissingConstraints">-->
 
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:onClick="onclick"
-            android:paddingStart="10dp"
-            android:paddingEnd="45dp"
-            android:src="@mipmap/search_ic_back" />
+<!--        <ImageView-->
+<!--            android:id="@+id/back"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:onClick="onclick"-->
+<!--            android:paddingStart="10dp"-->
+<!--            android:paddingEnd="45dp"-->
+<!--            android:src="@mipmap/search_ic_back" />-->
 
-        <TextView
-            android:id="@+id/title"
-            style="@style/TEXT"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Title bản tin"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-    </RelativeLayout>
+<!--        <TextView-->
+<!--            android:id="@+id/title"-->
+<!--            style="@style/TEXT"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:text="Title bản tin"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="18sp" />-->
+<!--    </RelativeLayout>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/banTin_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="40dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp"
         tools:listitem="@layout/item_row_article" />
@@ -57,7 +56,7 @@
         app:fabCustomSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintHorizontal_bias="0.955"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.852"

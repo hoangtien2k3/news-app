@@ -6,10 +6,6 @@ class DataLocalManager private constructor(context: Context) {
     private val FIRST_SHARED_PREFERENCES = "FIRST_SHARED_PREFERENCES"
     private val mySharedPreferences: MySharedPreferences = MySharedPreferences(context)
 
-    object DataManager {
-
-    }
-
     companion object {
         private lateinit var instance: DataLocalManager
 
@@ -29,7 +25,6 @@ class DataLocalManager private constructor(context: Context) {
 
     fun setFirstInstalled(isFirst: Boolean) {
         mySharedPreferences.putBooleanValue(FIRST_SHARED_PREFERENCES, isFirst)
-//        if (!isFirst) mySharedPreferences.removeValue(FIRST_SHARED_PREFERENCES)
     }
 
     fun getFirstInstalled(): Boolean {

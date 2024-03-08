@@ -43,6 +43,33 @@
     <string name="sign_up">ĐĂNG KÝ</string>
     <string name="sign_in">ĐĂNG NHẬP</string>
 
+    <!--category: bản tin-->
+    <string name="tin_noi_bat">tin-noi-bat</string>
+    <string name="tin_moi_nhat">tin-moi-nhat</string>
+    <string name="tin_the_gioi">tin-the-gioi</string>
+    <string name="tin_phap_luat">tin-phap-luat</string>
+    <string name="tin_giao_duc">tin-giao-duc</string>
+    <string name="tin_suc_khoe">tin-suc-khoe</string>
+    <string name="tin_doi_song">tin-doi-song</string>
+    <string name="tin_khoa_hoc">tin-khoa-hoc</string>
+    <string name="tin_kinh_doanh">tin-kinh-doanh</string>
+    <string name="tin_tam_su">tin-tam-su</string>
+    <string name="tin_so_hoa">tin-so-hoa</string>
+    <string name="tin_du_lich">tin-du-lich</string>
 
+    <!--title: bản tin-->
+    <string name="pho_bien">Phổ Biến</string>
+    <string name="noi_bat">Nổi Bật</string>
+    <string name="moi_nhat">Mới Nhất</string>
+    <string name="the_gioi">Thế Giới</string>
+    <string name="phap_luat">Pháp Luật</string>
+    <string name="giao_duc">Giáo Dục</string>
+    <string name="suc_khoe">Sức Khoẻ</string>
+    <string name="doi_song">Đời Sống</string>
+    <string name="khoa_hoc">Khoa Học</string>
+    <string name="kinh_doanh">Kinh Doanh</string>
+    <string name="tam_su">Tâm Sự</string>
+    <string name="so_hoa">Số Hoá</string>
+    <string name="du_lich">Du Lịch</string>
 
 </resources>

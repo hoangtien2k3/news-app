@@ -23,7 +23,7 @@
                 style="@style/BackgroundMain"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="50dp"
                 android:elevation="4dp"
                 android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -35,11 +35,18 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-
-        <FrameLayout
-            android:id="@+id/fragment_container"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            app:tabMode="scrollable"
+            app:tabGravity="fill"
+            app:tabSelectedTextColor="@color/green" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/viewPager2"/>
 
     </LinearLayout>
 
