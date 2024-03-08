@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".ui.account.AccountActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         app:tabIndicatorGravity="stretch"
         app:tabSelectedTextColor="@color/white"
         app:tabIndicatorAnimationMode="elastic"
-        app:tabIndicator="@drawable/tab_indicator"/>
+        app:tabIndicator="@drawable/tab_indicator" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"

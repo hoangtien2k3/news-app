@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.constraintlayout.motion.widget.MotionLayout
 import com.hoangtien2k3.news_app.R
-import com.hoangtien2k3.news_app.ui.account.login.LoginActivity
+import com.hoangtien2k3.news_app.ui.account.login.LoginFragment
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
@@ -44,7 +44,7 @@ class SplashScreenActivity : AppCompatActivity() {
             }
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
-                startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
+                startActivity(Intent(this@SplashScreenActivity, LoginFragment::class.java))
                 finish()
             }
 

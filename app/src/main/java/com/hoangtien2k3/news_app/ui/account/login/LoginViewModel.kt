@@ -1,9 +1,11 @@
 package com.hoangtien2k3.news_app.ui.account.login
 
+import android.provider.ContactsContract.RawContacts.Data
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
+import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
 import com.hoangtien2k3.news_app.network.request.LoginRequest
 import com.hoangtien2k3.news_app.network.response.LoginResponse
 import com.hoangtien2k3.news_app.data.source.auth.login.LoginClient
@@ -29,6 +31,8 @@ class LoginViewModel : ViewModel() {
                     _loginResult.value = loginResponse?.let {
                         LoginResult.Success(it)
                     }
+                    // set login using shared preferences
+                    DataLocalManager.getInstance().setFirstInstalled(true)
                 } else {
                     val errorBody = response.errorBody()?.string()
                     val gson = Gson()

@@ -40,4 +40,9 @@
     <string name="sign_out">Đăng Xuất</string>
     <string name="client_id">MÃ_CLIENT_CỦA_BẠN</string>
 
+    <string name="sign_up">ĐĂNG KÝ</string>
+    <string name="sign_in">ĐĂNG NHẬP</string>
+
+
+
 </resources>

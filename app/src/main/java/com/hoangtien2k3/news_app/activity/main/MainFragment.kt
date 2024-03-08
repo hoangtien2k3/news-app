@@ -1,5 +1,6 @@
 package com.hoangtien2k3.news_app.activity.main
 
+import android.accounts.Account
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +15,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 import com.hoangtien2k3.news_app.R
-import com.hoangtien2k3.news_app.ui.account.signup.SignupActivity
+import com.hoangtien2k3.news_app.ui.account.AccountActivity
+import com.hoangtien2k3.news_app.ui.account.signup.SignupFragment
 import com.hoangtien2k3.news_app.ui.home.HomeFragment
 import com.hoangtien2k3.news_app.ui.menu.MenuFragment
 
@@ -73,7 +75,7 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
         } else if (id == R.id.nav_danhmuc_admin) {
             // Handle danh mục action
         } else if (id == R.id.nav_dangxuat_admin) {
-            val intent = Intent(requireContext(), SignupActivity::class.java)
+            val intent = Intent(requireContext(), AccountActivity::class.java)
             startActivity(intent)
         } else if (id == R.id.nav_tintuc_admin) {
             // Handle tin tức action

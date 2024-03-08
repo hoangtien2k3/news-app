@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hoangtien2k3.news_app.R
-import com.hoangtien2k3.news_app.data.models.BanTin
 import com.hoangtien2k3.news_app.databinding.FragmentBanTinBinding
 import com.hoangtien2k3.news_app.ui.bantin.adapter.BanTinAdapter
 
@@ -55,12 +54,14 @@ class BanTinFragment : Fragment() {
         binding.banTinRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                if (dy > 0) {
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+                if (firstVisibleItemPosition == 0) {
+                    binding.fab.visibility = View.GONE
+                } else {
                     binding.fab.visibility = View.VISIBLE
-                    binding.fab.setImageResource(R.drawable.ic_arrow_upward_white_24dp)
                     binding.fab.setOnClickListener {
                         binding.banTinRecyclerView.smoothScrollToPosition(0);
-                        binding.fab.visibility = View.GONE
                     }
                 }
             }

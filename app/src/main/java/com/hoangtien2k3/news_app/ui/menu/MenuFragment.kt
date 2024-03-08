@@ -15,8 +15,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.databinding.FragmentMenuBinding
-import com.hoangtien2k3.news_app.ui.account.login.LoginActivity
 import com.hoangtien2k3.news_app.activity.main.MainFragment
+import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
+import com.hoangtien2k3.news_app.ui.account.AccountActivity
 import com.hoangtien2k3.news_app.ui.calender.CalendarFragment
 import com.hoangtien2k3.news_app.ui.webview.WebviewFragment
 import com.hoangtien2k3.news_app.ui.weather.WeatherFragment
@@ -59,11 +60,9 @@ class MenuFragment : Fragment() {
             loadFragment(MainFragment())
         }
         binding.logout.setOnClickListener {
-            val intent = Intent(activity, LoginActivity::class.java)
-            requireActivity().supportFragmentManager
-                .beginTransaction()
-                .remove(this)
-                .commit()
+            DataLocalManager.getInstance().setFirstInstalled(false)
+            val intent = Intent(activity, AccountActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
         }
 
@@ -89,7 +88,6 @@ class MenuFragment : Fragment() {
             .addToBackStack(null)
             .commit()
     }
-
 
     private fun showdialogbottom() {
         val dialog = Dialog(requireContext())

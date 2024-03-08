@@ -276,7 +276,7 @@
         android:backgroundTint="@color/main_tabs"
         app:backgroundTint="@color/color_tin"
         app:borderWidth="0dp"
-        app:fabCustomSize="55dp"
+        app:fabCustomSize="50dp"
         android:layout_marginTop="400dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
