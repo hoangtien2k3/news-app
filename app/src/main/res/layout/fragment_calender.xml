@@ -8,6 +8,7 @@
     tools:context="fragment.CalenderFragment">
 
     <LinearLayout
+        android:background="@drawable/custom_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -129,6 +130,8 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        style="@style/SCREEN"
+        android:background="@drawable/lavender_border"
         android:id="@+id/calendarRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

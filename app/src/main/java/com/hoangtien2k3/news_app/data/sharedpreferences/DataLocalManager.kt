@@ -43,14 +43,23 @@ class DataLocalManager private constructor(context: Context) {
 
 
     // lưu id và role của người dùng:
-    fun setSaveUserInfo(id: Long, name: String, role: String) {
-        mySharedPreferences.saveUserInfo(id, name, role)
+    fun setSaveUserInfo(id: Long, name: String, username: String, email: String, role: String) {
+        mySharedPreferences.saveUserInfo(id, name, username, email, role)
+    }
+    fun removeValueFromSharedPreferences() {
+        mySharedPreferences.removeValueFromSharedPreferences();
     }
     fun getInfoUserId(): Long {
         return mySharedPreferences.getUserId()
     }
+    fun getInfoName(): String? {
+        return mySharedPreferences.getName()
+    }
     fun getInfoUserName(): String? {
         return mySharedPreferences.getUserName()
+    }
+    fun getInfoEmail(): String? {
+        return mySharedPreferences.getEmail()
     }
     fun getInfoUserRole(): String? {
         return mySharedPreferences.getUserRole()

@@ -28,7 +28,7 @@ class LoginViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
                     _loginResult.value = loginResponse?.let {
-                        DataLocalManager.getInstance().setSaveUserInfo(it.id, it.name, it.roles[0].authority)
+                        DataLocalManager.getInstance().setSaveUserInfo(it.id, it.name, it.username, it.email, it.roles[0].authority)
                         // set login using shared preferences
                         DataLocalManager.getInstance().setFirstInstalled(true)
                         LoginResult.Success(it)

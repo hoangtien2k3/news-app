@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/purple" />
+        android:background="@drawable/bglogin2" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,8 +29,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/medium"
             android:text="Cập Nhật Thông Tin"
-            android:textColor="@color/white"
             android:textSize="32sp"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
 
@@ -47,17 +47,18 @@
         app:cardCornerRadius="28dp">
 
         <LinearLayout
+            android:background="@drawable/lavender_border"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="28dp">
 
             <TextView
+                style="@style/TextBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/medium"
                 android:text="Cập Nhật Thông Tin"
-                android:textColor="@color/purple"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -151,6 +152,7 @@
                 android:layout_height="10dp" />
 
             <TextView
+                style="@style/TEXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -161,7 +163,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="80dp"
+                android:layout_marginBottom="30dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -170,9 +172,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:backgroundTint="@color/color2"
-                    android:drawableLeft="@drawable/profile"
+                    android:drawableLeft="@drawable/baseline_send_24"
                     android:fontFamily="@font/medium"
                     android:text="Cập Nhật Thông Tin"
+                    android:textStyle="bold"
                     android:textColor="@color/black" />
 
             </LinearLayout>

@@ -1,11 +1,16 @@
 package com.hoangtien2k3.news_app.ui.home
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -21,22 +26,13 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
 import com.hoangtien2k3.news_app.ui.account.AccountActivity
+import com.hoangtien2k3.news_app.ui.bantin.BanTinFragment
 import com.hoangtien2k3.news_app.ui.home.fragment.PostNewsLetterFragment
 import com.hoangtien2k3.news_app.ui.menu.MenuFragment
 
 class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener {
-    private val FRAGMENT_HOME = 0
-    private val FRAGMENT_DANHMUC = 1
-    private val FRAGMENT_TINTUC = 2
-    private val FRAGMENT_USER = 3
-    private val FRAGMENT_PHANQUYEN = 4
-    private val FRAGMENT_PHEDUYET = 5
-    private val MY_REQUEST_CODE = 10
-    private var mCurrentFragment = FRAGMENT_HOME
     private var mDrawerLayout: DrawerLayout? = null
     private var permission: String? = null
-
-
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager2: ViewPager2
     private lateinit var adapter: ViewPagerAdapter
@@ -101,11 +97,9 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
         val id = item.itemId
         // Handle navigation view item clicks here.
         if (id == R.id.nav_trangchu_admin) {
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//            finish()
+//            loadFragment(MainFragment())
         } else if (id == R.id.nav_danhmuc_admin) {
-            // Handle danh mục action
+            loadFragment(BanTinFragment("full"))
         } else if (id == R.id.nav_dangxuat_admin) {
             DataLocalManager.getInstance().setFirstInstalled(false)
             val intent = Intent(requireContext(), AccountActivity::class.java)
@@ -115,17 +109,40 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
             if (DataLocalManager.getInstance().getInfoUserRole() == "ADMIN") {
                 loadFragment(PostNewsLetterFragment())
             } else {
-                Toast.makeText(requireContext(), "Bạn Phải Truy Cập Bằng Quyền ADMIN.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Chỉ Có Admin Mới Có Quyền Truy Cập", Toast.LENGTH_SHORT).show()
             }
         } else if (id == R.id.nav_user_admin) {
             loadFragment(MenuFragment())
         } else if (id == R.id.nav_phanquyen_admin) {
-            // Handle phân quyền action
+            phanQuyenDialog()
         } else if (id == R.id.nav_pheduyet_admin) {
             // Handle phê duyệt action
         }
         mDrawerLayout!!.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun phanQuyenDialog() {
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.dialog_item_phanquyen)
+
+        val window = dialog.window
+        window?.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        window?.setGravity(Gravity.CENTER)
+
+        val txtName: TextView = dialog.findViewById(R.id.txtName)
+        val txtUserName: TextView = dialog.findViewById(R.id.txtUsername)
+        val txtEmail: TextView = dialog.findViewById(R.id.txtEmail)
+        val txtRole: TextView = dialog.findViewById(R.id.txtRole)
+        txtName.text = DataLocalManager.getInstance().getInfoName()
+        txtUserName.text = DataLocalManager.getInstance().getInfoUserName()
+        txtEmail.text = DataLocalManager.getInstance().getInfoEmail()
+        txtRole.text = DataLocalManager.getInstance().getInfoUserRole()
+
+        dialog.show()
     }
 
     private fun checkPermission(): String? {

@@ -29,7 +29,7 @@ class BanTinViewModel : ViewModel() {
             "tin-tam-su" -> service.getTamSu()
             "tin-so-hoa" -> service.getSoHoa()
             "tin-du-lich" -> service.getDuLich()
-            "" -> service.getFullBanTinData()
+            "full" -> service.getFullBanTinData()
             else -> service.getFullBanTinData()
         }
 

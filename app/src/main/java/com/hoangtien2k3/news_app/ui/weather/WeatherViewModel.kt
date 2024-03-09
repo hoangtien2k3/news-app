@@ -14,8 +14,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class WeatherViewModel : ViewModel() {
 
-    private val _weatherResponse = MutableLiveData<WeatherResponse>()
-    val weatherResponse: LiveData<WeatherResponse> = _weatherResponse
+    private val _weatherResponse = MutableLiveData<WeatherResponse?>()
+    val weatherResponse: MutableLiveData<WeatherResponse?> = _weatherResponse
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(Constants.BASE_URL_Weather)
@@ -23,7 +23,6 @@ class WeatherViewModel : ViewModel() {
         .build()
     private val service = retrofit.create(WeatherService::class.java)
     private val apiKey = Constants.apiKeyWeather
-
 
     fun getCurrentWeatherData(city: String) {
         val call = service.getCurrentWeather(city, apiKey)

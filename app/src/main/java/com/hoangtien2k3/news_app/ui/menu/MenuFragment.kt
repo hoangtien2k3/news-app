@@ -15,7 +15,6 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -47,37 +46,28 @@ class MenuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[DeleteUserViewModel::class.java]
 
-        binding.switchMode.isChecked =
-            AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_NO
-        binding.switchMode.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        binding.apply {
+            switchMode.isChecked =
+                AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_NO
+            switchMode.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked)
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                else
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
-        }
-
-        binding.thoiTiet.setOnClickListener {
-            loadFragment(WeatherFragment())
-        }
-        binding.lichViet.setOnClickListener {
-            loadFragment(CalendarFragment())
-        }
-        binding.bieuMau.setOnClickListener {
-            showdialogbottom()
-        }
-        binding.ngonNgu.setOnClickListener {
-            loadFragment(MainFragment())
-        }
-        binding.btnProfile.setOnClickListener {
-            showOptionsDialog()
-        }
-        binding.txtName.text = DataLocalManager.getInstance().getInfoUserName()
-        binding.logout.setOnClickListener {
-            DataLocalManager.getInstance().setFirstInstalled(false)
-            val intent = Intent(activity, AccountActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            startActivity(intent)
+            thoiTiet.setOnClickListener { loadFragment(WeatherFragment()) }
+            lichViet.setOnClickListener { loadFragment(CalendarFragment()) }
+            bieuMau.setOnClickListener { showdialogbottom() }
+            ngonNgu.setOnClickListener { loadFragment(MainFragment()) }
+            btnProfile.setOnClickListener { showOptionsDialog() }
+            logout.setOnClickListener {
+                DataLocalManager.getInstance().setFirstInstalled(false)
+                DataLocalManager.getInstance().removeValueFromSharedPreferences()
+                val intent = Intent(activity, AccountActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
+            }
+            txtName.text = DataLocalManager.getInstance().getInfoName()
         }
     }
 
@@ -142,7 +132,7 @@ class MenuFragment : Fragment() {
                     Toast.makeText(requireContext(), result, Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
                     DataLocalManager.getInstance().setFirstInstalled(false)
-                    DataLocalManager.getInstance().setSaveUserInfo(0, "", "")
+                    DataLocalManager.getInstance().removeValueFromSharedPreferences()
                 }
                 loadFragment(MenuFragment())
             } else {
@@ -174,7 +164,7 @@ class MenuFragment : Fragment() {
 
         parentFragmentManager.beginTransaction()
             .replace(R.id.main_fragment, fragment)
-            .addToBackStack(null)
+            .addToBackStack("MenuFragment")
             .commit()
     }
 

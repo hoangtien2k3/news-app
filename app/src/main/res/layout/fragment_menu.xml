@@ -21,7 +21,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.864"
+        app:layout_constraintVertical_bias="0.973"
         tools:viewBindingIgnore="true">
 
         <ImageView
@@ -47,14 +47,16 @@
         style="@style/TEXT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="360dp"
+        android:layout_marginTop="348dp"
         android:fontFamily="@font/medium"
         android:text="@string/agreement"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
@@ -95,7 +97,7 @@
         app:layout_constraintVertical_bias="0.38" />
 
     <ImageView
-        android:background="@drawable/custom_button"
+        android:background="@drawable/lavender_border"
         android:id="@+id/btnProfile"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -109,7 +111,7 @@
         style="@style/TEXT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/medium"
         android:text="@string/general"
         android:textSize="20sp"
@@ -293,11 +295,11 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        style="@style/CardBackground"
         android:layout_width="match_parent"
         android:layout_height="123dp"
-        style="@style/CardBackground"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="-20dp"
         android:layout_marginEnd="16dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -308,10 +310,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/lichViet"
+            style="@style/CategoryFrame"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="62dp"
-            style="@style/CategoryFrame"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar2"

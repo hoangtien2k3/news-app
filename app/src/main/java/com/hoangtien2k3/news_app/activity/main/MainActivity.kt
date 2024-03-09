@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         binding.navMenu.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.bottom_home -> loadFragment(MainFragment())
-                R.id.bottom_category -> loadFragment(BanTinFragment(""))
+                R.id.bottom_category -> loadFragment(BanTinFragment("full"))
                 R.id.bottom_save -> loadFragment(FootballFragment())
                 R.id.bottom_search -> loadFragment(SearchNewsFragment())
                 R.id.bottom_profile -> loadFragment(MenuFragment())

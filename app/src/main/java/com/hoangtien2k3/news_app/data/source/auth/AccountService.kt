@@ -17,17 +17,27 @@ import retrofit2.http.Path
 
 interface AccountService {
     @POST("/api/auth/signin")
-    fun login(@Body loginRequest: LoginRequest): Call<LoginResponse>
+    fun login(
+        @Body loginRequest: LoginRequest
+    ): Call<LoginResponse>
 
     @POST("/api/auth/signup")
-    fun signup(@Body signupRequest: SignupRequest): Call<SignupResponse>
+    fun signup(
+        @Body signupRequest: SignupRequest
+    ): Call<SignupResponse>
 
     @DELETE("/api/auth/delete/{id}")
-    fun delete(@Path("id") id: Long): Call<String>
+    fun delete(
+        @Path("id") id: Long
+    ): Call<String>
 
     @PUT("/api/auth/update/{id}")
-    fun updateUser(@Path("id") id: Long, @Body update: UpdateUserRequest): Call<UpdateUserResponse>
+    fun updateUser(
+        @Path("id") id: Long, @Body update: UpdateUserRequest
+    ): Call<UpdateUserResponse>
 
     @PUT("/api/auth/changePassword")
-    fun changePassword(@Body request: ChangePasswordRequest?): Call<ChangePasswordResponse>
+    fun changePassword(
+        @Body request: ChangePasswordRequest?
+    ): Call<ChangePasswordResponse>
 }

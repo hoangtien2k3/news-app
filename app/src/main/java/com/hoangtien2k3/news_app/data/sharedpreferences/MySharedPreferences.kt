@@ -6,6 +6,11 @@ import com.google.gson.Gson
 
 class MySharedPreferences(context: Context) {
     private val MY_SHARED_PREFERENCES = "MY_SHARED_PREFERENCES"
+    private val USER_NAME = "USER_NAME"
+    private val ID = "ID"
+    private val EMAIL = "EMAIL"
+    private val NAME = "NAME"
+    private val USER_ROLES = "USER_ROLES"
 
     private val sharedPreferences: SharedPreferences by lazy {
         context.getSharedPreferences(MY_SHARED_PREFERENCES, Context.MODE_PRIVATE)
@@ -35,21 +40,36 @@ class MySharedPreferences(context: Context) {
 
 
     // dùng để lưu trữ thông tin người dùng khi đăng nhập vào app
-    fun saveUserInfo(id: Long, name: String, role: String) {
-        sharedPreferences.edit().putLong("user_id", id).apply()
-        sharedPreferences.edit().putString("user_name", name).apply()
-        sharedPreferences.edit().putString("user_role", role).apply()
+    fun saveUserInfo(id: Long, name: String, username: String, email: String, role: String) {
+        sharedPreferences.edit().putLong(ID, id).apply()
+        sharedPreferences.edit().putString(NAME, name).apply()
+        sharedPreferences.edit().putString(USER_NAME, username).apply()
+        sharedPreferences.edit().putString(EMAIL, email).apply()
+        sharedPreferences.edit().putString(USER_ROLES, role).apply()
+    }
+    fun removeValueFromSharedPreferences() {
+        sharedPreferences.edit().remove(ID).apply()
+        sharedPreferences.edit().remove(NAME).apply()
+        sharedPreferences.edit().remove(USER_NAME).apply()
+        sharedPreferences.edit().remove(EMAIL).apply()
+        sharedPreferences.edit().remove(USER_ROLES).apply()
     }
 
     // lấy ra Id
     fun getUserId(): Long {
-        return sharedPreferences.getLong("user_id", 1)
+        return sharedPreferences.getLong(ID, 0)
+    }
+    fun getName(): String? {
+        return sharedPreferences.getString(NAME, "")
     }
     fun getUserName(): String? {
-        return sharedPreferences.getString("user_name", "")
+        return sharedPreferences.getString(USER_NAME, "")
+    }
+    fun getEmail(): String? {
+        return sharedPreferences.getString(EMAIL, "")
     }
     fun getUserRole(): String? {
-        return sharedPreferences.getString("user_role", "USER")
+        return sharedPreferences.getString(USER_ROLES, "USER")
     }
 
 //    fun getUserInfo(user_id: String): UserInfo {
@@ -59,6 +79,5 @@ class MySharedPreferences(context: Context) {
 //        val age = sharedPreferences.getInt("age", 0)
 //        return UserInfo(username, email, age)
 //    }
-
 
 }

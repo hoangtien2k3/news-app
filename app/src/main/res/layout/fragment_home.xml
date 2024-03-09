@@ -210,7 +210,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="430dp"
+        android:layout_marginTop="500dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/main_tabs"
         app:backgroundTint="@color/color_tin"
