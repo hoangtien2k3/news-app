@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="fragment.SearchNewsFragment">
+    tools:context=".ui.search.SearchNewsFragment">
 
     <EditText
+        style="@style/TEXT"
         android:id="@+id/etSearchNews"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
