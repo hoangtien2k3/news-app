@@ -1,4 +1,4 @@
-package com.hoangtien2k3.news_app.ui.bantin.adapter
+package com.hoangtien2k3.news_app.ui.bantin
 
 import android.annotation.SuppressLint
 import android.content.Context

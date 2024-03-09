@@ -22,9 +22,9 @@ import com.hoangtien2k3.news_app.data.models.Football
 import com.hoangtien2k3.news_app.databinding.FragmentHomeBinding
 import com.hoangtien2k3.news_app.ui.bantin.BanTinFragment
 import com.hoangtien2k3.news_app.ui.bantin.BanTinViewModel
-import com.hoangtien2k3.news_app.ui.bantin.adapter.BanTinAdapter
+import com.hoangtien2k3.news_app.ui.bantin.BanTinAdapter
 import com.hoangtien2k3.news_app.ui.football.FootballFragment
-import com.hoangtien2k3.news_app.ui.football.adapter.FoolballAdapter
+import com.hoangtien2k3.news_app.ui.football.FoolballAdapter
 import com.hoangtien2k3.news_app.ui.home.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment() {

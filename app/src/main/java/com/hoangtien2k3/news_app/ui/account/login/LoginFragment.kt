@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.hoangtien2k3.news_app.activity.main.MainActivity
+import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
 import com.hoangtien2k3.news_app.databinding.FragmentSignInBinding
 import com.hoangtien2k3.news_app.network.result.LoginResult
 
@@ -28,7 +29,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
 
         binding.signInBtn.setOnClickListener {
             val username = binding.editEmailSignIN.text.toString()
@@ -43,8 +44,7 @@ class LoginFragment : Fragment() {
         viewModel.loginResult.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is LoginResult.Success -> {
-                    val intent = Intent(requireContext(), MainActivity::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(requireContext(), MainActivity::class.java))
                     requireActivity().finish()
                 }
                 is LoginResult.Error -> {

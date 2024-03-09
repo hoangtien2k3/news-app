@@ -29,16 +29,19 @@ class WebviewFragment : Fragment() {
             requireActivity().onBackPressed()
         }
 
-        arguments?.getString("link")?.let { link ->
-            binding.webView.apply {
-                webViewClient = object : WebViewClient() {
-                    override fun onPageCommitVisible(view: WebView?, url: String?) {
-                        super.onPageCommitVisible(view, url)
-                        binding.progressBarWebView.visibility = View.GONE
-                    }
+        val link = arguments?.getString("link") ?: arguments?.getString("linknews")
+        link?.let { loadUrlToWebView(it) }
+    }
+
+    private fun loadUrlToWebView(link: String) {
+        binding.webView.apply {
+            webViewClient = object : WebViewClient() {
+                override fun onPageCommitVisible(view: WebView?, url: String?) {
+                    super.onPageCommitVisible(view, url)
+                    binding.progressBarWebView.visibility = View.GONE
                 }
-                loadUrl(link)
             }
+            loadUrl(link)
         }
     }
 

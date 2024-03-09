@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.data.models.Football
-import com.hoangtien2k3.news_app.ui.football.adapter.FoolballAdapter
 
 class FootballFragment : Fragment() {
 

@@ -3,7 +3,7 @@ package com.hoangtien2k3.news_app.ui.account.signup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.hoangtien2k3.news_app.data.source.auth.signup.SignupClient
+import com.hoangtien2k3.news_app.data.source.auth.AccountClient
 import com.hoangtien2k3.news_app.network.request.SignupRequest
 import com.hoangtien2k3.news_app.network.response.SignupResponse
 import com.hoangtien2k3.news_app.network.result.SignupResult
@@ -17,7 +17,7 @@ class SignupViewModel : ViewModel() {
 
     fun signup(name: String, username: String, email: String, password: String, roles: Set<String> = setOf("USER")) {
         val signRequest = SignupRequest(name, username, email, password, roles)
-        val service = SignupClient.apiService
+        val service = AccountClient.apiService
         val call: Call<SignupResponse> = service.signup(signRequest)
 
         call.enqueue(object : Callback<SignupResponse> {

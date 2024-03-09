@@ -18,6 +18,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hoangtien2k3.news_app.R
+import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
 import com.hoangtien2k3.news_app.ui.account.AccountActivity
 import com.hoangtien2k3.news_app.ui.menu.MenuFragment
 
@@ -69,10 +70,7 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
     }
 
     private fun initTabLayoutAndViewPager() {
-//        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.sign_in)))
-//        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.sign_up)))
-
-        val fragmentManager: FragmentManager = childFragmentManager // Sử dụng childFragmentManager thay vì supportFragmentManager
+        val fragmentManager: FragmentManager = childFragmentManager
         adapter = ViewPagerAdapter(fragmentManager, lifecycle)
         viewPager2.adapter = adapter
 
@@ -107,6 +105,7 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
         } else if (id == R.id.nav_danhmuc_admin) {
             // Handle danh mục action
         } else if (id == R.id.nav_dangxuat_admin) {
+            DataLocalManager.getInstance().setFirstInstalled(false)
             val intent = Intent(requireContext(), AccountActivity::class.java)
             startActivity(intent)
         } else if (id == R.id.nav_tintuc_admin) {

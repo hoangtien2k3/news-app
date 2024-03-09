@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface BanTinService {
     @GET("/api/news")
-    fun getBanTinData(): Call<List<BanTin>>
+    fun getFullBanTinData(): Call<List<BanTin>>
     @GET("api/news/category/tin-noi-bat")
     fun getTinNoiBat(): Call<List<BanTin>>
     @GET("api/news/category/tin-moi-nhat")
@@ -33,10 +33,4 @@ interface BanTinService {
     fun getSoHoa(): Call<List<BanTin>>
     @GET("api/news/category/tin-du-lich")
     fun getDuLich(): Call<List<BanTin>>
-
-    //    @GET("api/news/category/startup")
-//    fun getStartup(): Call<List<BanTin>>
-
-//    @GET("api/news/category/giai-tri")
-//    fun getGiaiTri(): Call<List<BanTin>>
 }

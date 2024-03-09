@@ -1,7 +1,7 @@
 package com.hoangtien2k3.news_app.network.response
 
 data class LoginResponse(
-    val id: Int,
+    val id: Long,
     val token: String,
     val type: String,
     val name: String,
@@ -12,7 +12,7 @@ data class Role(
     val authority: String
 )
 
-data class LoginResponseError (
+data class LoginResponseError(
     val timestamp: String,
     val httpStatus: String,
     val msg: String

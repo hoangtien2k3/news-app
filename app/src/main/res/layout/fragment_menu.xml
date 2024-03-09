@@ -80,6 +80,32 @@
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
+        android:id="@+id/txtName"
+        style="@style/TitleTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="txtTenUser"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/btnProfile"
+        app:layout_constraintEnd_toStartOf="@+id/btnProfile"
+        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintStart_toStartOf="@+id/toolbar2"
+        app:layout_constraintTop_toTopOf="@+id/btnProfile"
+        app:layout_constraintVertical_bias="0.38" />
+
+    <ImageView
+        android:background="@drawable/custom_button"
+        android:id="@+id/btnProfile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_person"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar2"
+        app:layout_constraintTop_toTopOf="@+id/toolbar2" />
+
+    <TextView
         style="@style/TEXT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -295,7 +321,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="8dp"
-                android:src="@drawable/cloud" />
+                android:src="@drawable/date1" />
 
             <TextView
                 style="@style/TEXT"
@@ -324,7 +350,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="8dp"
-                android:src="@drawable/lich" />
+                android:src="@drawable/terms" />
 
             <TextView
                 style="@style/TEXT"

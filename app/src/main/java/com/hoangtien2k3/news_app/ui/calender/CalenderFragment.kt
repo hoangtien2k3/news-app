@@ -1,6 +1,5 @@
 package com.hoangtien2k3.news_app.ui.calender
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hoangtien2k3.news_app.R
-import com.hoangtien2k3.news_app.ui.calender.adapter.CalendarAdapter
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter

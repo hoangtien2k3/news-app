@@ -1,4 +1,4 @@
-package com.hoangtien2k3.news_app.ui.calender.adapter
+package com.hoangtien2k3.news_app.ui.calender
 
 import android.view.LayoutInflater
 import android.view.View

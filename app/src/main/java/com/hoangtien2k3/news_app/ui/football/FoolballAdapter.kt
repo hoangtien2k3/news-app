@@ -1,4 +1,4 @@
-package com.hoangtien2k3.news_app.ui.football.adapter
+package com.hoangtien2k3.news_app.ui.football
 
 import android.annotation.SuppressLint
 import com.hoangtien2k3.news_app.data.models.Football

@@ -2,28 +2,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/bottom_home"
-        android:name="com.example.newsappproject.ui.home.HomeFragment"
+        android:name="com.hoangtien2k3.newsapp.ui.home.HomeFragment"
         android:enabled="true"
         android:icon="@drawable/home"
         android:title="Trang Chủ" />
     <item
         android:id="@+id/bottom_category"
-        android:name="com.example.newsappproject.ui.category.CategoryFragment"
+        android:name="com.hoangtien2k3.newsapp.ui.category.CategoryFragment"
         android:icon="@drawable/category"
-        android:title="Danh Mục" />
+        android:title="Tổng hợp" />
     <item
         android:id="@+id/bottom_save"
-        android:name="com.example.newsappproject.ui.save.SaveFragment"
+        android:name="com.hoangtien2k3.newsapp.ui.save.SaveFragment"
         android:icon="@drawable/save"
         android:title="Lưu" />
     <item
         android:id="@+id/bottom_search"
-        android:name="com.example.newsappproject.ui.search.SearchFragment"
-        android:icon="@drawable/search"
+        android:name="com.hoangtien2k3.newsapp.ui.search.SearchFragment"
+        android:icon="@drawable/search_1"
         android:title="Tìm Kiếm" />
     <item
         android:id="@+id/bottom_profile"
-        android:name="com.example.newsappproject.ui.profile.ProfileFragment"
+        android:name="com.hoangtien2k3.newsapp.ui.profile.ProfileFragment"
         android:icon="@drawable/profile"
         android:title="Cá Nhân" />
 </menu>

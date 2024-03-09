@@ -1,14 +1,13 @@
 package com.hoangtien2k3.news_app.ui.account.login
 
-import android.provider.ContactsContract.RawContacts.Data
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
+import com.hoangtien2k3.news_app.data.source.auth.AccountClient
 import com.hoangtien2k3.news_app.network.request.LoginRequest
 import com.hoangtien2k3.news_app.network.response.LoginResponse
-import com.hoangtien2k3.news_app.data.source.auth.login.LoginClient
 import com.hoangtien2k3.news_app.network.response.LoginResponseError
 import com.hoangtien2k3.news_app.network.result.LoginResult
 import retrofit2.Call
@@ -21,7 +20,7 @@ class LoginViewModel : ViewModel() {
 
     fun login(username: String, password: String) {
         val loginRequest = LoginRequest(username, password)
-        val service = LoginClient.apiService
+        val service = AccountClient.apiService
         val call: Call<LoginResponse> = service.login(loginRequest)
 
         call.enqueue(object : Callback<LoginResponse> {
@@ -29,10 +28,12 @@ class LoginViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
                     _loginResult.value = loginResponse?.let {
+                        DataLocalManager.getInstance().setSaveUserInfo(it.id, it.name, it.roles[0].authority)
+                        // set login using shared preferences
+                        DataLocalManager.getInstance().setFirstInstalled(true)
                         LoginResult.Success(it)
                     }
-                    // set login using shared preferences
-                    DataLocalManager.getInstance().setFirstInstalled(true)
+
                 } else {
                     val errorBody = response.errorBody()?.string()
                     val gson = Gson()

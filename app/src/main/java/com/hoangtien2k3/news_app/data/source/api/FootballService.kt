@@ -3,7 +3,6 @@ package com.hoangtien2k3.news_app.data.source.api
 import com.hoangtien2k3.news_app.data.models.Football
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Headers
 
 interface FootballService {
 //    @Headers(

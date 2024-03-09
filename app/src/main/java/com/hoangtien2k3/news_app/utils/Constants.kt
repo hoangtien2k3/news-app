@@ -2,8 +2,8 @@ package com.hoangtien2k3.news_app.utils
 
 object Constants {
     // api localhost
-//    const val BASE_URL_LOCAL = "http://192.168.1.254:9090"
-    const val BASE_URL_LOCAL = "https://582a-2405-4803-fc17-fa00-ccda-c094-5282-4e19.ngrok-free.app"
+    const val BASE_URL_LOCAL = "http://192.168.1.254:9090"
+//    const val BASE_URL_LOCAL = "https://582a-2405-4803-fc17-fa00-ccda-c094-5282-4e19.ngrok-free.app"
 
     const val API_KEY = "bd81e7f01e744515b6db53690c2ff58b"
     const val BASE_URL = "https://newsapi.org/"

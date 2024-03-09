@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hoangtien2k3.news_app.databinding.FragmentBanTinBinding
-import com.hoangtien2k3.news_app.ui.bantin.adapter.BanTinAdapter
 
 class BanTinFragment(
     val category: String

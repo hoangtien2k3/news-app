@@ -17,7 +17,7 @@ class DataLocalManager private constructor(context: Context) {
 
         fun getInstance(): DataLocalManager {
             if (!::instance.isInitialized) {
-                throw UninitializedPropertyAccessException("DataLocalManager chưa được khởi tạo. Hãy gọi init(context) trước khi sử dụng.")
+                throw UninitializedPropertyAccessException("DataLocalManager chưa được khởi tạo.")
             }
             return instance
         }
@@ -30,4 +30,30 @@ class DataLocalManager private constructor(context: Context) {
     fun getFirstInstalled(): Boolean {
         return mySharedPreferences.getBooleanValue(FIRST_SHARED_PREFERENCES)
     }
+
+
+    // add list object
+    fun setAddReadItem(id: String, item: Any) {
+        mySharedPreferences.addReadItem(id, item)
+    }
+
+//    fun getReadItems(id: String) {
+//        return mySharedPreferences.
+//    }
+
+
+    // lưu id và role của người dùng:
+    fun setSaveUserInfo(id: Long, name: String, role: String) {
+        mySharedPreferences.saveUserInfo(id, name, role)
+    }
+    fun getInfoUserId(): Long {
+        return mySharedPreferences.getUserId()
+    }
+    fun getInfoUserName(): String? {
+        return mySharedPreferences.getUserName()
+    }
+    fun getInfoUserRole(): String? {
+        return mySharedPreferences.getUserRole()
+    }
+
 }

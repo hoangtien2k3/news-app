@@ -15,7 +15,7 @@ class BanTinViewModel : ViewModel() {
 
     fun fetchListTinTuc(banTin: String) {
         val service = BanTinClient.apiService
-        val call: Call<List<BanTin>> = when(banTin) {
+        val call: Call<List<BanTin>> = when (banTin) {
             "tin-noi-bat" -> service.getTinNoiBat()
             "tin-moi-nhat" -> service.getTinMoiNhat()
             "tin-the-gioi" -> service.getTheGioi()
@@ -27,9 +27,10 @@ class BanTinViewModel : ViewModel() {
             "tin-khoa-hoc" -> service.getKhoaHoc()
             "tin-kinh-doanh" -> service.getKinhDoanh()
             "tin-tam-su" -> service.getTamSu()
-            "tin-so-hoa" -> service.getDuLich()
+            "tin-so-hoa" -> service.getSoHoa()
             "tin-du-lich" -> service.getDuLich()
-            else -> throw IllegalArgumentException("Unsupported news type")
+            "" -> service.getFullBanTinData()
+            else -> service.getFullBanTinData()
         }
 
         call.enqueue(object : Callback<List<BanTin>> {
@@ -39,9 +40,7 @@ class BanTinViewModel : ViewModel() {
                     _banTinNews.value = footballList
                 }
             }
-
             override fun onFailure(call: Call<List<BanTin>>, t: Throwable) {
-
             }
         })
     }

@@ -10,21 +10,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.view.WindowManager
+import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.databinding.FragmentMenuBinding
 import com.hoangtien2k3.news_app.ui.home.MainFragment
 import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
 import com.hoangtien2k3.news_app.ui.account.AccountActivity
 import com.hoangtien2k3.news_app.ui.calender.CalendarFragment
+import com.hoangtien2k3.news_app.ui.menu.changepassword.ChangePasswordFragment
+import com.hoangtien2k3.news_app.ui.menu.delete.DeleteUserViewModel
+import com.hoangtien2k3.news_app.ui.menu.update.UpdateUserFragment
 import com.hoangtien2k3.news_app.ui.webview.WebviewFragment
 import com.hoangtien2k3.news_app.ui.weather.WeatherFragment
 
 class MenuFragment : Fragment() {
-
     private lateinit var binding: FragmentMenuBinding
+    private lateinit var viewModel: DeleteUserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +45,7 @@ class MenuFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this)[DeleteUserViewModel::class.java]
 
         binding.switchMode.isChecked =
             AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_NO
@@ -59,13 +69,92 @@ class MenuFragment : Fragment() {
         binding.ngonNgu.setOnClickListener {
             loadFragment(MainFragment())
         }
+        binding.btnProfile.setOnClickListener {
+            showOptionsDialog()
+        }
+        binding.txtName.text = DataLocalManager.getInstance().getInfoUserName()
         binding.logout.setOnClickListener {
             DataLocalManager.getInstance().setFirstInstalled(false)
             val intent = Intent(activity, AccountActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
         }
+    }
 
+    private fun showOptionsDialog() {
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.dialog_profile_user_layout)
+
+        // Tùy chỉnh vị trí của dialog trên màn hình
+        val window = dialog.window
+        window?.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        window?.setGravity(Gravity.CENTER)
+
+        // Xử lý sự kiện khi nút trong dialog được nhấn
+        val btnChangePassword: LinearLayout = dialog.findViewById(R.id.btnChangePassword)
+        val btnUpdateInfo: LinearLayout = dialog.findViewById(R.id.btnUpdateInfo)
+        val btnDeleteInfo: LinearLayout = dialog.findViewById(R.id.btnDeleteInfo)
+        btnChangePassword.setOnClickListener {
+            dialog.dismiss()
+            loadFragment(ChangePasswordFragment())
+        }
+        btnUpdateInfo.setOnClickListener {
+            dialog.dismiss()
+            loadFragment(UpdateUserFragment())
+        }
+        btnDeleteInfo.setOnClickListener {
+            dialog.dismiss()
+            deleteDialogCustomView()
+        }
+
+        dialog.show()
+    }
+
+    private fun deleteDialogCustomView() {
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.dialog_delete_user_layout)
+
+        // Tùy chỉnh vị trí của dialog trên màn hình
+        val window = dialog.window
+        window?.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        window?.setGravity(Gravity.CENTER)
+
+        // Xử lý sự kiện khi nút trong dialog được nhấn
+        val btnHuy: Button = dialog.findViewById(R.id.btnHuy)
+        val btnXoa: Button = dialog.findViewById(R.id.btnXoa)
+        val txtUsername: TextView = dialog.findViewById(R.id.txtUsername)
+        txtUsername.text = DataLocalManager.getInstance().getInfoUserName()
+        btnHuy.setOnClickListener {
+            dialog.dismiss()
+        }
+        btnXoa.setOnClickListener {
+            // Định danh của tài khoản cần xóa
+            val accountIdToDelete: Long = DataLocalManager.getInstance().getInfoUserId()
+            if (accountIdToDelete.toInt() != 0) {
+                viewModel.deleteUserId(accountIdToDelete)
+                viewModel.deleteUser.observe(viewLifecycleOwner) { result ->
+                    Toast.makeText(requireContext(), result, Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                    DataLocalManager.getInstance().setFirstInstalled(false)
+                    DataLocalManager.getInstance().setSaveUserInfo(0, "", "")
+                }
+                loadFragment(MenuFragment())
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Bạn Chưa Đăng Nhập Tài Khoản Nào.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
+        dialog.show()
     }
 
     private fun loadFragment(fragmentReplace: Fragment) {

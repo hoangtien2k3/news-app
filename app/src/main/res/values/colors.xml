@@ -11,6 +11,7 @@
     <color name="cyan">#FF00FFFF</color>
     <color name="magenta">#FFFF00FF</color>
     <color name="gray">#FF808080</color>
+    <color name="grey">#4F4A45</color>
 
     <color name="light_gray">#FFD3D3D3</color>
     <color name="dark_gray">#FFA9A9A9</color>
