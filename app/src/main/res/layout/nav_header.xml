@@ -21,7 +21,7 @@
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hoàng Anh Tiến"
+        android:text="Một Số Tuỳ Chọn"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="hoangtien2k3qx1@gmail.com"
+        android:text="giúp truy cập nhanh những tiện tích"
         android:textColor="#000000"
         android:textSize="14sp" />
 

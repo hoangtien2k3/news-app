@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -20,6 +21,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
 import com.hoangtien2k3.news_app.ui.account.AccountActivity
+import com.hoangtien2k3.news_app.ui.home.fragment.PostNewsLetterFragment
 import com.hoangtien2k3.news_app.ui.menu.MenuFragment
 
 class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener {
@@ -109,7 +111,12 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
             val intent = Intent(requireContext(), AccountActivity::class.java)
             startActivity(intent)
         } else if (id == R.id.nav_tintuc_admin) {
-            // Handle tin tức action
+            // đăng tin tức admin
+            if (DataLocalManager.getInstance().getInfoUserRole() == "ADMIN") {
+                loadFragment(PostNewsLetterFragment())
+            } else {
+                Toast.makeText(requireContext(), "Bạn Phải Truy Cập Bằng Quyền ADMIN.", Toast.LENGTH_SHORT).show()
+            }
         } else if (id == R.id.nav_user_admin) {
             loadFragment(MenuFragment())
         } else if (id == R.id.nav_phanquyen_admin) {

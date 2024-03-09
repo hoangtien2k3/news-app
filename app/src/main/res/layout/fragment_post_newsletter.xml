@@ -17,19 +17,20 @@
         android:layout_height="match_parent"
         android:layout_above="@id/card_view"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <ImageView
-
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/profile" />
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/logo_newsapp" />
 
         <TextView
+            android:id="@+id/tvArticleTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/medium"
-            android:text="Thay Đổi Mật Khẩu"
+            android:text="ADMIN"
+            android:layout_marginStart="10dp"
             android:textColor="@color/white"
             android:textSize="32sp"
             android:textStyle="bold" />
@@ -56,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/medium"
-                android:text="Đổi Mật Khẩu"
+                android:text="Đăng Tin Tức Mới"
                 android:textColor="@color/purple"
                 android:textSize="32sp"
                 android:textStyle="bold" />
@@ -66,7 +67,8 @@
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
                 android:fontFamily="@font/medium"
-                android:text="Hãy nhập đầy đủ thông tin bên dưới." />
+                android:textColor="@color/red"
+                android:text="Chỉ Có ADMIN Mới Được Cấp Quyền." />
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -77,18 +79,18 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="26dp"
                 android:layout_marginEnd="8dp"
-                android:hint="Mật khẩu cũ"
-                app:startIconDrawable="@drawable/password">
+                android:hint="Tiêu Đề: "
+                app:startIconDrawable="@drawable/share">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtOldPassword"
+                    android:id="@+id/txtTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
-
+            
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/login_password"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -97,11 +99,30 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:hint="Mật khẩu mới"
-                app:startIconDrawable="@drawable/privacy">
+                android:hint="Đường Link"
+                app:startIconDrawable="@drawable/share">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtNewPassword"
+                    android:id="@+id/txtLink"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:hint="Link Ảnh"
+                app:startIconDrawable="@drawable/share">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtImage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
@@ -117,17 +138,66 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:hint="Nhập lại mật khẩu"
-                app:startIconDrawable="@drawable/privacy">
+                android:hint="Ngày Đăng"
+                app:startIconDrawable="@drawable/baseline_send_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtConfirmPassword"
+                    android:id="@+id/txtDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/sigUp_password_confirm"-->
+<!--                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:hint="Danh Mục:"-->
+<!--                app:startIconDrawable="@drawable/privacy">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/txtConfirmPassword"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:inputType="textEmailAddress"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textColorHint="@color/black" />-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lnquyen"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ed_email_phanquyen">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Danh mục: "
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"/>
+
+                <Spinner
+                    android:id="@+id/txtCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="50dp"/>
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -147,23 +217,26 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:alpha="0.7"
-                android:text="Quên mật khẩu ?" />
+                android:textColor="@color/blue"
+                android:text="Truy Cập Bằng Quyền ADMIN" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="100dp"
+                android:layout_marginBottom="80dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnChangePassword"
+                    android:id="@+id/btnPostNews"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:backgroundTint="@color/color2"
-                    android:drawableLeft="@drawable/profile"
+                    android:drawableLeft="@drawable/baseline_send_24"
                     android:fontFamily="@font/medium"
-                    android:text="Thay Đổi Mật Khẩu !"
+                    android:text="Đăng Tin Tức Mới Này."
+                    style="@style/TitleTextStyle"
+                    android:textSize="18dp"
                     android:textColor="@color/black" />
 
             </LinearLayout>

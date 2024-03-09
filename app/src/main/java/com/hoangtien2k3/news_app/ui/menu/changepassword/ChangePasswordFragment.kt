@@ -1,6 +1,5 @@
 package com.hoangtien2k3.news_app.ui.menu.changepassword
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
