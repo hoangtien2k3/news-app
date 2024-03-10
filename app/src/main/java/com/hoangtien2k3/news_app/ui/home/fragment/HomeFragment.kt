@@ -26,8 +26,10 @@ import com.hoangtien2k3.news_app.ui.bantin.BanTinAdapter
 import com.hoangtien2k3.news_app.ui.football.FootballFragment
 import com.hoangtien2k3.news_app.ui.football.FoolballAdapter
 import com.hoangtien2k3.news_app.ui.home.viewmodel.HomeViewModel
+import com.hoangtien2k3.news_app.ui.save.SaveBanTinViewModel
+import com.hoangtien2k3.news_app.ui.save.ViewModelProviderFactory
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), ViewModelProviderFactory {
     private lateinit var viewModel: HomeViewModel
     private lateinit var binding: FragmentHomeBinding
     private lateinit var footballAdapter: FoolballAdapter
@@ -55,7 +57,7 @@ class HomeFragment : Fragment() {
         // tin tức trong ngày
         viewModelBanTin = ViewModelProvider(this)[BanTinViewModel::class.java]
         mListTinTuc = ArrayList()
-        mBanTinAdapter = BanTinAdapter(requireContext(), mListTinTuc)
+        mBanTinAdapter = BanTinAdapter(requireContext(), mListTinTuc, this)
         val gridLayoutManager = GridLayoutManager(requireContext(), 1)
         gridLayoutManager.orientation = GridLayoutManager.VERTICAL
         binding.NewsRecycler.layoutManager = gridLayoutManager
@@ -240,6 +242,10 @@ class HomeFragment : Fragment() {
             .replace(R.id.main_fragment, fragmentReplace)
             .addToBackStack("HomeFragment")
             .commit()
+    }
+
+    override fun provideViewModel(): SaveBanTinViewModel {
+        return ViewModelProvider(this)[SaveBanTinViewModel::class.java]
     }
 }
 
