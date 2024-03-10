@@ -27,6 +27,7 @@ import com.hoangtien2k3.news_app.ui.calender.CalendarFragment
 import com.hoangtien2k3.news_app.ui.menu.changepassword.ChangePasswordFragment
 import com.hoangtien2k3.news_app.ui.menu.delete.DeleteUserViewModel
 import com.hoangtien2k3.news_app.ui.menu.update.UpdateUserFragment
+import com.hoangtien2k3.news_app.ui.save.SaveBanTinFragment
 import com.hoangtien2k3.news_app.ui.webview.WebviewFragment
 import com.hoangtien2k3.news_app.ui.weather.WeatherFragment
 
@@ -57,8 +58,9 @@ class MenuFragment : Fragment() {
             }
             thoiTiet.setOnClickListener { loadFragment(WeatherFragment()) }
             lichViet.setOnClickListener { loadFragment(CalendarFragment()) }
-            bieuMau.setOnClickListener { showdialogbottom() }
             ngonNgu.setOnClickListener { loadFragment(MainFragment()) }
+            txtSavefeedbackTinDaDoc.setOnClickListener {loadFragment(SaveBanTinFragment())}
+            bieuMau.setOnClickListener { showdialogbottom() }
             btnProfile.setOnClickListener { showOptionsDialog() }
             logout.setOnClickListener {
                 DataLocalManager.getInstance().setFirstInstalled(false)

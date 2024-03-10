@@ -28,8 +28,8 @@
     <string name="search_toolbar">Tìm Kiếm Tin Tức</string>
     <string name="settings">Cài Đặt</string>
     <string name="general">Chung</string>
-    <string name="leave_feedback">Để lại Phản Hồi!</string>
-    <string name="leave_feedback2">Bạn thích ứng dụng không ?</string>
+    <string name="leave_feedback">Tin đã đọc</string>
+    <string name="leave_feedback2">Các tin tức bạn đọc trong ngày.</string>
     <string name="themes">Chuyển Đổi Chủ Đề</string>
     <string name="language">Ngôn Ngữ</string>
     <string name="language2">Bạn có thể thay đổi ngôn ngữ ứng dụng từ cài đặt thiết bị.</string>

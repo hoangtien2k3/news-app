@@ -10,10 +10,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hoangtien2k3.news_app.databinding.FragmentBanTinBinding
+import com.hoangtien2k3.news_app.ui.save.SaveBanTinViewModel
+import com.hoangtien2k3.news_app.ui.save.ViewModelProviderFactory
 
 class BanTinFragment(
     val category: String
-) : Fragment() {
+) : Fragment(), ViewModelProviderFactory {
     private var _binding: FragmentBanTinBinding? = null
     private val binding
         get() = _binding!!
@@ -29,7 +31,8 @@ class BanTinFragment(
         val rootView = binding.root
 
         viewModel = ViewModelProvider(this)[BanTinViewModel::class.java]
-        mBanTinAdapter = BanTinAdapter(requireContext(), mutableListOf())
+        mBanTinAdapter = BanTinAdapter(requireContext(), mutableListOf(), this)
+
         val gridLayoutManager = GridLayoutManager(requireContext(), 1)
         gridLayoutManager.orientation = GridLayoutManager.VERTICAL
         binding.banTinRecyclerView.layoutManager = gridLayoutManager
@@ -65,6 +68,10 @@ class BanTinFragment(
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun provideViewModel(): SaveBanTinViewModel {
+        return ViewModelProvider(this)[SaveBanTinViewModel::class.java]
     }
 
 }

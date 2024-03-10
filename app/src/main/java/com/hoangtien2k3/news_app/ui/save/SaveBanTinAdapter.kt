@@ -1,4 +1,4 @@
-package com.hoangtien2k3.news_app.ui.bantin
+package com.hoangtien2k3.news_app.ui.save
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,26 +6,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.hoangtien2k3.news_app.R
-import com.hoangtien2k3.news_app.ui.webview.WebviewFragment
-import com.hoangtien2k3.news_app.data.models.BanTin
-import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
 import com.hoangtien2k3.news_app.databinding.ItemRowArticleBinding
-import com.hoangtien2k3.news_app.ui.save.SaveBanTinViewModel
-import com.hoangtien2k3.news_app.ui.save.ViewModelProviderFactory
+import com.hoangtien2k3.news_app.network.request.SavePosRequest
+import com.hoangtien2k3.news_app.network.response.SavePosResponse
+import com.hoangtien2k3.news_app.ui.webview.WebviewFragment
 
-class BanTinAdapter(
+class SaveBanTinAdapter(
     private val mContext: Context,
-    private var mListTinTuc: List<BanTin>,
-    private val viewModelProviderFactory: ViewModelProviderFactory
-) : RecyclerView.Adapter<BanTinAdapter.ViewHolder>() {
-
-    private val viewModel: SaveBanTinViewModel by lazy {
-        viewModelProviderFactory.provideViewModel()
-    }
+    private var mListTinTuc: List<SavePosResponse>
+) : RecyclerView.Adapter<SaveBanTinAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemRowArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -47,15 +39,11 @@ class BanTinAdapter(
         }
 
         holder.binding.itemTinTucConstrantlayout.setOnClickListener {
-            // open web view
             openWebViewBanTin(tinTuc)
-
-            // lưu thông tin về bản tin đã đọc (notification-service)
-            saveBanTinDaDoc(tinTuc)
         }
     }
 
-    private fun openWebViewBanTin(tinTuc: BanTin) {
+    private fun openWebViewBanTin(tinTuc: SavePosResponse) {
         val fragment = WebviewFragment().apply {
             arguments = Bundle().apply {
                 putString("link", tinTuc.link)
@@ -69,17 +57,12 @@ class BanTinAdapter(
             .commit()
     }
 
-    private fun saveBanTinDaDoc(tinTuc: BanTin) {
-        val userId = DataLocalManager.getInstance().getInfoUserId()
-        viewModel.postNewsSave(tinTuc.title, tinTuc.link, tinTuc.img, tinTuc.pubDate, userId)
-    }
-
     override fun getItemCount(): Int {
         return mListTinTuc.size
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateData(newList: List<BanTin>) {
+    fun updateData(newList: List<SavePosResponse>) {
         mListTinTuc = newList
         notifyDataSetChanged()
     }

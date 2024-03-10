@@ -61,7 +61,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         style="@style/ToolbarBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="txtTenUser"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/btnProfile"
         app:layout_constraintEnd_toStartOf="@+id/btnProfile"
@@ -97,12 +97,12 @@
         app:layout_constraintVertical_bias="0.38" />
 
     <ImageView
-        android:background="@drawable/lavender_border"
+        android:background="@drawable/custom_button"
         android:id="@+id/btnProfile"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginEnd="10dp"
-        android:src="@drawable/ic_person"
+        android:src="@drawable/avatar_defaut"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
         app:layout_constraintEnd_toEndOf="@+id/toolbar2"
         app:layout_constraintTop_toTopOf="@+id/toolbar2" />
@@ -121,7 +121,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/feedback_cardview1"
+        android:id="@+id/txtSavefeedbackTinDaDoc"
         style="@style/CategoryFrame"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -176,7 +176,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/feedback_cardview1"
+        app:layout_constraintTop_toBottomOf="@+id/txtSavefeedbackTinDaDoc"
         app:layout_constraintVertical_bias="0.066">
 
         <androidx.cardview.widget.CardView
