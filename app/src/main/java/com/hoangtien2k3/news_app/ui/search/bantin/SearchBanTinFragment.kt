@@ -1,6 +1,7 @@
 package com.hoangtien2k3.news_app.ui.search.bantin
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +9,12 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.data.models.BanTin
 import com.hoangtien2k3.news_app.databinding.FragmentSearchBanTinBinding
 import com.hoangtien2k3.news_app.ui.bantin.BanTinAdapter
 import com.hoangtien2k3.news_app.ui.bantin.BanTinViewModel
+import com.hoangtien2k3.news_app.ui.menu.MenuFragment
 import com.hoangtien2k3.news_app.ui.save.SaveBanTinViewModel
 import com.hoangtien2k3.news_app.ui.save.ViewModelProviderFactory
 import java.util.ArrayList
@@ -63,7 +66,15 @@ class SearchBanTinFragment(
             }
         })
 
-        binding.back.setOnClickListener { requireActivity().onBackPressed() }
+        // close bottom back
+        val receivedValue = arguments?.getString("close")
+        Log.d("Close", receivedValue.toString())
+        if (receivedValue == "false") {
+            binding.back.visibility = View.VISIBLE
+            binding.back.setOnClickListener { requireActivity().onBackPressed() }
+        } else {
+            binding.back.setImageResource(R.drawable.ic_support_chat)
+        }
 
         return rootView
     }

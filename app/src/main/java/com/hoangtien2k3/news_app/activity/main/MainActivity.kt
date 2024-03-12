@@ -13,12 +13,10 @@ import com.hoangtien2k3.news_app.databinding.ActivityMainBinding
 import com.hoangtien2k3.news_app.data.source.db.ArticleDatabase
 import com.hoangtien2k3.news_app.ui.menu.MenuFragment
 import com.hoangtien2k3.news_app.ui.home.fragment.HomeFragment
-import com.hoangtien2k3.news_app.ui.search.SearchNewsFragment
 import com.hoangtien2k3.news_app.data.repository.NewsRepository
 import com.hoangtien2k3.news_app.ui.search.SearchNewsViewModel
 import com.hoangtien2k3.news_app.data.NewsViewModelProviderFactory
 import com.hoangtien2k3.news_app.ui.bantin.BanTinFragment
-import com.hoangtien2k3.news_app.ui.football.FootballFragment
 import com.hoangtien2k3.news_app.ui.home.MainFragment
 import com.hoangtien2k3.news_app.ui.save.SaveBanTinFragment
 import com.hoangtien2k3.news_app.ui.search.bantin.SearchBanTinFragment

@@ -38,7 +38,13 @@ class SaveBanTinFragment : Fragment() {
             }
         }
 
-        binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
+        val receivedValue = arguments?.getString("close")
+        if (receivedValue == "false") {
+            binding.btnBack.visibility = View.VISIBLE
+            binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
+        } else {
+            binding.btnBack.visibility = View.GONE
+        }
         binding.btnDeleteAll.setOnClickListener {
             viewModel.deleteAllListNewsSave() // delete tất cả bản tin trong danh mục đã đọc
             viewModel.getListAllNewsSave() // load lại tin tức

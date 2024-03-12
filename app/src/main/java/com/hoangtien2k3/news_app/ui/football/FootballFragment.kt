@@ -2,6 +2,7 @@ package com.hoangtien2k3.news_app.ui.football
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.data.models.Football
+import com.hoangtien2k3.news_app.ui.menu.MenuFragment
 import java.util.ArrayList
 import java.util.Locale
 
@@ -75,8 +77,6 @@ class FootballFragment : Fragment() {
             }
         })
 
-
-        // back
         back = rootView.findViewById(R.id.back)
         back.setOnClickListener { requireActivity().onBackPressed() }
 

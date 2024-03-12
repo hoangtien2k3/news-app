@@ -21,7 +21,6 @@ import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.data.models.BanTin
 import com.hoangtien2k3.news_app.data.models.Football
 import com.hoangtien2k3.news_app.databinding.FragmentHomeBinding
-import com.hoangtien2k3.news_app.ui.bantin.BanTinFragment
 import com.hoangtien2k3.news_app.ui.bantin.BanTinViewModel
 import com.hoangtien2k3.news_app.ui.bantin.BanTinAdapter
 import com.hoangtien2k3.news_app.ui.football.FootballFragment
@@ -107,7 +106,15 @@ class HomeFragment : Fragment(), ViewModelProviderFactory {
         })
 
         binding.detailFootball.setOnClickListener { loadFragment(FootballFragment()) }
-        binding.detailHot.setOnClickListener { loadFragment(SearchBanTinFragment(Constants.full)) }
+        binding.detailHot.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("close", "false")
+            }
+            val fragment = SearchBanTinFragment(Constants.full)
+            fragment.arguments = bundle
+            loadFragment(fragment)
+        }
+
     }
 
     @SuppressLint("SetJavaScriptEnabled")

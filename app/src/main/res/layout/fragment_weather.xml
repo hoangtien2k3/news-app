@@ -23,7 +23,6 @@
             android:src="@drawable/back" />
 
         <EditText
-            style="@style/TextBlue"
             android:id="@+id/edittextSearch"
             android:layout_width="260dp"
             android:layout_height="wrap_content"
@@ -32,6 +31,7 @@
             android:layout_marginTop="10dp"
             android:hint="@string/textAddress"
             android:textStyle="italic"
+            android:textColor="@color/blue"
             android:textSize="20dp" />
 
         <ImageView

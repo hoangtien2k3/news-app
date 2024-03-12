@@ -20,7 +20,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.databinding.FragmentMenuBinding
-import com.hoangtien2k3.news_app.ui.home.MainFragment
 import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
 import com.hoangtien2k3.news_app.ui.account.AccountActivity
 import com.hoangtien2k3.news_app.ui.calender.CalendarFragment
@@ -30,8 +29,10 @@ import com.hoangtien2k3.news_app.ui.menu.delete.DeleteUserViewModel
 import com.hoangtien2k3.news_app.ui.menu.update.UpdateUserFragment
 import com.hoangtien2k3.news_app.ui.save.SaveBanTinFragment
 import com.hoangtien2k3.news_app.ui.search.SearchNewsFragment
+import com.hoangtien2k3.news_app.ui.search.bantin.SearchBanTinFragment
 import com.hoangtien2k3.news_app.ui.webview.WebviewFragment
 import com.hoangtien2k3.news_app.ui.weather.WeatherFragment
+import com.hoangtien2k3.news_app.utils.Constants
 
 class MenuFragment : Fragment() {
     private lateinit var binding: FragmentMenuBinding
@@ -60,7 +61,14 @@ class MenuFragment : Fragment() {
             }
             thoiTiet.setOnClickListener { loadFragment(WeatherFragment()) }
             lichViet.setOnClickListener { loadFragment(CalendarFragment()) }
-            txtSavefeedbackTinDaDoc.setOnClickListener {loadFragment(SaveBanTinFragment())}
+            txtSavefeedbackTinDaDoc.setOnClickListener {
+                val bundle = Bundle().apply {
+                    putString("close", "false")
+                }
+                val fragment = SaveBanTinFragment()
+                fragment.arguments = bundle
+                loadFragment(fragment)
+            }
             bieuMau.setOnClickListener { showdialogbottom() }
             football.setOnClickListener {loadFragment(FootballFragment())}
             tinQuocTe.setOnClickListener {loadFragment(SearchNewsFragment())}
@@ -178,7 +186,7 @@ class MenuFragment : Fragment() {
             } else {
                 Toast.makeText(
                     requireContext(),
-                    "Bạn Chưa Đăng Nhập Tài Khoản Nào.",
+                    R.string.not_login_account.toString(),
                     Toast.LENGTH_SHORT
                 ).show()
             }

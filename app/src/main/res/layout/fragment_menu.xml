@@ -15,16 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
-        <ImageView
-            android:id="@+id/ivBack"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:paddingStart="10dp"
-            android:paddingEnd="45dp"
-            android:src="@mipmap/search_ic_back" />
-
         <TextView
             android:id="@+id/txtTitle"
             android:layout_width="wrap_content"
