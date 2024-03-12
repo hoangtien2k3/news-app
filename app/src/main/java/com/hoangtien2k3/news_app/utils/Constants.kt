@@ -3,7 +3,7 @@ package com.hoangtien2k3.news_app.utils
 object Constants {
     // api localhost
     const val BASE_URL_LOCAL = "http://192.168.1.254:9090"
-//    const val BASE_URL_LOCAL = "https://582a-2405-4803-fc17-fa00-ccda-c094-5282-4e19.ngrok-free.app"
+//    const val BASE_URL_LOCAL = "https://6a96-2405-4803-fc17-fa00-715d-1f04-4acf-f17c.ngrok-free.app"
 
     const val API_KEY = "bd81e7f01e744515b6db53690c2ff58b"
     const val BASE_URL = "https://newsapi.org/"
@@ -16,11 +16,25 @@ object Constants {
     const val ROLE_USER = "USER"
     const val ROLE_ADMIN = "ADMIN"
 
-/*    const val BASE_URL_TIN_NOI_BAT: String = "https://vnexpress.net/rss/tin-noi-bat.rss"
+    const val tin_noi_bat = "tin-noi-bat"
+    const val tin_moi_nhat = "tin-moi-nhat"
+    const val tin_the_gioi = "tin-the-gioi"
+    const val tin_the_thao = "tin-the-thao"
+    const val tin_phap_luat = "tin-phap-luat"
+    const val tin_giao_duc = "tin-giao-duc"
+    const val tin_suc_khoe = "tin-suc-khoe"
+    const val tin_doi_song = "tin-doi-song"
+    const val tin_khoa_hoc = "tin-khoa-hoc"
+    const val tin_kinh_doanh = "tin-kinh-doanh"
+    const val tin_tam_su = "tin-tam-su"
+    const val tin_so_hoa = "tin-so-hoa"
+    const val tin_du_lich = "tin-du-lich"
+    const val full = "full"
+
+/*
+    const val BASE_URL_TIN_NOI_BAT: String = "https://vnexpress.net/rss/tin-noi-bat.rss"
     const val BASE_URL_TIN_MOI_NHAT: String = "https://vnexpress.net/rss/tin-moi-nhat.rss"
     const val BASE_URL_TIN_THE_GIOI: String = "https://vnexpress.net/rss/the-gioi.rss"
-    const val BASE_URL_TIN_STARUP: String = "https://vnexpress.net/rss/startup.rss"
-    const val BASE_URL_TIN_GIAI_TRI: String = "https://vnexpress.net/rss/giai-tri.rss"
     const val BASE_URL_TIN_THE_THAO: String = "https://vnexpress.net/rss/the-thao.rss"
     const val BASE_URL_TIN_PHAP_LUAT: String = "https://vnexpress.net/rss/phap-luat.rss"
     const val BASE_URL_TIN_GIAO_DUC: String = "https://vnexpress.net/rss/giao-duc.rss"

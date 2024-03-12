@@ -1,5 +1,6 @@
 package com.hoangtien2k3.news_app.ui.football
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,11 +27,13 @@ class FootballViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     val footballList = response.body() ?: emptyList()
                     _footballNews.value = footballList
+                } else {
+                    Log.e("FootballViewModel", "Response unsuccessful: ${response.code()}")
                 }
             }
 
             override fun onFailure(call: Call<List<Football>>, t: Throwable) {
-
+                Log.e("FootballViewModel", "Call failed: ${t.message}", t)
             }
         })
     }

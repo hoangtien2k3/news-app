@@ -12,7 +12,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class PostNewsLetterViewModel : ViewModel() {
-
     private val _postNewsLetterResult = MutableLiveData<PostNewsLetterResult>()
     val postNewsLetterResult: LiveData<PostNewsLetterResult> = _postNewsLetterResult
 

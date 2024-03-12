@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hoangtien2k3.news_app.data.models.BanTin
 import com.hoangtien2k3.news_app.data.source.api.BanTinClient
+import com.hoangtien2k3.news_app.data.source.api.BanTinService
+import com.hoangtien2k3.news_app.utils.Constants
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,34 +17,39 @@ class BanTinViewModel : ViewModel() {
 
     fun fetchListTinTuc(banTin: String) {
         val service = BanTinClient.apiService
-        val call: Call<List<BanTin>> = when (banTin) {
-            "tin-noi-bat" -> service.getTinNoiBat()
-            "tin-moi-nhat" -> service.getTinMoiNhat()
-            "tin-the-gioi" -> service.getTheGioi()
-            "tin-the-thao" -> service.getTheThao()
-            "tin-phap-luat" -> service.getPhapLuat()
-            "tin-giao-duc" -> service.getGiaoDuc()
-            "tin-suc-khoe" -> service.getSucKhoe()
-            "tin-doi-song" -> service.getDoiSong()
-            "tin-khoa-hoc" -> service.getKhoaHoc()
-            "tin-kinh-doanh" -> service.getKinhDoanh()
-            "tin-tam-su" -> service.getTamSu()
-            "tin-so-hoa" -> service.getSoHoa()
-            "tin-du-lich" -> service.getDuLich()
-            "full" -> service.getFullBanTinData()
-            else -> service.getFullBanTinData()
-        }
+        val call: Call<List<BanTin>> = getServiceCall(service, banTin)
 
         call.enqueue(object : Callback<List<BanTin>> {
             override fun onResponse(call: Call<List<BanTin>>, response: Response<List<BanTin>>) {
                 if (response.isSuccessful) {
-                    val footballList = response.body() ?: emptyList()
-                    _banTinNews.value = footballList
+                    val banTinList = response.body() ?: emptyList()
+                    _banTinNews.value = banTinList
                 }
             }
+
             override fun onFailure(call: Call<List<BanTin>>, t: Throwable) {
+                // Xử lý lỗi khi request thất bại nếu cần
             }
         })
     }
 
+    private fun getServiceCall(service: BanTinService, banTin: String): Call<List<BanTin>> {
+        return when (banTin) {
+            Constants.tin_noi_bat -> service.getTinNoiBat()
+            Constants.tin_moi_nhat -> service.getTinMoiNhat()
+            Constants.tin_the_gioi  -> service.getTheGioi()
+            Constants.tin_the_thao -> service.getTheThao()
+            Constants.tin_phap_luat  -> service.getPhapLuat()
+            Constants.tin_giao_duc  -> service.getGiaoDuc()
+            Constants.tin_suc_khoe  -> service.getSucKhoe()
+            Constants.tin_doi_song  -> service.getDoiSong()
+            Constants.tin_khoa_hoc  -> service.getKhoaHoc()
+            Constants.tin_kinh_doanh  -> service.getKinhDoanh()
+            Constants.tin_tam_su  -> service.getTamSu()
+            Constants.tin_so_hoa  -> service.getSoHoa()
+            Constants.tin_du_lich  -> service.getDuLich()
+            Constants.full  -> service.getFullBanTinData()
+            else -> service.getFullBanTinData()
+        }
+    }
 }

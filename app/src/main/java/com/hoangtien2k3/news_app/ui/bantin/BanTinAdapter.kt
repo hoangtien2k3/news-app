@@ -1,12 +1,12 @@
 package com.hoangtien2k3.news_app.ui.bantin
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.hoangtien2k3.news_app.R
@@ -21,7 +21,9 @@ class BanTinAdapter(
     private val mContext: Context,
     private var mListTinTuc: List<BanTin>,
     private val viewModelProviderFactory: ViewModelProviderFactory
-) : RecyclerView.Adapter<BanTinAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<BanTinAdapter.ViewHolder>(), Filterable {
+
+    private var mListTinTucFiltered: List<BanTin> = mListTinTuc.toList()
 
     private val viewModel: SaveBanTinViewModel by lazy {
         viewModelProviderFactory.provideViewModel()
@@ -32,7 +34,6 @@ class BanTinAdapter(
         return ViewHolder(binding)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val tinTuc = mListTinTuc[position]
         holder.binding.tvArticleTitle.text = tinTuc.title
@@ -78,12 +79,32 @@ class BanTinAdapter(
         return mListTinTuc.size
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     fun updateData(newList: List<BanTin>) {
         mListTinTuc = newList
         notifyDataSetChanged()
     }
 
     inner class ViewHolder(val binding: ItemRowArticleBinding) : RecyclerView.ViewHolder(binding.root)
+
+    override fun getFilter(): Filter = object : Filter() {
+        override fun performFiltering(constraint: CharSequence?): FilterResults {
+            val searchString = constraint?.toString()?.toLowerCase() ?: ""
+            mListTinTucFiltered = if (searchString.isEmpty()) {
+                mListTinTuc.toList()
+            } else {
+                mListTinTuc.filter {
+                    it.title.toLowerCase().contains(searchString)
+                }
+            }
+            return FilterResults().apply {
+                values = mListTinTucFiltered // Gán kết quả đã lọc vào values
+            }
+        }
+
+        override fun publishResults(constraint: CharSequence?, results: FilterResults) {
+            mListTinTucFiltered = results.values as List<BanTin>
+            notifyDataSetChanged()
+        }
+    }
 
 }

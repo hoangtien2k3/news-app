@@ -32,7 +32,7 @@
     <string name="leave_feedback2">Các tin tức bạn đọc trong ngày.</string>
     <string name="themes">Chuyển Đổi Chủ Đề</string>
     <string name="language">Ngôn Ngữ</string>
-    <string name="language2">Bạn có thể thay đổi ngôn ngữ ứng dụng từ cài đặt thiết bị.</string>
+    <string name="language2">Bạn có thể thay đổi ngôn ngữ ứng dụng.</string>
     <string name="faq">Đăng Ký Biểu Mẫu</string>
     <string name="agreement">Xem Thêm</string>
     <string name="data_privacy">Thời Tiết Các Tỉnh Thành</string>
@@ -43,25 +43,12 @@
     <string name="sign_up">ĐĂNG KÝ</string>
     <string name="sign_in">ĐĂNG NHẬP</string>
 
-    <!--category: bản tin-->
-    <string name="tin_noi_bat">tin-noi-bat</string>
-    <string name="tin_moi_nhat">tin-moi-nhat</string>
-    <string name="tin_the_gioi">tin-the-gioi</string>
-    <string name="tin_phap_luat">tin-phap-luat</string>
-    <string name="tin_giao_duc">tin-giao-duc</string>
-    <string name="tin_suc_khoe">tin-suc-khoe</string>
-    <string name="tin_doi_song">tin-doi-song</string>
-    <string name="tin_khoa_hoc">tin-khoa-hoc</string>
-    <string name="tin_kinh_doanh">tin-kinh-doanh</string>
-    <string name="tin_tam_su">tin-tam-su</string>
-    <string name="tin_so_hoa">tin-so-hoa</string>
-    <string name="tin_du_lich">tin-du-lich</string>
-
     <!--title: bản tin-->
     <string name="pho_bien">Phổ Biến</string>
     <string name="noi_bat">Nổi Bật</string>
     <string name="moi_nhat">Mới Nhất</string>
     <string name="the_gioi">Thế Giới</string>
+    <string name="the_thao">Thể Thao</string>
     <string name="phap_luat">Pháp Luật</string>
     <string name="giao_duc">Giáo Dục</string>
     <string name="suc_khoe">Sức Khoẻ</string>
@@ -72,4 +59,43 @@
     <string name="so_hoa">Số Hoá</string>
     <string name="du_lich">Du Lịch</string>
 
+    <string name="txt_ho_ten">Họ Tên:</string>
+    <string name="txt_name_admin">Hoàng Anh Tiến</string>
+    <string name="xem_th_m">Xem thêm</string>
+    <string name="gi_v_ng_amp_ngo_i_t"><![CDATA[Giá Vàng & Ngoại Tệ]]></string>
+    <string name="k_t_qu_s_s">Kết Quả Sổ Số</string>
+    <string name="t_s_b_ng">Tỷ Số Bóng Đá</string>
+    <string name="c_c_ti_n_ch_kh_c">Các Tiện Ích Khác</string>
+    <string name="c_c_ti_n_t_ch_kh_c">Các Tiện Tích Khác</string>
+    <string name="ti_n_ch_kh_c">Tiện ích khác</string>
+    <string name="tin_b_ng">Tin bóng đá</string>
+    <string name="tin_n_ng">Tin nóng</string>
+    <string name="trang_ch">Trang chủ</string>
+    <string name="danh_m_c">Danh mục</string>
+    <string name="ng_tin_t_c">Đăng tin tức</string>
+    <string name="ph_duy_t_tin_t_c">Phê duyệt tin tức</string>
+    <string name="ph_n_quy_n">Phân quyền</string>
+    <string name="t_i_kho_n">Tài khoản</string>
+    <string name="th_ng_tin_t_i_kho_n">Thông tin tài khoản</string>
+    <string name="ng_xu_t">Đăng xuất</string>
+    <string name="t_ng_h_p">Tổng hợp</string>
+    <string name="l_u">Lưu</string>
+    <string name="t_m_ki_m">Tìm Kiếm</string>
+    <string name="c_nh_n">Cá Nhân</string>
+    <string name="c_c_trang_m_ng_x_h_i">Các Trang Mạng Xã Hội</string>
+
+    <string name="change_password_failed">Thay đổi mật khẩu không thành công</string>
+    <string name="network_error">Network error</string>
+    <string name="delete_successfully">Xoá Tài Khoản Thành Công.</string>
+    <string name="delete_failed">Xoá Tài Khoản Thất Bại.</string>
+    <string name="error_systeam">Đã xảy ra lỗi hệ thống.</string>
+    <string name="update_info_successfully">Cập nhật thông tin thành công với</string>
+    <string name="update_info_failed">Cập nhật thông tin thấy bại, hãy thử lại.</string>
+    <string name="b_n_ch_a_ng_nh_p_t_i_kho_n_n_o">Bạn Chưa Đăng Nhập Tài Khoản Nào.</string>
+    <string name="hoangtien2k3qx1_gmail_com">hoangtien2k3qx1@gmail.com</string>
+    <string name="_0_00">0.00 đ</string>
+    <string name="c_c_i_u_kho_n">các điều khoản</string>
+    <string name="tin_t_c_qu_c_t">Tin tức quốc tế</string>
+
 </resources>
+

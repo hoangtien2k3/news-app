@@ -86,7 +86,7 @@
     </style>
 
     <style name="BackgroundMain">
-        <item name="android:background">#00BCD4</item>
+        <item name="android:background">#FFFFFF</item>
     </style>
 
     <style name="BackgroundColorNav">
@@ -95,6 +95,10 @@
 
     <style name="SCREEN">
         <item name="android:background">#FFF</item>
+    </style>
+
+    <style name="SCREEN_S">
+        <item name="android:background">@color/purple</item>
     </style>
 
     <style name="TEXT">

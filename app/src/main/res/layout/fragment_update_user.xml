@@ -5,6 +5,7 @@
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/SCREEN"
     tools:context=".ui.auth.login.LoginFragment">
 
     <RelativeLayout
@@ -47,6 +48,7 @@
         app:cardCornerRadius="28dp">
 
         <LinearLayout
+            style="@style/SCREEN"
             android:background="@drawable/lavender_border"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

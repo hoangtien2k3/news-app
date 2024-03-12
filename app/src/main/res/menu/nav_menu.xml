@@ -8,39 +8,39 @@
         <item
             android:id="@+id/nav_trangchu_admin"
             android:icon="@drawable/home"
-            android:title="Trang chủ" />
+            android:title="@string/trang_ch" />
 
         <item
             android:id="@+id/nav_danhmuc_admin"
             android:icon="@drawable/list"
-            android:title="Danh mục" />
+            android:title="@string/danh_m_c" />
 
         <item
             android:id="@+id/nav_tintuc_admin"
             android:icon="@drawable/post"
-            android:title="Đăng tin tức" />
+            android:title="@string/ng_tin_t_c" />
         <item
             android:id="@+id/nav_pheduyet_admin"
             android:icon="@drawable/accept"
-            android:title="Phê duyệt tin tức" />
+            android:title="@string/ph_duy_t_tin_t_c" />
 
         <item
             android:id="@+id/nav_phanquyen_admin"
             android:icon="@drawable/phanquyen"
-            android:title="Phân quyền" />
+            android:title="@string/ph_n_quy_n" />
 
 
     </group>
-    <item android:title="Tài khoản">
+    <item android:title="@string/t_i_kho_n">
         <menu>
             <item
                 android:id="@+id/nav_user_admin"
                 android:icon="@drawable/account"
-                android:title="Thông tin tài khoản" />
+                android:title="@string/th_ng_tin_t_i_kho_n" />
             <item
                 android:id="@+id/nav_dangxuat_admin"
                 android:icon="@drawable/logout"
-                android:title="Đăng xuất" />
+                android:title="@string/ng_xu_t" />
         </menu>
     </item>
 

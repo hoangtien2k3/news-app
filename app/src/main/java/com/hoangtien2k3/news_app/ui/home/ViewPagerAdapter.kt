@@ -4,9 +4,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.hoangtien2k3.news_app.ui.account.login.LoginFragment
 import com.hoangtien2k3.news_app.ui.bantin.BanTinFragment
 import com.hoangtien2k3.news_app.ui.home.fragment.HomeFragment
+import com.hoangtien2k3.news_app.utils.Constants
 
 class ViewPagerAdapter(
     fragmentManager: FragmentManager,
@@ -15,23 +15,24 @@ class ViewPagerAdapter(
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> HomeFragment()
-            1 -> BanTinFragment("tin-noi-bat")
-            2 -> BanTinFragment("tin-moi-nhat")
-            3 -> BanTinFragment("tin-the-gioi")
-            4 -> BanTinFragment("tin-phap-luat")
-            5 -> BanTinFragment("tin-giao-duc")
-            6 -> BanTinFragment("tin-suc-khoe")
-            7 -> BanTinFragment("tin-doi-song")
-            8 -> BanTinFragment("tin-khoa-hoc")
-            9 -> BanTinFragment("tin-kinh-doanh")
-            10 -> BanTinFragment("tin-tam-su")
-            11 -> BanTinFragment("tin-so-hoa")
-            12 -> BanTinFragment("tin-du-lich")
+            1 -> BanTinFragment(Constants.tin_noi_bat)
+            2 -> BanTinFragment(Constants.tin_moi_nhat)
+            3 -> BanTinFragment(Constants.tin_the_gioi)
+            4 -> BanTinFragment(Constants.tin_the_thao)
+            5 -> BanTinFragment(Constants.tin_phap_luat)
+            6 -> BanTinFragment(Constants.tin_giao_duc)
+            7 -> BanTinFragment(Constants.tin_suc_khoe)
+            8 -> BanTinFragment(Constants.tin_doi_song)
+            9 -> BanTinFragment(Constants.tin_khoa_hoc)
+            10 -> BanTinFragment(Constants.tin_kinh_doanh)
+            11 -> BanTinFragment(Constants.tin_tam_su)
+            12 -> BanTinFragment(Constants.tin_so_hoa)
+            13 -> BanTinFragment(Constants.tin_du_lich)
             else -> HomeFragment()
         }
     }
 
     override fun getItemCount(): Int {
-        return 13
+        return 14
     }
 }

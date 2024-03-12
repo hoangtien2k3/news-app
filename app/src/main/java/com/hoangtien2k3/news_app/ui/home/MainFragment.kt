@@ -9,7 +9,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -59,7 +58,6 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
         toggle.syncState()
         navigationView.setNavigationItemSelectedListener(this)
 
-
         tabLayout = view.findViewById(R.id.tabLayout)
         viewPager2 = view.findViewById(R.id.viewPager2)
         initTabLayoutAndViewPager()
@@ -78,15 +76,16 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
                 1 -> getString(R.string.noi_bat)
                 2 -> getString(R.string.moi_nhat)
                 3 -> getString(R.string.the_gioi)
-                4 -> getString(R.string.phap_luat)
-                5 -> getString(R.string.giao_duc)
-                6 -> getString(R.string.suc_khoe)
-                7 -> getString(R.string.doi_song)
-                8 -> getString(R.string.khoa_hoc)
-                9 -> getString(R.string.kinh_doanh)
-                10 -> getString(R.string.tam_su)
-                11 -> getString(R.string.so_hoa)
-                12 -> getString(R.string.du_lich)
+                4 -> getString(R.string.the_thao)
+                5 -> getString(R.string.phap_luat)
+                6 -> getString(R.string.giao_duc)
+                7 -> getString(R.string.suc_khoe)
+                8 -> getString(R.string.doi_song)
+                9 -> getString(R.string.khoa_hoc)
+                10 -> getString(R.string.kinh_doanh)
+                11 -> getString(R.string.tam_su)
+                12 -> getString(R.string.so_hoa)
+                13 -> getString(R.string.du_lich)
                 else -> getString(R.string.pho_bien)
             }
         }.attach()
@@ -95,9 +94,8 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val hasPermission = checkPermission()
         val id = item.itemId
-        // Handle navigation view item clicks here.
         if (id == R.id.nav_trangchu_admin) {
-//            loadFragment(MainFragment())
+
         } else if (id == R.id.nav_danhmuc_admin) {
             loadFragment(BanTinFragment("full"))
         } else if (id == R.id.nav_dangxuat_admin) {
@@ -105,7 +103,6 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
             val intent = Intent(requireContext(), AccountActivity::class.java)
             startActivity(intent)
         } else if (id == R.id.nav_tintuc_admin) {
-            // đăng tin tức admin
             if (DataLocalManager.getInstance().getInfoUserRole() == "ADMIN") {
                 loadFragment(PostNewsLetterFragment())
             } else {

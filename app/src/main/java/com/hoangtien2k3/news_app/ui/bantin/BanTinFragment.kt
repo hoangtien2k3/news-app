@@ -14,7 +14,7 @@ import com.hoangtien2k3.news_app.ui.save.SaveBanTinViewModel
 import com.hoangtien2k3.news_app.ui.save.ViewModelProviderFactory
 
 class BanTinFragment(
-    val category: String
+    private val category: String
 ) : Fragment(), ViewModelProviderFactory {
     private var _binding: FragmentBanTinBinding? = null
     private val binding
@@ -26,13 +26,12 @@ class BanTinFragment(
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentBanTinBinding.inflate(inflater, container, false)
         val rootView = binding.root
 
         viewModel = ViewModelProvider(this)[BanTinViewModel::class.java]
         mBanTinAdapter = BanTinAdapter(requireContext(), mutableListOf(), this)
-
         val gridLayoutManager = GridLayoutManager(requireContext(), 1)
         gridLayoutManager.orientation = GridLayoutManager.VERTICAL
         binding.banTinRecyclerView.layoutManager = gridLayoutManager
@@ -56,7 +55,7 @@ class BanTinFragment(
                 } else {
                     binding.fab.visibility = View.VISIBLE
                     binding.fab.setOnClickListener {
-                        binding.banTinRecyclerView.smoothScrollToPosition(0);
+                        binding.banTinRecyclerView.smoothScrollToPosition(0)
                     }
                 }
             }

@@ -17,24 +17,20 @@ class WebviewFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentWebviewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.back.setOnClickListener {
-            requireActivity().onBackPressed()
-        }
-
+        binding.back.setOnClickListener { requireActivity().onBackPressed() }
         val link = arguments?.getString("link") ?: arguments?.getString("linknews")
         link?.let { loadUrlToWebView(it) }
     }
 
     private fun loadUrlToWebView(link: String) {
-        binding.webView.apply {
+        binding.WebConnect.apply {
             webViewClient = object : WebViewClient() {
                 override fun onPageCommitVisible(view: WebView?, url: String?) {
                     super.onPageCommitVisible(view, url)

@@ -42,6 +42,8 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
 //            )
         }
 
+        viewModel.searchNews("business")
+
         binding.toggleGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
             if (isChecked) {
                 when (checkedId) {
@@ -106,10 +108,5 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
         binding.rvSearchNews.layoutManager = LinearLayoutManager(requireActivity())
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // Clear the binding object when the view is destroyed
-//        binding = null
-    }
 }
 

@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.hoangtien2k3.news_app.databinding.FragmentChangePasswordBinding
-import com.hoangtien2k3.news_app.network.result.ChangePasswordResult
+import com.hoangtien2k3.news_app.utils.Resource
 
 class ChangePasswordFragment : Fragment() {
     private lateinit var binding: FragmentChangePasswordBinding
@@ -38,17 +38,21 @@ class ChangePasswordFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.changPasswordResult.observe(viewLifecycleOwner) { result ->
+        viewModel.changePasswordResult.observe(viewLifecycleOwner) { result ->
             when (result) {
-                is ChangePasswordResult.Success -> {
-                    Toast.makeText(requireContext(), result.changePasswordResponse.reponse, Toast.LENGTH_SHORT).show()
+                is Resource.Success -> {
+                    Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
                     requireActivity().onBackPressed()
                 }
-                is ChangePasswordResult.Error -> {
-                    Toast.makeText(requireContext(), result.changePasswordResponse.reponse, Toast.LENGTH_SHORT).show()
+                is Resource.Error -> {
+                    Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
+                }
+                is Resource.Loading -> {
+                    // Xử lý như cách nào đó khi đang loading
                 }
             }
         }
     }
+
 
 }

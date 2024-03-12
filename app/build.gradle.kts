@@ -94,11 +94,12 @@ dependencies {
     kapt("com.github.bumptech.glide:compiler:4.14.2")
 
     //chrome
-    implementation("androidx.browser:browser:1.7.0")
+    implementation("androidx.browser:browser:1.8.0")
 
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
 //    implementation("com.miguelcatalan:materialsearchview:1.4.0")
+//    implementation("com.github.ZinoKader:MaterialSearchView:1.4.2")
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
     // Glide

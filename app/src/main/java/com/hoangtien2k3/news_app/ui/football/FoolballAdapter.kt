@@ -38,8 +38,6 @@ class FoolballAdapter(
             if (data != null) {
                 val strDate = dateFormat.format(data)
                 binding.date.text = strDate
-            } else {
-
             }
 
             binding.root.setOnClickListener {
@@ -80,4 +78,5 @@ class FoolballAdapter(
 
         return null
     }
+
 }

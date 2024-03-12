@@ -24,10 +24,12 @@ import com.hoangtien2k3.news_app.ui.home.MainFragment
 import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
 import com.hoangtien2k3.news_app.ui.account.AccountActivity
 import com.hoangtien2k3.news_app.ui.calender.CalendarFragment
+import com.hoangtien2k3.news_app.ui.football.FootballFragment
 import com.hoangtien2k3.news_app.ui.menu.changepassword.ChangePasswordFragment
 import com.hoangtien2k3.news_app.ui.menu.delete.DeleteUserViewModel
 import com.hoangtien2k3.news_app.ui.menu.update.UpdateUserFragment
 import com.hoangtien2k3.news_app.ui.save.SaveBanTinFragment
+import com.hoangtien2k3.news_app.ui.search.SearchNewsFragment
 import com.hoangtien2k3.news_app.ui.webview.WebviewFragment
 import com.hoangtien2k3.news_app.ui.weather.WeatherFragment
 
@@ -38,7 +40,7 @@ class MenuFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMenuBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -58,10 +60,17 @@ class MenuFragment : Fragment() {
             }
             thoiTiet.setOnClickListener { loadFragment(WeatherFragment()) }
             lichViet.setOnClickListener { loadFragment(CalendarFragment()) }
-            ngonNgu.setOnClickListener { loadFragment(MainFragment()) }
             txtSavefeedbackTinDaDoc.setOnClickListener {loadFragment(SaveBanTinFragment())}
             bieuMau.setOnClickListener { showdialogbottom() }
-            btnProfile.setOnClickListener { showOptionsDialog() }
+            football.setOnClickListener {loadFragment(FootballFragment())}
+            tinQuocTe.setOnClickListener {loadFragment(SearchNewsFragment())}
+            btnProfile.setOnClickListener {
+                if (DataLocalManager.getInstance().getInfoUserId().toInt() == 0) {
+                    showOptionsDialogNotifyLoginUser()
+                } else {
+                    showOptionsDialog()
+                }
+            }
             logout.setOnClickListener {
                 DataLocalManager.getInstance().setFirstInstalled(false)
                 DataLocalManager.getInstance().removeValueFromSharedPreferences()
@@ -70,7 +79,36 @@ class MenuFragment : Fragment() {
                 startActivity(intent)
             }
             txtName.text = DataLocalManager.getInstance().getInfoName()
+            txtEmail.text = DataLocalManager.getInstance().getInfoEmail()
         }
+    }
+
+    private fun showOptionsDialogNotifyLoginUser() {
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.dialog_notify_layout)
+
+        // Tùy chỉnh vị trí của dialog trên màn hình
+        val window = dialog.window
+        window?.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        window?.setGravity(Gravity.CENTER)
+
+        val btnHuy: Button = dialog.findViewById(R.id.btnHuy)
+        val btnLogin: Button = dialog.findViewById(R.id.btnLogin)
+        btnHuy.setOnClickListener {
+            dialog.dismiss()
+        }
+        btnLogin.setOnClickListener {
+            DataLocalManager.getInstance().setFirstInstalled(false)
+            DataLocalManager.getInstance().removeValueFromSharedPreferences()
+            val intent = Intent(activity, AccountActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
+        }
+
+        dialog.show()
     }
 
     private fun showOptionsDialog() {

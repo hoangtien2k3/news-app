@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E2E5DE"
+    style="@style/SCREEN"
     tools:context=".SignInFragment">
 
     <androidx.cardview.widget.CardView
@@ -101,15 +101,39 @@
 
             <TextView
                 android:id="@+id/textView5"
-                style="@style/TextBlue"
+                style="@style/TextAppearance.AppCompat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginTop="12dp"
                 android:text="Quên mật khẩu ?"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.078"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editPassSignIn" />
+
+            <TextView
+                android:id="@+id/txtNextApp"
+                style="@style/TextBlue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="56dp"
+                android:text="Bỏ qua đăng nhập"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editPassSignIn" />
+
+            <ImageView
+                android:id="@+id/imgNextApp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_send_24"
+                app:layout_constraintBottom_toBottomOf="@+id/txtNextApp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.25"
+                app:layout_constraintStart_toEndOf="@+id/txtNextApp"
+                app:layout_constraintTop_toTopOf="@+id/txtNextApp" />
 
             <ImageView
                 android:id="@+id/fbLoginBtn"
@@ -123,8 +147,8 @@
 
             <ImageView
                 android:id="@+id/googleLoginBtn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="42dp"
+                android:layout_height="46dp"
                 android:layout_marginStart="48dp"
                 android:layout_marginTop="5dp"
                 android:src="@drawable/googlelogo"
@@ -137,7 +161,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="160dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:text="Đăng nhập với"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />

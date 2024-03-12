@@ -3,6 +3,7 @@ package com.hoangtien2k3.news_app.ui.menu.update
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
 import com.hoangtien2k3.news_app.data.source.auth.AccountClient
 import com.hoangtien2k3.news_app.network.request.UpdateUserRequest
@@ -30,12 +31,12 @@ class UpdateUserViewModel : ViewModel(){
                         UpdateUserResult.Success(it)
                     }
                 } else {
-                    _updateUser.value = UpdateUserResult.Error("Cập nhật tài khoản không thành công, hãy thử lại.")
+                    _updateUser.value = UpdateUserResult.Error(R.string.update_info_failed.toString())
                 }
             }
 
             override fun onFailure(call: Call<UpdateUserResponse>, t: Throwable) {
-                _updateUser.value = UpdateUserResult.Error("Network error")
+                _updateUser.value = UpdateUserResult.Error(R.string.network_error.toString())
             }
         })
     }

@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:id="@+id/relHeader"
-        style="@style/ToolbarBackground"
+        style="@style/SCREEN_S"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentTop="true">
