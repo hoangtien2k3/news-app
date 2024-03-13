@@ -2,7 +2,6 @@ package com.hoangtien2k3.news_app.ui.football
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.data.models.Football
-import com.hoangtien2k3.news_app.ui.menu.MenuFragment
 import java.util.ArrayList
 import java.util.Locale
 
@@ -104,7 +102,7 @@ class FootballFragment : Fragment() {
         dialogBuilder.setView(dialogView)
 
         val mWebView: WebView = dialogView.findViewById(R.id.WebConnect)
-        val button: ImageView = dialogView.findViewById(R.id.ok)
+        val button: ImageView = dialogView.findViewById(R.id.back)
 
         val webSettings: WebSettings = mWebView.settings
         webSettings.javaScriptEnabled = true

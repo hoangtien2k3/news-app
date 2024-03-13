@@ -203,7 +203,7 @@ class HomeFragment : Fragment(), ViewModelProviderFactory {
         }
         binding.menuFacebook.setOnClickListener {
             closeFABMenu()
-            val facebookID = "103838294312468"
+            val facebookID = "100053705482952"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://m.me/$facebookID"))
             startActivity(intent)
         }

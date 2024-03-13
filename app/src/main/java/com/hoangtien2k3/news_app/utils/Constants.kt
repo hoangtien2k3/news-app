@@ -2,7 +2,7 @@ package com.hoangtien2k3.news_app.utils
 
 object Constants {
     const val BASE_URL_LOCAL = "http://192.168.1.254:9090"
-//    const val BASE_URL_LOCAL = "https://948a-118-70-120-255.ngrok-free.app"
+//    const val BASE_URL_LOCAL = " https://a8c4-2405-4803-fc17-fa00-5c99-c46-5f23-b84a.ngrok-free.app"
 
     const val API_KEY = "bd81e7f01e744515b6db53690c2ff58b"
     const val BASE_URL = "https://newsapi.org/"
@@ -32,7 +32,6 @@ object Constants {
     const val tin_du_lich = "tin-du-lich"
     const val full = "full"
 
-/*
     const val BASE_URL_TIN_NOI_BAT: String = "https://vnexpress.net/rss/tin-noi-bat.rss"
     const val BASE_URL_TIN_MOI_NHAT: String = "https://vnexpress.net/rss/tin-moi-nhat.rss"
     const val BASE_URL_TIN_THE_GIOI: String = "https://vnexpress.net/rss/the-gioi.rss"
@@ -45,6 +44,6 @@ object Constants {
     const val BASE_URL_TIN_KINH_DOANH: String = "https://vnexpress.net/rss/kinh-doanh.rss"
     const val BASE_URL_TIN_TAM_SU: String = "https://vnexpress.net/rss/tam-su.rss"
     const val BASE_URL_TIN_SO_HOA: String = "https://vnexpress.net/rss/so-hoa.rss"
-    const val BASE_URL_TIN_DU_LICH: String = "https://vnexpress.net/rss/du-lich.rss"*/
+    const val BASE_URL_TIN_DU_LICH: String = "https://vnexpress.net/rss/du-lich.rss"
 
 }

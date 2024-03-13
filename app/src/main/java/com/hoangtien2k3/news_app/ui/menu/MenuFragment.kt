@@ -79,6 +79,7 @@ class MenuFragment : Fragment() {
             bieuMau.setOnClickListener { showdialogbottom() }
             football.setOnClickListener {loadFragment(FootballFragment())}
             tinQuocTe.setOnClickListener {loadFragment(SearchNewsFragment())}
+            qrCode.setOnClickListener { loadFragment(QrCodePayFragment()) }
             btnProfile.setOnClickListener {
                 if (DataLocalManager.getInstance().getInfoUserId().toInt() == 0) {
                     showOptionsDialogNotifyLoginUser()
@@ -230,8 +231,8 @@ class MenuFragment : Fragment() {
     private fun socialNetwork(title: String) {
         val socialNetworkMap = mapOf(
             "zalo" to Pair("0828007853", "http://zalo.me/"),
-            "message" to Pair("103838294312468", "http://m.me/"),
-            "facebook" to Pair("hoangtien2k3.vn", "https://www.facebook.com/"),
+            "message" to Pair("100053705482952", "http://m.me/"),
+            "facebook" to Pair("100077499696008", "http://m.me/"),
             "github" to Pair("hoangtien2k3qx1", "https://github.com/")
         )
 
