@@ -27,6 +27,7 @@ class ChangePasswordFragment : Fragment() {
 
         viewModel = ViewModelProvider(this)[ChangePasswordViewModel::class.java]
 
+        binding.back.setOnClickListener { requireActivity().onBackPressed() }
         binding.btnChangePassword.setOnClickListener {
             val oldPassword = binding.txtOldPassword.text.toString()
             val newPassword = binding.txtNewPassword.text.toString()

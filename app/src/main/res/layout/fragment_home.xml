@@ -55,13 +55,16 @@
 
             <com.hoangtien2k3.news_app.ui.home.NestedScrollableHost
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerTinTuc"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal" />
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_news_football" />
             </com.hoangtien2k3.news_app.ui.home.NestedScrollableHost>
 
             <LinearLayout
@@ -102,7 +105,8 @@
                 android:id="@+id/NewsRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" />
+                android:orientation="horizontal"
+                tools:listitem="@layout/item_row_article" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

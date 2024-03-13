@@ -38,6 +38,7 @@ class PostNewsLetterFragment : Fragment() {
         viewModel = ViewModelProvider(this)[PostNewsLetterViewModel::class.java]
         initUI()
 
+        binding.back.setOnClickListener { requireActivity().onBackPressed() }
         binding.btnPostNews.setOnClickListener {
             if (title == "" || link == "" || img == "" || pubDate == "" || category == "") {
                 Toast.makeText(requireContext(), "Hãy Nhập Đầu Đủ Thông Tin", Toast.LENGTH_SHORT).show()

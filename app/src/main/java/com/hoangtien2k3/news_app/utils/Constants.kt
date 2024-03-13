@@ -1,9 +1,8 @@
 package com.hoangtien2k3.news_app.utils
 
 object Constants {
-    // api localhost
     const val BASE_URL_LOCAL = "http://192.168.1.254:9090"
-//    const val BASE_URL_LOCAL = "https://6a96-2405-4803-fc17-fa00-715d-1f04-4acf-f17c.ngrok-free.app"
+//    const val BASE_URL_LOCAL = "https://948a-118-70-120-255.ngrok-free.app"
 
     const val API_KEY = "bd81e7f01e744515b6db53690c2ff58b"
     const val BASE_URL = "https://newsapi.org/"
@@ -12,6 +11,8 @@ object Constants {
     const val BASE_URL_Weather = "https://api.openweathermap.org/data/2.5/"
     const val apiKeyWeather = "037d21cb14640ecd9a4f4eca49e7ff3f"
     const val iconWeather = "https://openweathermap.org/img/wn/"
+
+    const val HOT_LINE = "0828007853"
 
     const val ROLE_USER = "USER"
     const val ROLE_ADMIN = "ADMIN"

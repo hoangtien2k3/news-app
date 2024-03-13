@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.databinding.FragmentBanTinSaveBinding
+import com.hoangtien2k3.news_app.ui.menu.MenuFragment
 
 class SaveBanTinFragment : Fragment() {
     private var _binding: FragmentBanTinSaveBinding? = null
@@ -20,7 +22,7 @@ class SaveBanTinFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentBanTinSaveBinding.inflate(inflater, container, false)
         val rootView = binding.root
 
@@ -40,10 +42,10 @@ class SaveBanTinFragment : Fragment() {
 
         val receivedValue = arguments?.getString("close")
         if (receivedValue == "false") {
-            binding.btnBack.visibility = View.VISIBLE
             binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
         } else {
-            binding.btnBack.visibility = View.GONE
+            binding.btnBack.setBackgroundResource(R.drawable.ic_setting)
+            binding.btnBack.setOnClickListener { loadFragment(MenuFragment()) }
         }
         binding.btnDeleteAll.setOnClickListener {
             viewModel.deleteAllListNewsSave() // delete tất cả bản tin trong danh mục đã đọc
@@ -51,6 +53,14 @@ class SaveBanTinFragment : Fragment() {
         }
 
         return rootView
+    }
+
+    private fun loadFragment(fragmentReplace: Fragment) {
+        parentFragmentManager
+            .beginTransaction()
+            .replace(R.id.main_fragment, fragmentReplace)
+            .addToBackStack("MainFragment")
+            .commit()
     }
 
     override fun onDestroyView() {

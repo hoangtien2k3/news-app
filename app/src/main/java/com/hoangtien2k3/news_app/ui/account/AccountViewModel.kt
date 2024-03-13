@@ -8,6 +8,7 @@ import com.hoangtien2k3.news_app.network.request.LoginRequest
 import com.hoangtien2k3.news_app.network.request.SignupRequest
 import com.hoangtien2k3.news_app.network.response.LoginResponse
 import com.hoangtien2k3.news_app.network.response.SignupResponse
+import com.hoangtien2k3.news_app.utils.Constants
 import com.hoangtien2k3.news_app.utils.Resource
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,7 +27,7 @@ class AccountViewModel : ViewModel() {
         }
     }
 
-    fun signup(name: String, username: String, email: String, password: String, roles: Set<String> = setOf("USER")) {
+    fun signup(name: String, username: String, email: String, password: String, roles: Set<String> = setOf(Constants.ROLE_USER)) {
         performAction(_signupResult) {
             createSignupCall(SignupRequest(name, username, email, password, roles))
         }

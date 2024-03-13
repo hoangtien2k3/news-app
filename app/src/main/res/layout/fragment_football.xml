@@ -9,7 +9,6 @@
     tools:context=".ui.football.FootballFragment">
 
     <RelativeLayout
-        style="@style/SCREEN_S"
         android:id="@+id/relHeader"
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -17,14 +16,14 @@
         <ImageView
             android:id="@+id/back"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:src="@mipmap/search_ic_back" />
+            android:layout_marginStart="10dp"
+            android:src="@drawable/back" />
 
         <androidx.appcompat.widget.SearchView
+            android:background="@drawable/lavender_border"
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

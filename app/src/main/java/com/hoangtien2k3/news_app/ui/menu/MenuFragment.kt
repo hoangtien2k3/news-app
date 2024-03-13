@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -32,6 +33,7 @@ import com.hoangtien2k3.news_app.ui.search.SearchNewsFragment
 import com.hoangtien2k3.news_app.ui.search.bantin.SearchBanTinFragment
 import com.hoangtien2k3.news_app.ui.webview.WebviewFragment
 import com.hoangtien2k3.news_app.ui.weather.WeatherFragment
+import com.hoangtien2k3.news_app.utils.CallHotLine
 import com.hoangtien2k3.news_app.utils.Constants
 
 class MenuFragment : Fragment() {
@@ -69,6 +71,11 @@ class MenuFragment : Fragment() {
                 fragment.arguments = bundle
                 loadFragment(fragment)
             }
+            lnCall.setOnClickListener { hotlineHomescreen() }
+            menuFacebook.setOnClickListener { socialNetwork("facebook") }
+            menuMessage.setOnClickListener { socialNetwork("message") }
+            menuZalo.setOnClickListener { socialNetwork("zalo") }
+            menuGithub.setOnClickListener { socialNetwork("github") }
             bieuMau.setOnClickListener { showdialogbottom() }
             football.setOnClickListener {loadFragment(FootballFragment())}
             tinQuocTe.setOnClickListener {loadFragment(SearchNewsFragment())}
@@ -214,6 +221,25 @@ class MenuFragment : Fragment() {
             .replace(R.id.main_fragment, fragment)
             .addToBackStack("MenuFragment")
             .commit()
+    }
+
+    private fun hotlineHomescreen() {
+        activity?.let { it1 -> CallHotLine.call(it1) }
+    }
+
+    private fun socialNetwork(title: String) {
+        val socialNetworkMap = mapOf(
+            "zalo" to Pair("0828007853", "http://zalo.me/"),
+            "message" to Pair("103838294312468", "http://m.me/"),
+            "facebook" to Pair("hoangtien2k3.vn", "https://www.facebook.com/"),
+            "github" to Pair("hoangtien2k3qx1", "https://github.com/")
+        )
+
+        socialNetworkMap[title]?.let { (id, baseUrl) ->
+            val url = "$baseUrl$id"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
+        }
     }
 
     private fun showdialogbottom() {

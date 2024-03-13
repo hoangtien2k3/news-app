@@ -1,5 +1,7 @@
 package com.hoangtien2k3.news_app.ui.search.bantin
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -73,7 +75,12 @@ class SearchBanTinFragment(
             binding.back.visibility = View.VISIBLE
             binding.back.setOnClickListener { requireActivity().onBackPressed() }
         } else {
-            binding.back.setImageResource(R.drawable.ic_support_chat)
+            binding.back.setImageResource(R.drawable.google)
+            binding.back.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse("https://www.google.com")
+                startActivity(intent)
+            }
         }
 
         return rootView

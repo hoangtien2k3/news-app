@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
 //                mBanTinAdapter.filter.filter(newText)
-                loadFragment(SearchBanTinFragment("full"))
+//                loadFragment(SearchBanTinFragment("full"))
                 return true
             }
         })
