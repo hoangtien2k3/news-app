@@ -2,6 +2,7 @@ package com.hoangtien2k3.news_app.ui.bantin
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -60,6 +61,7 @@ class BanTinAdapter(
         val fragment = WebviewFragment().apply {
             arguments = Bundle().apply {
                 putString("link", tinTuc.link)
+                Log.d("link", tinTuc.link)
             }
         }
 

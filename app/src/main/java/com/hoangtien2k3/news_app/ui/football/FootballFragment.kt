@@ -2,6 +2,7 @@ package com.hoangtien2k3.news_app.ui.football
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -108,6 +109,7 @@ class FootballFragment : Fragment() {
         webSettings.javaScriptEnabled = true
 
         mWebView.loadUrl(hero.url)
+        Log.d("linkFootball", hero.url)
 
         val alertDialog: AlertDialog = dialogBuilder.create()
         button.setOnClickListener { alertDialog.dismiss() }

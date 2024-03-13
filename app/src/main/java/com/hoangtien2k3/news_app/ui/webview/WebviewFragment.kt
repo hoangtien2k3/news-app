@@ -1,6 +1,7 @@
 package com.hoangtien2k3.news_app.ui.webview
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +27,10 @@ class WebviewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.back.setOnClickListener { requireActivity().onBackPressed() }
         val link = arguments?.getString("link") ?: arguments?.getString("linknews")
-        link?.let { loadUrlToWebView(it) }
+        link?.let {
+            loadUrlToWebView(it)
+            Log.d("link1", it)
+        }
     }
 
     private fun loadUrlToWebView(link: String) {
