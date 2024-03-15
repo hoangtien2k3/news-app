@@ -28,6 +28,7 @@ import com.hoangtien2k3.news_app.ui.account.AccountActivity
 import com.hoangtien2k3.news_app.ui.bantin.BanTinFragment
 import com.hoangtien2k3.news_app.ui.home.fragment.PostNewsLetterFragment
 import com.hoangtien2k3.news_app.ui.menu.MenuFragment
+import com.hoangtien2k3.news_app.utils.Constants
 
 class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener {
     private var mDrawerLayout: DrawerLayout? = null
@@ -103,10 +104,10 @@ class MainFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener
             val intent = Intent(requireContext(), AccountActivity::class.java)
             startActivity(intent)
         } else if (id == R.id.nav_tintuc_admin) {
-            if (DataLocalManager.getInstance().getInfoUserRole() == "ADMIN") {
+            if (DataLocalManager.getInstance().getInfoUserRole() == Constants.ROLE_ADMIN) {
                 loadFragment(PostNewsLetterFragment())
             } else {
-                Toast.makeText(requireContext(), "Chỉ Có Admin Mới Có Quyền Truy Cập", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.access_by_admin.toString(), Toast.LENGTH_SHORT).show()
             }
         } else if (id == R.id.nav_user_admin) {
             loadFragment(MenuFragment())

@@ -253,20 +253,17 @@ class MenuFragment : Fragment() {
         val DKthamquan = dialog.findViewById<TextView>(R.id.tvDKTQToasoan)
 
         DKdangtin.setOnClickListener {
-            val url =
-                "https://docs.google.com/forms/d/e/1FAIpQLSfuKRLsZXFOJ8S3oakeDXDTKq0XAXScVJJMHU-T6znMbGz05Q/viewform?usp=sf_link"
+            val url = Constants.Link_Dang_Ky
             openWebviewFragment(url)
             dialog.dismiss()
         }
         DKtimnguoithan.setOnClickListener {
-            val url =
-                "https://docs.google.com/forms/d/e/1FAIpQLSdb1LLWnuzk1oGqSiJcBPPogRWhoKIH6I4s5Fo7yJAtmsgW5g/viewform?pli=1"
+            val url = Constants.Link_Tim_Nguoi_Than
             openWebviewFragment(url)
             dialog.dismiss()
         }
         DKthamquan.setOnClickListener {
-            val url =
-                "https://docs.google.com/forms/d/e/1FAIpQLScgmYFj2NTmq53VWzNSA4OKAuxizD9UxYiaXVok_S_2k3favg/viewform"
+            val url = Constants.Link_Tham_Quan
             openWebviewFragment(url)
             dialog.dismiss()
         }

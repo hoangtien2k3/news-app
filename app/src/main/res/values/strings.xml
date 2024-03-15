@@ -59,6 +59,10 @@
     <string name="tam_su">Tâm Sự</string>
     <string name="so_hoa">Số Hoá</string>
     <string name="du_lich">Du Lịch</string>
+    <string name="full_information">Hãy Nhập Đầu Đủ Thông Tin</string>
+    <string name="post_information_successfully">Đăng Tin Tức Mới Thành Công.</string>
+    <string name="post_information_failed">Đăng Tin Tức Thấy Bại.</string>
+    <string name="access_by_admin">Chỉ Có Admin Mới Có Quyền Truy Cập.</string>
 
     <string name="txt_ho_ten">Họ Tên:</string>
     <string name="txt_name_admin">Hoàng Anh Tiến</string>

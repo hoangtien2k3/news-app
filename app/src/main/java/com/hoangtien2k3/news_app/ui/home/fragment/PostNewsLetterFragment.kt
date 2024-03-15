@@ -10,12 +10,12 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.databinding.FragmentPostNewsletterBinding
 import com.hoangtien2k3.news_app.network.result.PostNewsLetterResult
 import com.hoangtien2k3.news_app.ui.home.viewmodel.PostNewsLetterViewModel
 
 class PostNewsLetterFragment : Fragment() {
-
     private lateinit var binding: FragmentPostNewsletterBinding
     private lateinit var viewModel: PostNewsLetterViewModel
     private lateinit var title: String
@@ -41,7 +41,11 @@ class PostNewsLetterFragment : Fragment() {
         binding.back.setOnClickListener { requireActivity().onBackPressed() }
         binding.btnPostNews.setOnClickListener {
             if (title == "" || link == "" || img == "" || pubDate == "" || category == "") {
-                Toast.makeText(requireContext(), "Hãy Nhập Đầu Đủ Thông Tin", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    R.string.full_information.toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
             viewModel.postNewsLetter(title, link, img, pubDate, category)
         }
@@ -96,11 +100,20 @@ class PostNewsLetterFragment : Fragment() {
         viewModel.postNewsLetterResult.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is PostNewsLetterResult.Success -> {
-                    Toast.makeText(requireContext(), "Đăng Tin Tức Mới Thành Công.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.post_information_successfully.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
                     requireActivity().onBackPressed()
                 }
+
                 is PostNewsLetterResult.Error -> {
-                    Toast.makeText(requireContext(), "Đăng Tin Tức Thấy Bại.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.post_information_failed.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }

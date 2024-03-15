@@ -2,7 +2,7 @@ package com.hoangtien2k3.news_app.utils
 
 object Constants {
     const val BASE_URL_LOCAL = "http://192.168.1.254:9090"
-//    const val BASE_URL_LOCAL = " https://a8c4-2405-4803-fc17-fa00-5c99-c46-5f23-b84a.ngrok-free.app"
+//    const val BASE_URL_LOCAL = "https://7622-2405-4803-fe5e-d7a0-7d6c-2a14-7f89-f391.ngrok-free.app"
 
     const val API_KEY = "bd81e7f01e744515b6db53690c2ff58b"
     const val BASE_URL = "https://newsapi.org/"
@@ -11,6 +11,11 @@ object Constants {
     const val BASE_URL_Weather = "https://api.openweathermap.org/data/2.5/"
     const val apiKeyWeather = "037d21cb14640ecd9a4f4eca49e7ff3f"
     const val iconWeather = "https://openweathermap.org/img/wn/"
+
+    const val google_link = "https://www.google.com"
+    const val Link_Dang_Ky = "https://docs.google.com/forms/d/e/1FAIpQLSfuKRLsZXFOJ8S3oakeDXDTKq0XAXScVJJMHU-T6znMbGz05Q/viewform?usp=sf_link"
+    const val Link_Tim_Nguoi_Than = "https://docs.google.com/forms/d/e/1FAIpQLSdb1LLWnuzk1oGqSiJcBPPogRWhoKIH6I4s5Fo7yJAtmsgW5g/viewform?pli=1"
+    const val Link_Tham_Quan = "https://docs.google.com/forms/d/e/1FAIpQLScgmYFj2NTmq53VWzNSA4OKAuxizD9UxYiaXVok_S_2k3favg/viewform"
 
     const val HOT_LINE = "0828007853"
 

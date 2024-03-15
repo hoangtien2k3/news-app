@@ -19,6 +19,7 @@ import com.hoangtien2k3.news_app.ui.bantin.BanTinViewModel
 import com.hoangtien2k3.news_app.ui.menu.MenuFragment
 import com.hoangtien2k3.news_app.ui.save.SaveBanTinViewModel
 import com.hoangtien2k3.news_app.ui.save.ViewModelProviderFactory
+import com.hoangtien2k3.news_app.utils.Constants
 import java.util.ArrayList
 import java.util.Locale
 
@@ -78,7 +79,7 @@ class SearchBanTinFragment(
             binding.back.setImageResource(R.drawable.google)
             binding.back.setOnClickListener {
                 val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse("https://www.google.com")
+                intent.data = Uri.parse(Constants.google_link)
                 startActivity(intent)
             }
         }
