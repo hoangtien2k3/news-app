@@ -1,45 +1,53 @@
-![name_logo](screenshots/name_logo.png)
+<div style="display: flex; justify-content: center;">
+    <img src="news_app_logo_round.png" alt="name_logo" style="width: 80px; height: auto; margin-right: 10px;" />
+    <img src="name_logo.png" alt="name_logo" style="width: 300px; height: auto; margin-right: 10px;" />
+</div>
 
 # News-App Mobile
+
 Version：1.0.3（Date：2024-03-11）
 
 1. Clone the repository:
+
 ```bash
    git clone https://github.com/hoangtien2k3/news-app.git
 ```
 
 ## Introduction
-Welcome to the news-app mobile of `news-app`. This Kotlin frontend is designed to handle the my application.
+
+Welcome to the news-app mobile of `news-app`. This Kotlin frontend is designed to handle the my
+application.
 
 ## Project features ⚡ = 💗💎❤️
+
 - ✅ Using `Mobile Kotlin MVVM` as a high level architecture
   This project brings to the table set of best practices, tools, and solutions:
-  - 100% Kotlin
-  - Kotlin Coroutines with Flow
-  - Functional & Reactive programming with RxKotlin, RxJava3
-  - Clean Architecture with MVI (Uni-directional data flow)
-  - Modern architecture (Clean Architecture, Model-View-ViewModel)
-  - Navigation, single-activity architecture with Jetpack Navigation
-  - Initialize components at application startup with AndroidX Startup
-  - Cache local data with Room Persistence Library
-  - Schedule tasks with WorkManager
-  - ViewModel, LiveData, Lifecycle, ... with Android Jetpack
-  - Dependency injection Koin
-  - Material Design Material Components for Android
-  - Kotlin Gradle DSL
-  - Gradle Kotlin DSL, Custom plugin
+    - 100% Kotlin
+    - Kotlin Coroutines with Flow
+    - Functional & Reactive programming with RxKotlin, RxJava3
+    - Clean Architecture with MVI (Uni-directional data flow)
+    - Modern architecture (Clean Architecture, Model-View-ViewModel)
+    - Navigation, single-activity architecture with Jetpack Navigation
+    - Initialize components at application startup with AndroidX Startup
+    - Cache local data with Room Persistence Library
+    - Schedule tasks with WorkManager
+    - ViewModel, LiveData, Lifecycle, ... with Android Jetpack
+    - Dependency injection Koin
+    - Material Design Material Components for Android
+    - Kotlin Gradle DSL
+    - Gradle Kotlin DSL, Custom plugin
 
 ## Screenshots
 
 |                         |                         |                         |                         |
-|:-----------------------:|          :---:          |        :---:            |:-----------------------:|
-| ![](screenshots/1.jpg)  | ![](screenshots/2.jpg) | ![](screenshots/3.jpg) | ![](screenshots/4.jpg) |
-| ![](screenshots/5.jpg) | ![](screenshots/6.jpg) | ![](screenshots/7.jpg) | ![](screenshots/8.jpg) |
-| ![](screenshots/9.jpg) | ![](screenshots/10.jpg) | ![](screenshots/11.jpg) | ![](screenshots/12.jpg) |
+|:-----------------------:|:-----------------------:|:-----------------------:|:-----------------------:|
+| ![](screenshots/1.jpg)  | ![](screenshots/2.jpg)  | ![](screenshots/3.jpg)  | ![](screenshots/4.jpg)  |
+| ![](screenshots/5.jpg)  | ![](screenshots/6.jpg)  | ![](screenshots/7.jpg)  | ![](screenshots/8.jpg)  |
+| ![](screenshots/9.jpg)  | ![](screenshots/10.jpg) | ![](screenshots/11.jpg) | ![](screenshots/12.jpg) |
 | ![](screenshots/13.jpg) | ![](screenshots/14.jpg) | ![](screenshots/15.jpg) | ![](screenshots/16.png) |
 
-
 ## The Complete Project Folder Structure
+
 ```text
 app/
 ├── src/
@@ -63,13 +71,18 @@ app/
 ```
 
 ## Server Backend-API:
+
 Clone this repository: https://github.com/hoangtien2k3/news-backend
 
 ## Contributing
-If you would like to contribute to the development of this project, please follow our contribution guidelines.
+
+If you would like to contribute to the development of this project, please follow our contribution
+guidelines.
 
 ## License
+
 This project is licensed under the [`MIT License`](LICENSE).
+
 ```text
 MIT License
 Copyright (c) 2024 Hoàng Anh Tiến
