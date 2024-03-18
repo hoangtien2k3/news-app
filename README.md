@@ -32,11 +32,11 @@ Welcome to the news-app mobile of `news-app`. This Kotlin frontend is designed t
 ## Screenshots
 
 |                         |                         |                         |                         |
-|        :---:            |          :---:          |        :---:            |:-----------------------:|
-| ![](screenshots/1.jpeg) | ![](screenshots/2.jpeg) | ![](screenshots/3.jpeg) | ![](screenshots/4.jpeg) |
-| ![](screenshots/5.jpeg) | ![](screenshots/6.jpeg) | ![](screenshots/7.jpeg) | ![](screenshots/8.jpeg) |
-| ![](screenshots/9.jpeg) | ![](screenshots/10.png) | ![](screenshots/11.png) | ![](screenshots/12.png) |
-| ![](screenshots/13.png) | ![](screenshots/14.png) | ![](screenshots/15.png) | ![](screenshots/16.png) |
+|:-----------------------:|          :---:          |        :---:            |:-----------------------:|
+| ![](screenshots/1.jpg)  | ![](screenshots/2.jpg) | ![](screenshots/3.jpg) | ![](screenshots/4.jpg) |
+| ![](screenshots/5.jpg) | ![](screenshots/6.jpg) | ![](screenshots/7.jpg) | ![](screenshots/8.jpg) |
+| ![](screenshots/9.jpg) | ![](screenshots/10.jpg) | ![](screenshots/11.jpg) | ![](screenshots/12.jpg) |
+| ![](screenshots/13.jpg) | ![](screenshots/14.jpg) | ![](screenshots/15.jpg) | ![](screenshots/16.png) |
 
 
 ## The Complete Project Folder Structure
