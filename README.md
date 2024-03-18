@@ -1,4 +1,4 @@
-![name_logo](https://github.com/hoangtien2k3/news-backend/assets/122768076/78da2bec-7af2-4fd0-929c-8c4b4cdcf33c)
+![name_logo](screenshots/name_logo.png)
 
 # News-App Mobile
 Version：1.0.3（Date：2024-03-11）
