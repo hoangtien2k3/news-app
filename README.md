@@ -1,9 +1,9 @@
 <div style="display: flex; justify-content: center;">
     <img src="news_app_logo_round.png" alt="name_logo" style="width: 80px; height: auto; margin-right: 10px;" />
-    <img src="name_logo.png" alt="name_logo" style="width: 300px; height: auto; margin-right: 10px;" />
+    <img src="name_logo.png" alt="name_logo" style="width: 400px; height: auto; margin-right: 10px;" />
 </div>
 
-# News-App Mobile
+# News-App Mobile Kotlin
 
 Version：1.0.3（Date：2024-03-11）
 
