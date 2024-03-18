@@ -96,6 +96,9 @@ dependencies {
     //chrome
     implementation("androidx.browser:browser:1.8.0")
 
+    // google
+    implementation("com.google.android.gms:play-services-auth:21.0.0")
+
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
 //    implementation("com.miguelcatalan:materialsearchview:1.4.0")

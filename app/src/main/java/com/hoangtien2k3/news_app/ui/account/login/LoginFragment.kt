@@ -44,8 +44,6 @@ class LoginFragment : Fragment() {
                 startActivity(Intent(requireContext(), MainActivity::class.java))
                 requireActivity().finish()
             }
-
-
             signInBtn.setOnClickListener {
                 val username = binding.editEmailSignIN.text.toString()
                 val password = binding.editPassSignIn.text.toString()
@@ -56,6 +54,13 @@ class LoginFragment : Fragment() {
                     observeViewModel()
                 }
             }
+            fbLoginBtn.setOnClickListener {
+
+            }
+            googleLoginBtn.setOnClickListener {
+
+            }
+
         }
     }
 
