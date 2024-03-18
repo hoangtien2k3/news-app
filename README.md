@@ -1,6 +1,6 @@
 ![name_logo](https://github.com/hoangtien2k3/news-backend/assets/122768076/78da2bec-7af2-4fd0-929c-8c4b4cdcf33c)
 
-# 🌀News-App Mobile
+# News-App Mobile
 Version：1.0.3（Date：2024-03-11）
 
 1. Clone the repository:
@@ -31,6 +31,12 @@ Welcome to the news-app mobile of `news-app`. This Kotlin frontend is designed t
 
 ## Screenshots
 
+|                         |                         |                         |                         |
+|        :---:            |          :---:          |        :---:            |:-----------------------:|
+| ![](screenshots/1.jpeg) | ![](screenshots/2.jpeg) | ![](screenshots/3.jpeg) | ![](screenshots/4.jpeg) |
+| ![](screenshots/5.jpeg) | ![](screenshots/6.jpeg) | ![](screenshots/7.jpeg) | ![](screenshots/8.jpeg) |
+| ![](screenshots/9.jpeg) | ![](screenshots/10.png) | ![](screenshots/11.png) | ![](screenshots/12.png) |
+| ![](screenshots/13.png) | ![](screenshots/14.png) | ![](screenshots/15.png) | ![](screenshots/16.png) |
 
 
 ## The Complete Project Folder Structure
@@ -41,22 +47,22 @@ app/
 │   │   ├── java/
 │   │   │   ├── com.hoangtien2k3.news_app/
 │   │   │   │   ├── data/
-│   │   │   │   │   ├── model/              # Các lớp định nghĩa dữ liệu
-│   │   │   │   │   ├── repository/         # Các lớp truy cập dữ liệu
+│   │   │   │   │   ├── model/              # Classes defining data
+│   │   │   │   │   ├── repository/         # Classes accessing data
 │   │   │   │   │   └── ...
-│   │   │   │   ├── di/                     # Cấu hình Dependency Injection
+│   │   │   │   ├── di/                     # Dependency Injection configuration
 │   │   │   │   ├── ui/
-│   │   │   │   │   ├── base/               # Các lớp cơ sở cho giao diện người dùng
-│   │   │   │   │   ├── adapters/           # Các Adapter cho RecyclerView hoặc ListView
-│   │   │   │   │   ├── fragments/          # Fragment trong ứng dụng
-│   │   │   │   │   └── viewmodels/         # ViewModels cho kiến trúc MVVM
-│   │   │   │   └── util/                   # Các tiện ích hữu ích
-│   │   ├── res/                            # Tài nguyên (layout, drawable, values, etc.)
-│   └── test/                               # Thư mục chứa các bài kiểm tra
-└── build.gradle                            # Tập tin cấu hình gradle của ứng dụng
+│   │   │   │   │   ├── base/               # Base classes for UI components
+│   │   │   │   │   ├── adapters/           # Adapters for RecyclerView or ListView
+│   │   │   │   │   ├── fragments/          # Fragments in the app
+│   │   │   │   │   └── viewmodels/         # ViewModels for MVVM architecture
+│   │   │   │   └── util/                   # Useful utilities
+│   │   ├── res/                            # Resources (layout, drawable, values, etc.)
+│   └── test/                               # Directory containing tests
+└── build.gradle                            # Gradle configuration file of the app
 ```
 
-## Server and API:
+## Server Backend-API:
 Clone this repository: https://github.com/hoangtien2k3/news-backend
 
 ## Contributing
@@ -70,4 +76,18 @@ Copyright (c) 2024 Hoàng Anh Tiến
 ```
 
 ## Contributors ✨
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://www.linkedin.com/in/hoangtien2k3/"><img src="https://avatars.githubusercontent.com/u/122768076?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hoàng Anh Tiến</b></sub></a><br /><a href="https://github.com/hoangtien2k3/news-app/commits?author=hoc081098" title="Code">💻</a> <a href="#maintenance-hoangtien2k3" title="Maintenance">🚧</a> <a href="#ideas-hoangtien2k3" title="Ideas, Planning, & Feedback">🤔</a> <a href="#design-hoangtien2k3" title="Design">🎨</a> <a href="https://github.com/hoangtien2k3/news-app/issues?q=author%hoangtien2k3" title="Bug reports">🐛</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
