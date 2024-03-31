@@ -21,7 +21,7 @@
             android:layout_centerVertical="true"
             android:onClick="onclick"
             android:layout_marginStart="10dp"
-            android:src="@drawable/back" />
+            android:src="@drawable/ic_arrow_back_24px" />
 
         <TextView
             style="@style/TEXT"

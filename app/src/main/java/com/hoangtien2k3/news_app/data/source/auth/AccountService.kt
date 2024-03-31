@@ -1,13 +1,13 @@
 package com.hoangtien2k3.news_app.data.source.auth
 
+import com.hoangtien2k3.news_app.network.ApiResponse
+import com.hoangtien2k3.news_app.network.AuthenticationResponse
+import com.hoangtien2k3.news_app.network.UserResponse
 import com.hoangtien2k3.news_app.network.request.ChangePasswordRequest
 import com.hoangtien2k3.news_app.network.request.LoginRequest
 import com.hoangtien2k3.news_app.network.request.SignupRequest
 import com.hoangtien2k3.news_app.network.request.UpdateUserRequest
-import com.hoangtien2k3.news_app.network.response.ChangePasswordResponse
-import com.hoangtien2k3.news_app.network.response.LoginResponse
-import com.hoangtien2k3.news_app.network.response.SignupResponse
-import com.hoangtien2k3.news_app.network.response.UpdateUserResponse
+import com.hoangtien2k3.news_app.utils.Resource
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -19,12 +19,12 @@ interface AccountService {
     @POST("/api/auth/signin")
     fun login(
         @Body loginRequest: LoginRequest
-    ): Call<LoginResponse>
+    ): Call<ApiResponse<AuthenticationResponse>>
 
-    @POST("/api/auth/signup")
+    @POST("/api/user/signup")
     fun signup(
         @Body signupRequest: SignupRequest
-    ): Call<SignupResponse>
+    ): Call<ApiResponse<UserResponse>>
 
     @DELETE("/api/auth/delete/{id}")
     fun delete(
@@ -34,10 +34,10 @@ interface AccountService {
     @PUT("/api/auth/update/{id}")
     fun updateUser(
         @Path("id") id: Long, @Body update: UpdateUserRequest
-    ): Call<UpdateUserResponse>
+    ): Call<ApiResponse<UserResponse>>
 
     @PUT("/api/auth/changePassword")
     fun changePassword(
         @Body request: ChangePasswordRequest?
-    ): Call<ChangePasswordResponse>
+    ): Call<ApiResponse<UserResponse>>
 }

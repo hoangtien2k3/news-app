@@ -94,7 +94,7 @@
     <string name="delete_successfully">Xoá Tài Khoản Thành Công.</string>
     <string name="delete_failed">Xoá Tài Khoản Thất Bại.</string>
     <string name="error_systeam">Đã xảy ra lỗi hệ thống.</string>
-    <string name="update_info_successfully">Cập nhật thông tin thành công với</string>
+    <string name="update_info_successfully">Cập nhật thông tin thành công. </string>
     <string name="update_info_failed">Cập nhật thông tin thấy bại, hãy thử lại.</string>
     <string name="b_n_ch_a_ng_nh_p_t_i_kho_n_n_o">Bạn Chưa Đăng Nhập Tài Khoản Nào.</string>
     <string name="hoangtien2k3qx1_gmail_com">hoangtien2k3qx1@gmail.com</string>

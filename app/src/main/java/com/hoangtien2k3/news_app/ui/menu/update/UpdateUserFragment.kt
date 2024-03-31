@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.databinding.FragmentUpdateUserBinding
-import com.hoangtien2k3.news_app.network.result.UpdateUserResult
+import com.hoangtien2k3.news_app.utils.Resource
 
 class UpdateUserFragment : Fragment() {
 
@@ -43,12 +43,16 @@ class UpdateUserFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.updateUser.observe(viewLifecycleOwner) { result ->
             when (result) {
-                is UpdateUserResult.Success -> {
-                    Toast.makeText(requireContext(), R.string.update_info_successfully.toString() + result.updateUserResponse.email, Toast.LENGTH_SHORT).show()
+                is Resource.Success -> {
+                    Toast.makeText(requireContext(), R.string.update_info_successfully.toString() + result.message, Toast.LENGTH_SHORT).show()
                     requireActivity().onBackPressed()
                 }
-                is UpdateUserResult.Error -> {
+                is Resource.Error -> {
                     Toast.makeText(requireContext(), R.string.update_info_failed.toString(), Toast.LENGTH_SHORT).show()
+                }
+
+                is Resource.Loading -> {
+
                 }
             }
         }

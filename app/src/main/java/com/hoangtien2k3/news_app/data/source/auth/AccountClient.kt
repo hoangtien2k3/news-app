@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object AccountClient {
-    private const val BASE_URL = Constants.BASE_URL_LOCAL
+    private const val BASE_URL = Constants.BAST_TEST
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)

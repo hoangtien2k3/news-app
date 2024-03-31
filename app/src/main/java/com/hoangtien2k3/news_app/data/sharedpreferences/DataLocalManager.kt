@@ -49,6 +49,11 @@ class DataLocalManager private constructor(context: Context) {
     fun removeValueFromSharedPreferences() {
         mySharedPreferences.removeValueFromSharedPreferences();
     }
+    fun setSaveTokenKey(token: String) {
+        mySharedPreferences.saveTokenKey(token)
+    }
+
+
     fun getInfoUserId(): Long {
         return mySharedPreferences.getUserId()
     }

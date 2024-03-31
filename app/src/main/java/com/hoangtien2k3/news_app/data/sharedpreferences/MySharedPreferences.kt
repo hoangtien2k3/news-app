@@ -11,6 +11,7 @@ class MySharedPreferences(context: Context) {
     private val EMAIL = "EMAIL"
     private val NAME = "NAME"
     private val USER_ROLES = "USER_ROLES"
+    private val TOKEN_KEY = "TOKEN_KEY"
 
     private val sharedPreferences: SharedPreferences by lazy {
         context.getSharedPreferences(MY_SHARED_PREFERENCES, Context.MODE_PRIVATE)
@@ -47,6 +48,9 @@ class MySharedPreferences(context: Context) {
         sharedPreferences.edit().putString(EMAIL, email).apply()
         sharedPreferences.edit().putString(USER_ROLES, role).apply()
     }
+    fun saveTokenKey(token: String) {
+        sharedPreferences.edit().putString(TOKEN_KEY, token).apply()
+    }
     fun removeValueFromSharedPreferences() {
         sharedPreferences.edit().remove(ID).apply()
         sharedPreferences.edit().remove(NAME).apply()
@@ -54,6 +58,7 @@ class MySharedPreferences(context: Context) {
         sharedPreferences.edit().remove(EMAIL).apply()
         sharedPreferences.edit().remove(USER_ROLES).apply()
     }
+
 
     // lấy ra Id
     fun getUserId(): Long {

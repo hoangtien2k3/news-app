@@ -7,3 +7,4 @@ data class SignupRequest(
     val password: String,
     val roles: Set<String>
 )
+

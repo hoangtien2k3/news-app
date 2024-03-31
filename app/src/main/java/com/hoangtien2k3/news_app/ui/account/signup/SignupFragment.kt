@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
 import com.hoangtien2k3.news_app.databinding.FragmentSignUpBinding
 import com.hoangtien2k3.news_app.ui.account.AccountViewModel
 import com.hoangtien2k3.news_app.utils.Resource
@@ -48,6 +49,15 @@ class SignupFragment : Fragment() {
         viewModel.signupResult.observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Success -> {
+                    resource.data?.let {
+                        DataLocalManager.getInstance()
+                            .setSaveUserInfo(it.data.id,
+                                it.data.name,
+                                it.data.username,
+                                it.data.email,
+                                it.data.role.first()
+                            )
+                    }
                     Toast.makeText(requireContext(), resource.message, Toast.LENGTH_SHORT).show()
                 }
                 is Resource.Error -> {
@@ -55,8 +65,7 @@ class SignupFragment : Fragment() {
                     Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
                 }
                 is Resource.Loading -> {
-                    // Thích nghi với việc tải dữ liệu
-                    // Có thể hiển thị một tiến trình tải ở đây nếu cần
+
                 }
             }
         }

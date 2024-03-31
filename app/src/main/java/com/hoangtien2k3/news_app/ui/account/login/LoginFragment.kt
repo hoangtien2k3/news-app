@@ -69,9 +69,10 @@ class LoginFragment : Fragment() {
             when (resource) {
                 is Resource.Success -> {
                     resource.data?.let {
-                        DataLocalManager.getInstance().setSaveUserInfo(it.id, it.name, it.username, it.email, it.roles[0].authority)
+                        DataLocalManager.getInstance().setSaveTokenKey(it.data.token)
+                        DataLocalManager.getInstance().setFirstInstalled(true)
                     }
-                    DataLocalManager.getInstance().setFirstInstalled(true) // set login using shared preferences
+
                     startActivity(Intent(
                         requireContext(),
                         MainActivity::class.java)
