@@ -49,11 +49,10 @@ class ChangePasswordFragment : Fragment() {
                     Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
                 }
                 is Resource.Loading -> {
-                    // Xử lý như cách nào đó khi đang loading
+
                 }
             }
         }
     }
-
 
 }

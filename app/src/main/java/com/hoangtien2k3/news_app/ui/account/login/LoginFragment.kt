@@ -2,6 +2,7 @@ package com.hoangtien2k3.news_app.ui.account.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,8 @@ class LoginFragment : Fragment() {
     private val binding
         get() = _binding!!
 
+    private val TAG: String = "TOKEN_KEY"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,9 +33,11 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         viewModel = ViewModelProvider(this)[AccountViewModel::class.java]
+        onClickListener()
+    }
 
+    private fun onClickListener() {
         binding.apply {
             txtNextApp.setOnClickListener {
                 DataLocalManager.getInstance().setSaveUserInfo(0, "", "", "", "")
@@ -68,11 +73,17 @@ class LoginFragment : Fragment() {
         viewModel.loginResult.observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Success -> {
+                    // user login successfully and save shareFerference
+                    DataLocalManager.getInstance().setFirstInstalled(true)
+
                     resource.data?.let {
                         DataLocalManager.getInstance().setSaveTokenKey(it.data.token)
-                        DataLocalManager.getInstance().setFirstInstalled(true)
+
+                        Log.d(TAG,it.data.token )
+
                     }
 
+                    // start MainActivity
                     startActivity(Intent(
                         requireContext(),
                         MainActivity::class.java)

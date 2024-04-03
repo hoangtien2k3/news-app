@@ -1,40 +1,31 @@
 package com.hoangtien2k3.news_app.ui.football
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.hoangtien2k3.news_app.data.models.Football
 import com.hoangtien2k3.news_app.data.source.api.FootballClient
+import com.hoangtien2k3.news_app.network.ApiResponse
+import com.hoangtien2k3.news_app.ui.base.BaseViewModelImpl
+import com.hoangtien2k3.news_app.utils.Resource
 import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class FootballViewModel : ViewModel() {
-    private val _footballNews = MutableLiveData<List<Football>>()
-    val footballNews: LiveData<List<Football>> = _footballNews
+
+class FootballViewModel : BaseViewModelImpl() {
+    private val _footballNews = MutableLiveData<Resource<ApiResponse<List<Football>>>>()
+    val footballNews: LiveData<Resource<ApiResponse<List<Football>>>> = _footballNews
 
     init {
-        fetchFootballNews()
+        this.fetchDataCallAPI()
     }
 
-    fun fetchFootballNews() {
-        val service = FootballClient.apiService
-        val call = service.getFootballData()
-
-        call.enqueue(object : Callback<List<Football>> {
-            override fun onResponse(call: Call<List<Football>>, response: Response<List<Football>>) {
-                if (response.isSuccessful) {
-                    val footballList = response.body() ?: emptyList()
-                    _footballNews.value = footballList
-                } else {
-                    Log.e("FootballViewModel", "Response unsuccessful: ${response.code()}")
-                }
-            }
-
-            override fun onFailure(call: Call<List<Football>>, t: Throwable) {
-                Log.e("FootballViewModel", "Call failed: ${t.message}", t)
-            }
-        })
+    private fun callApiFootball(): Call<ApiResponse<List<Football>>> {
+        return FootballClient.apiService.getFootballData()
     }
+
+    fun fetchDataCallAPI() {
+        performAction(_footballNews) {
+            callApiFootball()
+        }
+    }
+
 }

@@ -44,22 +44,24 @@ class FootballFragment : Fragment() {
         model = ViewModelProviders.of(this)[FootballViewModel::class.java]
         model.footballNews.observe(viewLifecycleOwner) { footballList ->
             footballList?.let {
-                adapter = FoolballAdapter(
-                    it,
-                    object : FoolballAdapter.ShowDialoginterface {
-                        override fun itemClik(hero: Football) {
-                            openDialog(hero)
-                        }
-                    },
-                )
-                listFootball = it
+                adapter = it.data?.let { it1 ->
+                    FoolballAdapter(
+                        it1.data,
+                        object : FoolballAdapter.ShowDialoginterface {
+                            override fun itemClik(hero: Football) {
+                                openDialog(hero)
+                            }
+                        },
+                    )
+                }!!
+                listFootball = it.data.data
                 newsRecycler.adapter = adapter
             }
             swipeRefreshLayoutNews.isRefreshing = false
         }
         swipeRefreshLayoutNews.setOnRefreshListener {
             swipeRefreshLayoutNews.isRefreshing = true
-            model.fetchFootballNews()
+            model.fetchDataCallAPI()
         }
 
 

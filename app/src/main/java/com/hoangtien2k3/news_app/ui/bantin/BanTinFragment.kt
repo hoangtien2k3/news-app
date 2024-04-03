@@ -30,20 +30,34 @@ class BanTinFragment(
         _binding = FragmentBanTinBinding.inflate(inflater, container, false)
         val rootView = binding.root
 
+        initRecyclerView()
+        observerDataCallAPI()
+        onclickListenerRecyclerView()
+
+        return rootView
+    }
+
+    private fun initRecyclerView() {
         viewModel = ViewModelProvider(this)[BanTinViewModel::class.java]
         mBanTinAdapter = BanTinAdapter(requireContext(), mutableListOf(), this)
         val gridLayoutManager = GridLayoutManager(requireContext(), 1)
         gridLayoutManager.orientation = GridLayoutManager.VERTICAL
         binding.banTinRecyclerView.layoutManager = gridLayoutManager
         binding.banTinRecyclerView.adapter = mBanTinAdapter
+    }
 
-        viewModel.fetchListTinTuc(category)
+    private fun observerDataCallAPI() {
+        viewModel.fetchDataCallAPI(category)
         viewModel.listTinTuc.observe(viewLifecycleOwner) { banTin ->
             banTin?.let {
-                mBanTinAdapter.updateData(it)
+                it.data?.let {
+                    it1 -> mBanTinAdapter.updateData(it1.data)
+                }
             }
         }
+    }
 
+    private fun onclickListenerRecyclerView() {
         binding.fab.visibility = View.GONE
         binding.banTinRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -60,8 +74,6 @@ class BanTinFragment(
                 }
             }
         })
-
-        return rootView
     }
 
     override fun onDestroyView() {

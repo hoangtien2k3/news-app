@@ -16,7 +16,6 @@ import com.hoangtien2k3.news_app.data.models.BanTin
 import com.hoangtien2k3.news_app.databinding.FragmentSearchBanTinBinding
 import com.hoangtien2k3.news_app.ui.bantin.BanTinAdapter
 import com.hoangtien2k3.news_app.ui.bantin.BanTinViewModel
-import com.hoangtien2k3.news_app.ui.menu.MenuFragment
 import com.hoangtien2k3.news_app.ui.save.SaveBanTinViewModel
 import com.hoangtien2k3.news_app.ui.save.ViewModelProviderFactory
 import com.hoangtien2k3.news_app.utils.Constants
@@ -50,11 +49,13 @@ class SearchBanTinFragment(
         binding.recyclerView.layoutManager = gridLayoutManager
         binding.recyclerView.adapter = mBanTinAdapter
 
-        viewModel.fetchListTinTuc(category)
+        viewModel.fetchDataCallAPI(category)
         viewModel.listTinTuc.observe(viewLifecycleOwner) { banTin ->
             banTin?.let {
-                mBanTinAdapter.updateData(it)
-                listBanTin = it
+                it.data?.let {
+                    it1 -> mBanTinAdapter.updateData(it1.data)
+                }
+                listBanTin = it.data?.data ?: emptyList()
             }
         }
 

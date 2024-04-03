@@ -60,7 +60,6 @@ class MySharedPreferences(context: Context) {
     }
 
 
-    // lấy ra Id
     fun getUserId(): Long {
         return sharedPreferences.getLong(ID, 0)
     }
@@ -76,13 +75,8 @@ class MySharedPreferences(context: Context) {
     fun getUserRole(): String? {
         return sharedPreferences.getString(USER_ROLES, "USER")
     }
-
-//    fun getUserInfo(user_id: String): UserInfo {
-//        val sharedPreferences = context.getSharedPreferences("user_info", Context.MODE_PRIVATE)
-//        val username = sharedPreferences.getString("username", "") ?: ""
-//        val email = sharedPreferences.getString("email", "") ?: ""
-//        val age = sharedPreferences.getInt("age", 0)
-//        return UserInfo(username, email, age)
-//    }
+    fun getTokenKey(): String? {
+        return sharedPreferences.getString(TOKEN_KEY, "")
+    }
 
 }

@@ -1,19 +1,25 @@
 package com.hoangtien2k3.news_app.data.source.auth
 
+import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
 import com.hoangtien2k3.news_app.network.ApiResponse
 import com.hoangtien2k3.news_app.network.AuthenticationResponse
+import com.hoangtien2k3.news_app.network.IntrospectResponse
 import com.hoangtien2k3.news_app.network.UserResponse
 import com.hoangtien2k3.news_app.network.request.ChangePasswordRequest
+import com.hoangtien2k3.news_app.network.request.IntrospectRequest
 import com.hoangtien2k3.news_app.network.request.LoginRequest
 import com.hoangtien2k3.news_app.network.request.SignupRequest
 import com.hoangtien2k3.news_app.network.request.UpdateUserRequest
-import com.hoangtien2k3.news_app.utils.Resource
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
+
 
 interface AccountService {
     @POST("/api/auth/signin")
@@ -25,6 +31,14 @@ interface AccountService {
     fun signup(
         @Body signupRequest: SignupRequest
     ): Call<ApiResponse<UserResponse>>
+
+    @POST("/api/auth/introspect")
+    fun authenticate(
+        @Body request: IntrospectRequest
+    ): Call<ApiResponse<IntrospectResponse>>
+
+    @GET("/api/user/my-info")
+    fun myinfo(): Call<ApiResponse<UserResponse>>
 
     @DELETE("/api/auth/delete/{id}")
     fun delete(

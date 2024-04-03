@@ -159,15 +159,6 @@
                         </LinearLayout>
                     </LinearLayout>
 
-                    <ImageView
-                        android:id="@+id/qr_code"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:src="@drawable/ic_qr_code_pay"/>
-
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>

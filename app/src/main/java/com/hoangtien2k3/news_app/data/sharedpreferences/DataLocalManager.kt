@@ -32,17 +32,6 @@ class DataLocalManager private constructor(context: Context) {
     }
 
 
-    // add list object
-    fun setAddReadItem(id: String, item: Any) {
-        mySharedPreferences.addReadItem(id, item)
-    }
-
-//    fun getReadItems(id: String) {
-//        return mySharedPreferences.
-//    }
-
-
-    // lưu id và role của người dùng:
     fun setSaveUserInfo(id: Long, name: String, username: String, email: String, role: String) {
         mySharedPreferences.saveUserInfo(id, name, username, email, role)
     }
@@ -52,7 +41,6 @@ class DataLocalManager private constructor(context: Context) {
     fun setSaveTokenKey(token: String) {
         mySharedPreferences.saveTokenKey(token)
     }
-
 
     fun getInfoUserId(): Long {
         return mySharedPreferences.getUserId()
@@ -68,6 +56,9 @@ class DataLocalManager private constructor(context: Context) {
     }
     fun getInfoUserRole(): String? {
         return mySharedPreferences.getUserRole()
+    }
+    fun getInfoTokenKey(): String? {
+        return mySharedPreferences.getTokenKey()
     }
 
 }

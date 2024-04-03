@@ -50,6 +50,7 @@ class SignupFragment : Fragment() {
             when (resource) {
                 is Resource.Success -> {
                     resource.data?.let {
+                        // Save in sharePreference
                         DataLocalManager.getInstance()
                             .setSaveUserInfo(it.data.id,
                                 it.data.name,

@@ -44,5 +44,13 @@
     <color name="colorPrimaryDark_1">#009900</color>
 
     <color name="dark_red">#CA0000</color>
+    <color name="chineseBlack">#12033C</color>
+    <color name="chineseBlackAlpha">#150050</color>
+    <color name="scarlet">#f81633</color>
+    <color name="raisinBlack">#3F0071</color>
+    <color name="crayola">#FB2576</color>
+    <color name="philippineSilver">#B3B3B3</color>
+    <color name="philippineSilverAlpha">#94B3B3B3</color>
+    <color name="gunmetal">#3F0071</color>
 </resources>
 

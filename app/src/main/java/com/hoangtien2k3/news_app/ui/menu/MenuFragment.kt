@@ -30,7 +30,6 @@ import com.hoangtien2k3.news_app.ui.menu.delete.DeleteUserViewModel
 import com.hoangtien2k3.news_app.ui.menu.update.UpdateUserFragment
 import com.hoangtien2k3.news_app.ui.save.SaveBanTinFragment
 import com.hoangtien2k3.news_app.ui.search.SearchNewsFragment
-import com.hoangtien2k3.news_app.ui.search.bantin.SearchBanTinFragment
 import com.hoangtien2k3.news_app.ui.webview.WebviewFragment
 import com.hoangtien2k3.news_app.ui.weather.WeatherFragment
 import com.hoangtien2k3.news_app.utils.CallHotLine
@@ -52,15 +51,12 @@ class MenuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[DeleteUserViewModel::class.java]
 
+        settingLightAndDartMode()
+        setOnClickListener()
+    }
+
+    private fun setOnClickListener() {
         binding.apply {
-            switchMode.isChecked =
-                AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_NO
-            switchMode.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked)
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                else
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
             thoiTiet.setOnClickListener { loadFragment(WeatherFragment()) }
             lichViet.setOnClickListener { loadFragment(CalendarFragment()) }
             txtSavefeedbackTinDaDoc.setOnClickListener {
@@ -79,7 +75,6 @@ class MenuFragment : Fragment() {
             bieuMau.setOnClickListener { showdialogbottom() }
             football.setOnClickListener {loadFragment(FootballFragment())}
             tinQuocTe.setOnClickListener {loadFragment(SearchNewsFragment())}
-            qrCode.setOnClickListener { loadFragment(QrCodePayFragment()) }
             btnProfile.setOnClickListener {
                 if (DataLocalManager.getInstance().getInfoUserId().toInt() == 0) {
                     showOptionsDialogNotifyLoginUser()
@@ -87,6 +82,7 @@ class MenuFragment : Fragment() {
                     showOptionsDialog()
                 }
             }
+
             logout.setOnClickListener {
                 DataLocalManager.getInstance().setFirstInstalled(false)
                 DataLocalManager.getInstance().removeValueFromSharedPreferences()
@@ -94,8 +90,23 @@ class MenuFragment : Fragment() {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
             }
+
             txtName.text = DataLocalManager.getInstance().getInfoName()
             txtEmail.text = DataLocalManager.getInstance().getInfoEmail()
+        }
+    }
+
+
+    private fun settingLightAndDartMode() {
+        binding.apply {
+            switchMode.isChecked =
+                AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_NO
+            switchMode.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked)
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                else
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
         }
     }
 

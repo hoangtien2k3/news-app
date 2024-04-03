@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -20,6 +21,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.data.models.BanTin
 import com.hoangtien2k3.news_app.data.models.Football
+import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
 import com.hoangtien2k3.news_app.databinding.FragmentHomeBinding
 import com.hoangtien2k3.news_app.ui.bantin.BanTinViewModel
 import com.hoangtien2k3.news_app.ui.bantin.BanTinAdapter
@@ -50,11 +52,15 @@ var ViewPager2.isUserInputEnabled: Boolean
 
 class HomeFragment : Fragment(), ViewModelProviderFactory {
     private lateinit var viewModelFootball: FootballViewModel
+    private lateinit var viewModelBanTin: BanTinViewModel
+    private lateinit var viewModelHome: HomeViewModel
+
     private lateinit var binding: FragmentHomeBinding
     private lateinit var footballAdapter: FoolballAdapter
     private lateinit var mBanTinAdapter: BanTinAdapter
-    private lateinit var viewModelBanTin: BanTinViewModel
     private lateinit var mListTinTuc: ArrayList<BanTin>
+
+    private val TAG: String = "INFO_USER"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,6 +71,7 @@ class HomeFragment : Fragment(), ViewModelProviderFactory {
 
         viewModelFootball = ViewModelProvider(this)[FootballViewModel::class.java]
         viewModelBanTin = ViewModelProvider(this)[BanTinViewModel::class.java]
+        viewModelHome = ViewModelProvider(this)[HomeViewModel::class.java]
 
         setupUI()
         observeViewModel()
@@ -73,8 +80,16 @@ class HomeFragment : Fragment(), ViewModelProviderFactory {
         return rootView
     }
 
+
+
     @SuppressLint("ClickableViewAccessibility")
     private fun setupUI() {
+        initUIRecyclerViewOn()
+        changeOnScrollListenerNestedScrollView()
+        setOnClickListenerByFootball()
+    }
+
+    private fun initUIRecyclerViewOn() {
         // tin tức trong ngày
         mListTinTuc = ArrayList()
         mBanTinAdapter = BanTinAdapter(requireContext(), mListTinTuc, this)
@@ -94,17 +109,21 @@ class HomeFragment : Fragment(), ViewModelProviderFactory {
             })
             adapter = footballAdapter
         }
+    }
 
+    private fun changeOnScrollListenerNestedScrollView() {
         // crollview lên đầu
         binding.nestedScrollView.setOnScrollChangeListener(
             NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-            if (scrollY > oldScrollY) {
-                showAndCloseUI(true)
-            } else {
-                showAndCloseUI(false)
-            }
-        })
+                if (scrollY > oldScrollY) {
+                    showAndCloseUI(true)
+                } else {
+                    showAndCloseUI(false)
+                }
+            })
+    }
 
+    private fun setOnClickListenerByFootball() {
         binding.detailFootball.setOnClickListener { loadFragment(FootballFragment()) }
         binding.detailHot.setOnClickListener {
             val bundle = Bundle().apply {
@@ -114,7 +133,6 @@ class HomeFragment : Fragment(), ViewModelProviderFactory {
             fragment.arguments = bundle
             loadFragment(fragment)
         }
-
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -162,19 +180,47 @@ class HomeFragment : Fragment(), ViewModelProviderFactory {
     }
 
     private fun observeViewModel() {
+        observerFootball()
+        observerBanTin()
+        observerHome()
+    }
+
+    private fun observerFootball() {
         viewModelFootball.footballNews.observe(viewLifecycleOwner) { footballNews ->
             footballNews?.let {
                 if (::footballAdapter.isInitialized) {
-                    footballAdapter.updateData(it)
+                    it.data?.let {
+                            it1 -> footballAdapter.updateData(it1.data)
+                    }
                 }
             }
         }
+    }
 
-        viewModelBanTin.fetchListTinTuc("tin-noi-bat")
+    private fun observerBanTin() {
+        viewModelBanTin.fetchDataCallAPI("tin-noi-bat")
         viewModelBanTin.listTinTuc.observe(viewLifecycleOwner) { tinTucList ->
             mListTinTuc.clear()
-            mListTinTuc.addAll(tinTucList)
+            tinTucList.data?.let {
+                mListTinTuc.addAll(it.data)
+            }
             mBanTinAdapter.notifyDataSetChanged()
+        }
+    }
+
+    private fun observerHome() {
+        viewModelHome.accessTokenKey.observe(viewLifecycleOwner) { accessTokenKey ->
+            accessTokenKey?.let {
+                it.data?.data?.let { info ->
+                    DataLocalManager.getInstance().setSaveUserInfo(
+                        info.id,
+                        info.name,
+                        info.username,
+                        info.email,
+                        info.role.first()
+                    )
+                }
+            }
         }
     }
 
