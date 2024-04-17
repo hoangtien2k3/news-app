@@ -3,85 +3,83 @@ package com.hoangtien2k3.news_app.ui.football
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.data.models.Football
+import com.hoangtien2k3.news_app.databinding.FragmentFootballBinding
+import com.hoangtien2k3.news_app.utils.viewBinding
 import java.util.ArrayList
 import java.util.Locale
 
-class FootballFragment : Fragment() {
-    private lateinit var newsRecycler: RecyclerView
-    private lateinit var adapter: FoolballAdapter
-    private lateinit var model: FootballViewModel
-    private lateinit var swipeRefreshLayoutNews: SwipeRefreshLayout
-    private lateinit var searchView: SearchView
+class FootballFragment : Fragment(R.layout.fragment_football) {
+    private val binding by viewBinding(FragmentFootballBinding::bind)
+    private val model: FootballViewModel by viewModels()
     private lateinit var listFootball: List<Football>
-    private lateinit var back: ImageView
+    private lateinit var adapter: FoolballAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_football, container, false)
-        swipeRefreshLayoutNews = rootView.findViewById(R.id.swipe_layout)
-        swipeRefreshLayoutNews.isRefreshing = true
-        newsRecycler = rootView.findViewById(R.id.NewsRecycler)
-        newsRecycler.setHasFixedSize(true)
-        newsRecycler.layoutManager = LinearLayoutManager(requireContext())
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initUI()
+        collectData()
+    }
 
-        model = ViewModelProviders.of(this)[FootballViewModel::class.java]
-        model.footballNews.observe(viewLifecycleOwner) { footballList ->
-            footballList?.let {
-                adapter = it.data?.let { it1 ->
-                    FoolballAdapter(
-                        it1.data,
-                        object : FoolballAdapter.ShowDialoginterface {
-                            override fun itemClik(hero: Football) {
-                                openDialog(hero)
-                            }
-                        },
-                    )
-                }!!
-                listFootball = it.data.data
-                newsRecycler.adapter = adapter
+    private fun initUI() {
+        with(binding) {
+            swipeLayout.isRefreshing = true
+            NewsRecycler.setHasFixedSize(true)
+            NewsRecycler.layoutManager = LinearLayoutManager(requireContext())
+
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    filterList(newText)
+                    return true
+                }
+            })
+
+            back.setOnClickListener {
+                requireActivity().onBackPressed()
             }
-            swipeRefreshLayoutNews.isRefreshing = false
         }
-        swipeRefreshLayoutNews.setOnRefreshListener {
-            swipeRefreshLayoutNews.isRefreshing = true
-            model.fetchDataCallAPI()
+    }
+
+    private fun collectData() {
+        with(binding) {
+            with(model) {
+                footballNews.observe(viewLifecycleOwner) { footballList ->
+                    footballList?.let {
+                        adapter = it.data?.let { it1 ->
+                            FoolballAdapter(
+                                it1.data,
+                                object : FoolballAdapter.ShowDialoginterface {
+                                    override fun itemClik(hero: Football) {
+                                        openDialog(hero)
+                                    }
+                                },
+                            )
+                        } ?: return@let
+                        listFootball = it.data.data
+                        NewsRecycler.adapter = adapter
+                    }
+                    swipeLayout.isRefreshing = false
+                }
+                swipeLayout.setOnRefreshListener {
+                    swipeLayout.isRefreshing = true
+                    fetchDataCallAPI()
+                }
+            }
         }
-
-
-        // search football
-        searchView = rootView.findViewById(R.id.searchView)
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                filterList(newText)
-                return true
-            }
-        })
-
-        back = rootView.findViewById(R.id.back)
-        back.setOnClickListener { requireActivity().onBackPressed() }
-
-        return rootView
     }
 
     private fun filterList(query: String?) {
@@ -92,7 +90,6 @@ class FootballFragment : Fragment() {
                     filteredList.add(i)
                 }
             }
-
             adapter.updateData(filteredList)
         }
     }

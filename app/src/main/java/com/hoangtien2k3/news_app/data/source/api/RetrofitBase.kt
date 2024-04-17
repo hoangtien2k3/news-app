@@ -1,4 +1,4 @@
-package com.hoangtien2k3.news_app.data.source.auth
+package com.hoangtien2k3.news_app.data.source.api
 
 import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
 import com.hoangtien2k3.news_app.utils.Constants
@@ -7,7 +7,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object AccountClient {
+object RetrofitBase {
     private const val BASE_URL = Constants.BASE_URL_LOCAL
 
     private val httpClient: OkHttpClient by lazy {
@@ -30,7 +30,7 @@ object AccountClient {
             .build()
     }
 
-    val apiService: AccountService by lazy {
-        retrofit.create(AccountService::class.java)
+    fun <T> apiService(serviceClass: Class<T>): T {
+        return retrofit.create(serviceClass)
     }
 }

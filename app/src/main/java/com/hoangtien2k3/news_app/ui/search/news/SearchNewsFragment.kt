@@ -1,36 +1,40 @@
-package com.hoangtien2k3.news_app.ui.search
+package com.hoangtien2k3.news_app.ui.search.news
 
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hoangtien2k3.news_app.R
-import com.hoangtien2k3.news_app.activity.main.MainActivity
+import com.hoangtien2k3.news_app.databinding.FragmentSearchNewsBinding
 import com.hoangtien2k3.news_app.ui.NewsAdapter
 import com.hoangtien2k3.news_app.utils.Resource
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import com.hoangtien2k3.news_app.databinding.FragmentSearchNewsBinding
 import com.hoangtien2k3.news_app.utils.Constants
+import com.hoangtien2k3.news_app.utils.viewBinding
 
 class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
-    private lateinit var viewModel: SearchNewsViewModel
+    private val binding by viewBinding(FragmentSearchNewsBinding::bind)
+    private val viewModel: SearchNewsViewModel by viewModels()
     private lateinit var newsAdapter: NewsAdapter
-    private lateinit var binding: FragmentSearchNewsBinding
+
     private val TAG = "SearchNewsFragment"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentSearchNewsBinding.bind(view)
-        viewModel = (requireActivity() as MainActivity).viewModel
-
         setupRecyclerView()
+        initUI()
+        collectData()
+        listenerAction()
+    }
 
+    private fun initUI() {
         newsAdapter.setOnItemClickListener { article ->
             val bundle = Bundle().apply {
                 putSerializable("article", article)
@@ -41,9 +45,34 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
 //                bundle
 //            )
         }
+    }
 
-        viewModel.searchNews("business")
+    private fun collectData() {
+        with(viewModel) {
+            searchNews("business")
+            searchNews.observe(viewLifecycleOwner, Observer { response ->
+                when (response) {
+                    is Resource.Success -> {
+                        hideProgressBar()
+                        response.data?.let { newsResponse ->
+                            newsAdapter.differ.submitList(newsResponse.articles)
+                        }
+                    }
+                    is Resource.Error -> {
+                        hideProgressBar()
+                        response.message?.let { message ->
+                            Log.e(TAG, "An error occurred: $message ")
+                        }
+                    }
+                    is Resource.Loading -> {
+                        showProgressBar()
+                    }
+                }
+            })
+        }
+    }
 
+    private fun listenerAction() {
         binding.toggleGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
             if (isChecked) {
                 when (checkedId) {
@@ -72,26 +101,6 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
                 }
             }
         }
-
-        viewModel.searchNews.observe(viewLifecycleOwner, Observer { response ->
-            when (response) {
-                is Resource.Success -> {
-                    hideProgressBar()
-                    response.data?.let { newsResponse ->
-                        newsAdapter.differ.submitList(newsResponse.articles)
-                    }
-                }
-                is Resource.Error -> {
-                    hideProgressBar()
-                    response.message?.let { message ->
-                        Log.e(TAG, "An error occurred: $message ")
-                    }
-                }
-                is Resource.Loading -> {
-                    showProgressBar()
-                }
-            }
-        })
     }
 
     private fun hideProgressBar() {
@@ -104,8 +113,10 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
 
     private fun setupRecyclerView() {
         newsAdapter = NewsAdapter()
-        binding.rvSearchNews.adapter = newsAdapter
-        binding.rvSearchNews.layoutManager = LinearLayoutManager(requireActivity())
+        with(binding) {
+            rvSearchNews.adapter = newsAdapter
+            rvSearchNews.layoutManager = LinearLayoutManager(requireActivity())
+        }
     }
 
 }

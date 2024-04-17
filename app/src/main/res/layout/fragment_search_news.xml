@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     style="@style/SCREEN"
-    tools:context=".ui.search.SearchNewsFragment">
+    tools:context=".ui.search.news.SearchNewsFragment">
 
     <EditText
         style="@style/TEXT"

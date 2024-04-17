@@ -12,8 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.databinding.FragmentPostNewsletterBinding
-import com.hoangtien2k3.news_app.network.result.PostNewsLetterResult
 import com.hoangtien2k3.news_app.ui.home.viewmodel.PostNewsLetterViewModel
+import com.hoangtien2k3.news_app.utils.Resource
 
 class PostNewsLetterFragment : Fragment() {
     private lateinit var binding: FragmentPostNewsletterBinding
@@ -99,21 +99,23 @@ class PostNewsLetterFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.postNewsLetterResult.observe(viewLifecycleOwner) { result ->
             when (result) {
-                is PostNewsLetterResult.Success -> {
+                is Resource.Error -> {
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.post_information_failed.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                is Resource.Loading -> {
+                    TODO()
+                }
+                is Resource.Success -> {
                     Toast.makeText(
                         requireContext(),
                         R.string.post_information_successfully.toString(),
                         Toast.LENGTH_SHORT
                     ).show()
                     requireActivity().onBackPressed()
-                }
-
-                is PostNewsLetterResult.Error -> {
-                    Toast.makeText(
-                        requireContext(),
-                        R.string.post_information_failed.toString(),
-                        Toast.LENGTH_SHORT
-                    ).show()
                 }
             }
         }

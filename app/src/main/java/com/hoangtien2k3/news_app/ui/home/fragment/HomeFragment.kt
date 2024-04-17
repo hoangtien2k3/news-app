@@ -5,19 +5,15 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
-import android.view.ViewGroup
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.widget.ImageView
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.viewpager2.widget.ViewPager2
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.data.models.BanTin
 import com.hoangtien2k3.news_app.data.models.Football
@@ -32,55 +28,23 @@ import com.hoangtien2k3.news_app.ui.save.SaveBanTinViewModel
 import com.hoangtien2k3.news_app.ui.save.ViewModelProviderFactory
 import com.hoangtien2k3.news_app.ui.search.bantin.SearchBanTinFragment
 import com.hoangtien2k3.news_app.utils.Constants
+import com.hoangtien2k3.news_app.utils.viewBinding
 
-var ViewPager2.isUserInputEnabled: Boolean
-    get() = true // Mặc định là true
-    @SuppressLint("ClickableViewAccessibility")
-    set(value) {
-        // Override phương thức onTouchEvent để kiểm tra giá trị của biến isSwipeEnabled
-        val pager = this
-        pager.setOnTouchListener { _, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN ->
-                    // Chặn sự kiện vuốt nếu isSwipeEnabled là false
-                    !value
-                else -> false
-            }
-        }
-    }
-
-
-class HomeFragment : Fragment(), ViewModelProviderFactory {
-    private lateinit var viewModelFootball: FootballViewModel
-    private lateinit var viewModelBanTin: BanTinViewModel
-    private lateinit var viewModelHome: HomeViewModel
-
-    private lateinit var binding: FragmentHomeBinding
+class HomeFragment : Fragment(R.layout.fragment_home), ViewModelProviderFactory {
+    private val binding by viewBinding(FragmentHomeBinding::bind)
+    private val viewModelHome: HomeViewModel by viewModels()
+    private val viewModelFootball: FootballViewModel by viewModels()
+    private val viewModelBanTin: BanTinViewModel by viewModels()
     private lateinit var footballAdapter: FoolballAdapter
     private lateinit var mBanTinAdapter: BanTinAdapter
     private lateinit var mListTinTuc: ArrayList<BanTin>
 
-    private val TAG: String = "INFO_USER"
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val rootView = binding.root
-
-        viewModelFootball = ViewModelProvider(this)[FootballViewModel::class.java]
-        viewModelBanTin = ViewModelProvider(this)[BanTinViewModel::class.java]
-        viewModelHome = ViewModelProvider(this)[HomeViewModel::class.java]
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupUI()
         observeViewModel()
         floatingTab()
-
-        return rootView
     }
-
-
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setupUI() {
@@ -90,29 +54,28 @@ class HomeFragment : Fragment(), ViewModelProviderFactory {
     }
 
     private fun initUIRecyclerViewOn() {
-        // tin tức trong ngày
         mListTinTuc = ArrayList()
         mBanTinAdapter = BanTinAdapter(requireContext(), mListTinTuc, this)
         val gridLayoutManager = GridLayoutManager(requireContext(), 1)
         gridLayoutManager.orientation = GridLayoutManager.VERTICAL
-        binding.NewsRecycler.layoutManager = gridLayoutManager
-        binding.NewsRecycler.adapter = mBanTinAdapter
 
-        // tin tức bóng đá
-        binding.recyclerTinTuc.apply {
-            setHasFixedSize(true)
-            layoutManager = GridLayoutManager(requireContext(), 1, GridLayoutManager.HORIZONTAL, false)
-            footballAdapter = FoolballAdapter(emptyList(), object : FoolballAdapter.ShowDialoginterface {
-                override fun itemClik(hero: Football) {
-                    openDialogFootball(hero)
-                }
-            })
-            adapter = footballAdapter
+        with(binding) {
+            NewsRecycler.layoutManager = gridLayoutManager
+            NewsRecycler.adapter = mBanTinAdapter
+            recyclerTinTuc.apply {
+                setHasFixedSize(true)
+                layoutManager = GridLayoutManager(requireContext(), 1, GridLayoutManager.HORIZONTAL, false)
+                footballAdapter = FoolballAdapter(emptyList(), object : FoolballAdapter.ShowDialoginterface {
+                    override fun itemClik(hero: Football) {
+                        openDialogFootball(hero)
+                    }
+                })
+                adapter = footballAdapter
+            }
         }
     }
 
     private fun changeOnScrollListenerNestedScrollView() {
-        // crollview lên đầu
         binding.nestedScrollView.setOnScrollChangeListener(
             NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
                 if (scrollY > oldScrollY) {
@@ -124,14 +87,16 @@ class HomeFragment : Fragment(), ViewModelProviderFactory {
     }
 
     private fun setOnClickListenerByFootball() {
-        binding.detailFootball.setOnClickListener { loadFragment(FootballFragment()) }
-        binding.detailHot.setOnClickListener {
-            val bundle = Bundle().apply {
-                putString("close", "false")
+        with(binding) {
+            detailFootball.setOnClickListener { loadFragment(FootballFragment()) }
+            detailHot.setOnClickListener {
+                val bundle = Bundle().apply {
+                    putString("close", "false")
+                }
+                val fragment = SearchBanTinFragment(Constants.full)
+                fragment.arguments = bundle
+                loadFragment(fragment)
             }
-            val fragment = SearchBanTinFragment(Constants.full)
-            fragment.arguments = bundle
-            loadFragment(fragment)
         }
     }
 
@@ -226,60 +191,66 @@ class HomeFragment : Fragment(), ViewModelProviderFactory {
 
     var isFABOpen = false
     private fun floatingTab() {
-        binding.fab.setOnClickListener {
-            if (!isFABOpen) {
-                showFABMenu()
-            } else {
+        with(binding) {
+            fab.setOnClickListener {
+                if (!isFABOpen) {
+                    showFABMenu()
+                } else {
+                    closeFABMenu()
+                }
+            }
+            overlay.setOnClickListener {
+                closeFABMenu()
+                val githubUsername = "hoangtien2k3qx1"
+                val githubUrl = "https://github.com/$githubUsername"
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(githubUrl))
+                startActivity(browserIntent)
+            }
+            menuZalo.setOnClickListener {
+                closeFABMenu()
+                val zaloID = "0828007853"
+                val url = "http://zalo.me/$zaloID"
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(browserIntent)
+            }
+            menuFacebook.setOnClickListener {
+                closeFABMenu()
+                val facebookID = "100053705482952"
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://m.me/$facebookID"))
+                startActivity(intent)
+            }
+            binding.overlay.setOnClickListener {
                 closeFABMenu()
             }
-        }
-        binding.overlay.setOnClickListener {
-            closeFABMenu()
-            val githubUsername = "hoangtien2k3qx1"
-            val githubUrl = "https://github.com/$githubUsername"
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(githubUrl))
-            startActivity(browserIntent)
-        }
-        binding.menuZalo.setOnClickListener {
-            closeFABMenu()
-            val zaloID = "0828007853"
-            val url = "http://zalo.me/$zaloID"
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-            startActivity(browserIntent)
-        }
-        binding.menuFacebook.setOnClickListener {
-            closeFABMenu()
-            val facebookID = "100053705482952"
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://m.me/$facebookID"))
-            startActivity(intent)
-        }
-        binding.overlay.setOnClickListener {
-            closeFABMenu()
         }
     }
 
     private fun showFABMenu() {
         isFABOpen = true
-        binding.fab.hide()
-        binding.fab.setImageResource(R.drawable.ic_floating_btn_close)
-        binding.fab.show()
-        binding.menuZalo.animate().translationY(-resources.getDimension(R.dimen.marginBottom_zalo))
-        binding.menuFacebook.animate().translationY(-resources.getDimension(R.dimen.marginBottom_facebook))
-        binding.menuZalo.visibility = View.VISIBLE
-        binding.menuFacebook.visibility = View.VISIBLE
-        binding.overlay.visibility = View.VISIBLE
+        with(binding) {
+            fab.hide()
+            fab.setImageResource(R.drawable.ic_floating_btn_close)
+            fab.show()
+            menuZalo.animate().translationY(-resources.getDimension(R.dimen.marginBottom_zalo))
+            menuFacebook.animate().translationY(-resources.getDimension(R.dimen.marginBottom_facebook))
+            menuZalo.visibility = View.VISIBLE
+            menuFacebook.visibility = View.VISIBLE
+            overlay.visibility = View.VISIBLE
+        }
     }
 
     private fun closeFABMenu() {
         isFABOpen = false
-        binding.menuZalo.animate().translationY(0F)
-        binding.menuFacebook.animate().translationY(0F)
-        binding.menuZalo.visibility = View.GONE
-        binding.menuFacebook.visibility = View.GONE
-        binding.overlay.visibility = View.GONE
-        binding.fab.hide()
-        binding.fab.setImageResource(R.drawable.ic_support_chat)
-        binding.fab.show()
+        with(binding) {
+            menuZalo.animate().translationY(0F)
+            menuFacebook.animate().translationY(0F)
+            menuZalo.visibility = View.GONE
+            menuFacebook.visibility = View.GONE
+            overlay.visibility = View.GONE
+            fab.hide()
+            fab.setImageResource(R.drawable.ic_support_chat)
+            fab.show()
+        }
     }
 
     private fun loadFragment(fragmentReplace: Fragment) {

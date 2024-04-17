@@ -17,8 +17,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/lavender_border">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView"
@@ -112,28 +111,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editPassSignIn" />
 
-            <TextView
+            <LinearLayout
                 android:id="@+id/txtNextApp"
-                style="@style/TextBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="56dp"
-                android:text="Bỏ qua đăng nhập"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editPassSignIn" />
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/editPassSignIn"
+                app:layout_constraintTop_toBottomOf="@+id/editPassSignIn">
 
-            <ImageView
-                android:id="@+id/imgNextApp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_send_24"
-                app:layout_constraintBottom_toBottomOf="@+id/txtNextApp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.25"
-                app:layout_constraintStart_toEndOf="@+id/txtNextApp"
-                app:layout_constraintTop_toTopOf="@+id/txtNextApp" />
+                <TextView
+                    style="@style/TextBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Bỏ qua đăng nhập"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_send_24" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/linearLayout"

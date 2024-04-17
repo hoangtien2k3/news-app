@@ -53,8 +53,8 @@
     <color name="philippineSilverAlpha">#94B3B3B3</color>
     <color name="gunmetal">#3F0071</color>
 
-    <color name="background">#ffffff</color>
-    <color name="stroke_color">#EFEFEF</color>
-    <color name="card_bg">#ffffff</color>
+    <color name="background">#171A21</color>
+    <color name="stroke_color">#30343C</color>
+    <color name="card_bg">#1E222B</color>
 </resources>
 

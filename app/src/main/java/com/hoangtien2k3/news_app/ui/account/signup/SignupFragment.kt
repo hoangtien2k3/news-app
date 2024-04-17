@@ -1,36 +1,29 @@
 package com.hoangtien2k3.news_app.ui.account.signup
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
 import com.hoangtien2k3.news_app.databinding.FragmentSignUpBinding
 import com.hoangtien2k3.news_app.ui.account.AccountViewModel
+import com.hoangtien2k3.news_app.utils.LoadingScreen
 import com.hoangtien2k3.news_app.utils.Resource
+import com.hoangtien2k3.news_app.utils.viewBinding
 
-class SignupFragment : Fragment() {
-    private lateinit var viewModel: AccountViewModel
-    private var _binding: FragmentSignUpBinding? = null
-    private val binding
-        get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentSignUpBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+class SignupFragment : Fragment(R.layout.fragment_sign_up) {
+    private val binding by viewBinding(FragmentSignUpBinding::bind)
+    private val viewModel: AccountViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[AccountViewModel::class.java]
+        initUI()
+    }
 
+    private fun initUI() {
         binding.signUpBtn.setOnClickListener {
             val name = binding.editNameSignUp.text.toString()
             val username = binding.editUsernameSignUp.text.toString()
@@ -66,15 +59,11 @@ class SignupFragment : Fragment() {
                     Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
                 }
                 is Resource.Loading -> {
-
+                    LoadingScreen.displayLoading(requireContext(), false)
                 }
             }
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }
 

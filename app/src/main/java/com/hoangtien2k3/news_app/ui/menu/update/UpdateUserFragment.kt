@@ -1,34 +1,26 @@
 package com.hoangtien2k3.news_app.ui.menu.update
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.databinding.FragmentUpdateUserBinding
 import com.hoangtien2k3.news_app.utils.Resource
+import com.hoangtien2k3.news_app.utils.viewBinding
 
-class UpdateUserFragment : Fragment() {
-
-    private lateinit var binding: FragmentUpdateUserBinding
-    private lateinit var viewModel: UpdateUserViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentUpdateUserBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+class UpdateUserFragment : Fragment(R.layout.fragment_update_user) {
+    private val binding by viewBinding(FragmentUpdateUserBinding::bind)
+    private val viewModel: UpdateUserViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initUI()
+        observeViewModel()
+    }
 
-        viewModel = ViewModelProvider(this)[UpdateUserViewModel::class.java]
-
+    private fun initUI() {
         binding.btnUpdateUser.setOnClickListener {
             val name = binding.txtName.text.toString()
             val username = binding.txtUsername.text.toString()
@@ -36,8 +28,6 @@ class UpdateUserFragment : Fragment() {
             val password = binding.txtPassword.text.toString()
             viewModel.updateUserInfo(name, username, email, password)
         }
-
-        observeViewModel()
     }
 
     private fun observeViewModel() {
@@ -50,7 +40,6 @@ class UpdateUserFragment : Fragment() {
                 is Resource.Error -> {
                     Toast.makeText(requireContext(), R.string.update_info_failed.toString(), Toast.LENGTH_SHORT).show()
                 }
-
                 is Resource.Loading -> {
 
                 }

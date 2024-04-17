@@ -13,7 +13,6 @@ import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.data.models.Article
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
-
     inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivArticle = itemView.findViewById<ImageView>(R.id.ivArticle)
         val tvArticleTitle = itemView.findViewById<TextView>(R.id.tvArticleTitle)

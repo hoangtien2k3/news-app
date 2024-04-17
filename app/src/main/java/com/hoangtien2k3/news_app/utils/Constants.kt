@@ -2,6 +2,7 @@ package com.hoangtien2k3.news_app.utils
 
 object Constants {
     const val BASE_URL_LOCAL = "http://tiens-mbp:9090"
+//    const val BASE_URL_LOCAL = "http://127.0.0.1:9090"
 
     const val API_KEY = "bd81e7f01e744515b6db53690c2ff58b"
     const val BASE_URL = "https://newsapi.org/"
@@ -17,7 +18,6 @@ object Constants {
     const val Link_Tham_Quan = "https://docs.google.com/forms/d/e/1FAIpQLScgmYFj2NTmq53VWzNSA4OKAuxizD9UxYiaXVok_S_2k3favg/viewform"
 
     const val HOT_LINE = "0828007853"
-
     const val ROLE_USER = "USER"
     const val ROLE_ADMIN = "ADMIN"
 

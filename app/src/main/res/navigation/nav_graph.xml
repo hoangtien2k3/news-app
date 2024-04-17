@@ -3,26 +3,78 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.hoangtien2k3.news_app.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/signUpFragment"
+        android:name="com.hoangtien2k3.news_app.ui.account.signup.SignupFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up">
 
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
     </fragment>
+
+
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.hoangtien2k3.news_app.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+        android:id="@+id/loginFragment"
+        android:name="com.hoangtien2k3.news_app.ui.account.login.LoginFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in">
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_loginFragment_to_dialogFragment"
+            app:destination="@id/dialogFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.hoangtien2k3.news_app.ui.home.fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+
+    </fragment>
+
+    <dialog
+        android:id="@+id/dialogFragment"
+        android:name="com.hoangtien2k3.news_app.ui.dialog.DialogFragment"
+        android:label="fragment_dialog"
+        tools:layout="@layout/fragment_dialog">
+        <argument
+            android:name="dialogArgs"
+            app:argType="com.hoangtien2k3.themoviedb.data.model.DialogArguments" />
+        <action
+            android:id="@+id/action_dialogFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </dialog>
+
+<!--    <fragment-->
+<!--        android:id="@+id/splashScreenFragment"-->
+<!--        android:name="com.hoangtien2k3.news_app.ui.splash.SplashScreenFragment"-->
+<!--        android:label="fragment_splash_screen"-->
+<!--        tools:layout="@layout/fragment_splash_screen">-->
+<!--        <action-->
+<!--            android:id="@+id/action_splashScreenFragment_to_loginFragment"-->
+<!--            app:destination="@id/loginFragment"-->
+<!--            app:enterAnim="@anim/enter"-->
+<!--            app:exitAnim="@anim/exit"-->
+<!--            app:popEnterAnim="@anim/pop_enter"-->
+<!--            app:popExitAnim="@anim/pop_exit"-->
+<!--            app:popUpTo="@id/nav_graph"-->
+<!--            app:popUpToInclusive="true" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_splashScreenFragment_to_homeFragment"-->
+<!--            app:destination="@id/homeFragment"-->
+<!--            app:enterAnim="@anim/enter"-->
+<!--            app:exitAnim="@anim/exit"-->
+<!--            app:popEnterAnim="@anim/pop_enter"-->
+<!--            app:popExitAnim="@anim/pop_exit"-->
+<!--            app:popUpTo="@id/nav_graph"-->
+<!--            app:popUpToInclusive="true" />-->
+<!--    </fragment>-->
+
+
 </navigation>

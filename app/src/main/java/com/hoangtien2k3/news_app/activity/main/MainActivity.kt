@@ -14,7 +14,7 @@ import com.hoangtien2k3.news_app.data.source.db.ArticleDatabase
 import com.hoangtien2k3.news_app.ui.menu.MenuFragment
 import com.hoangtien2k3.news_app.ui.home.fragment.HomeFragment
 import com.hoangtien2k3.news_app.data.repository.NewsRepository
-import com.hoangtien2k3.news_app.ui.search.SearchNewsViewModel
+import com.hoangtien2k3.news_app.ui.search.news.SearchNewsViewModel
 import com.hoangtien2k3.news_app.data.NewsViewModelProviderFactory
 import com.hoangtien2k3.news_app.ui.bantin.BanTinFragment
 import com.hoangtien2k3.news_app.ui.home.MainFragment

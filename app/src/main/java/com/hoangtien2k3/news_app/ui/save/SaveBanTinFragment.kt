@@ -1,58 +1,60 @@
 package com.hoangtien2k3.news_app.ui.save
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.databinding.FragmentBanTinSaveBinding
 import com.hoangtien2k3.news_app.ui.menu.MenuFragment
+import com.hoangtien2k3.news_app.utils.viewBinding
 
-class SaveBanTinFragment : Fragment() {
-    private var _binding: FragmentBanTinSaveBinding? = null
-    private val binding
-        get() = _binding!!
-
+class SaveBanTinFragment : Fragment(R.layout.fragment_ban_tin_save) {
+    private val binding by viewBinding(FragmentBanTinSaveBinding::bind)
+    private val viewModel: SaveBanTinViewModel by viewModels()
     private lateinit var mBanTinAdapter: SaveBanTinAdapter
-    private lateinit var viewModel: SaveBanTinViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentBanTinSaveBinding.inflate(inflater, container, false)
-        val rootView = binding.root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initUI()
+        observeViewModel()
+    }
 
-        viewModel = ViewModelProvider(this)[SaveBanTinViewModel::class.java]
+    private fun initUI() {
         mBanTinAdapter = SaveBanTinAdapter(requireContext(), mutableListOf())
         val gridLayoutManager = GridLayoutManager(requireContext(), 1)
         gridLayoutManager.orientation = GridLayoutManager.VERTICAL
-        binding.banTinRecyclerView.layoutManager = gridLayoutManager
-        binding.banTinRecyclerView.adapter = mBanTinAdapter
 
-        viewModel.getListAllNewsSave()
-        viewModel.getSaveBanTin.observe(viewLifecycleOwner) { banTin ->
-            banTin?.let {
-                mBanTinAdapter.updateData(it)
+        with(binding) {
+            banTinRecyclerView.layoutManager = gridLayoutManager
+            banTinRecyclerView.adapter = mBanTinAdapter
+
+            val receivedValue = arguments?.getString("close")
+            if (receivedValue == "false") {
+                btnBack.setOnClickListener { requireActivity().onBackPressed() }
+            } else {
+                btnBack.setBackgroundResource(R.drawable.ic_setting)
+                btnBack.setOnClickListener { loadFragment(MenuFragment()) }
+            }
+            btnDeleteAll.setOnClickListener {
+                viewModel.deleteAllListNewsSave() // delete tất cả bản tin trong danh mục đã đọc
+                viewModel.getListAllNewsSave() // load lại tin tức
             }
         }
+    }
 
-        val receivedValue = arguments?.getString("close")
-        if (receivedValue == "false") {
-            binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
-        } else {
-            binding.btnBack.setBackgroundResource(R.drawable.ic_setting)
-            binding.btnBack.setOnClickListener { loadFragment(MenuFragment()) }
+    private fun observeViewModel() {
+        with(viewModel) {
+            getListAllNewsSave()
+            getSaveBanTin.observe(viewLifecycleOwner) { banTin ->
+                banTin?.let {
+                    it.data?.let {
+                        it1 -> mBanTinAdapter.updateData(it1)
+                    }
+                }
+            }
         }
-        binding.btnDeleteAll.setOnClickListener {
-            viewModel.deleteAllListNewsSave() // delete tất cả bản tin trong danh mục đã đọc
-            viewModel.getListAllNewsSave() // load lại tin tức
-        }
-
-        return rootView
     }
 
     private fun loadFragment(fragmentReplace: Fragment) {
@@ -63,8 +65,4 @@ class SaveBanTinFragment : Fragment() {
             .commit()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

@@ -81,4 +81,22 @@
         <item name="android:background">#b9baba</item>
     </style>
 
+    <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textFontWeight" tools:targetApi="p">700</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textFontWeight" tools:targetApi="p">500</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="AppModalStyle" parent="Theme.AppCompat.DayNight.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
 </resources>

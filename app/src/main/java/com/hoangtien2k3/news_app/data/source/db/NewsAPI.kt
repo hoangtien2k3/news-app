@@ -1,4 +1,4 @@
-package com.hoangtien2k3.news_app.data.source.api
+package com.hoangtien2k3.news_app.data.source.db
 
 import com.hoangtien2k3.news_app.data.models.NewsResponse
 import com.hoangtien2k3.news_app.utils.Constants.API_KEY

@@ -7,7 +7,6 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
@@ -18,7 +17,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.databinding.FragmentMenuBinding
 import com.hoangtien2k3.news_app.data.sharedpreferences.DataLocalManager
@@ -29,28 +28,19 @@ import com.hoangtien2k3.news_app.ui.menu.changepassword.ChangePasswordFragment
 import com.hoangtien2k3.news_app.ui.menu.delete.DeleteUserViewModel
 import com.hoangtien2k3.news_app.ui.menu.update.UpdateUserFragment
 import com.hoangtien2k3.news_app.ui.save.SaveBanTinFragment
-import com.hoangtien2k3.news_app.ui.search.SearchNewsFragment
+import com.hoangtien2k3.news_app.ui.search.news.SearchNewsFragment
 import com.hoangtien2k3.news_app.ui.webview.WebviewFragment
 import com.hoangtien2k3.news_app.ui.weather.WeatherFragment
 import com.hoangtien2k3.news_app.utils.CallHotLine
 import com.hoangtien2k3.news_app.utils.Constants
+import com.hoangtien2k3.news_app.utils.viewBinding
 
-class MenuFragment : Fragment() {
-    private lateinit var binding: FragmentMenuBinding
-    private lateinit var viewModel: DeleteUserViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentMenuBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+class MenuFragment : Fragment(R.layout.fragment_menu) {
+    private val binding by viewBinding(FragmentMenuBinding::bind)
+    private val viewModel: DeleteUserViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[DeleteUserViewModel::class.java]
-
         settingLightAndDartMode()
         setOnClickListener()
     }
@@ -196,7 +186,7 @@ class MenuFragment : Fragment() {
             if (accountIdToDelete.toInt() != 0) {
                 viewModel.deleteUserId(accountIdToDelete)
                 viewModel.deleteUser.observe(viewLifecycleOwner) { result ->
-                    Toast.makeText(requireContext(), result, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), result.toString(), Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
                     DataLocalManager.getInstance().setFirstInstalled(false)
                     DataLocalManager.getInstance().removeValueFromSharedPreferences()

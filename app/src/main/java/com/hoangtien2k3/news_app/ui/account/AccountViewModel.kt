@@ -2,7 +2,8 @@ package com.hoangtien2k3.news_app.ui.account
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.hoangtien2k3.news_app.data.source.auth.AccountClient
+import com.hoangtien2k3.news_app.data.source.api.AppNewsService
+import com.hoangtien2k3.news_app.data.source.api.RetrofitBase
 import com.hoangtien2k3.news_app.network.ApiResponse
 import com.hoangtien2k3.news_app.network.AuthenticationResponse
 import com.hoangtien2k3.news_app.network.UserResponse
@@ -20,6 +21,8 @@ class AccountViewModel : BaseViewModelImpl() {
     private val _signupResult = MutableLiveData<Resource<ApiResponse<UserResponse>>>()
     val signupResult: LiveData<Resource<ApiResponse<UserResponse>>> = _signupResult
 
+    val apiService = RetrofitBase.apiService(AppNewsService::class.java)
+
     fun login(username: String, password: String) {
         performAction(_loginResult) {
             createLoginCall(LoginRequest(username, password))
@@ -33,10 +36,10 @@ class AccountViewModel : BaseViewModelImpl() {
     }
 
     private fun createLoginCall(request: LoginRequest): Call<ApiResponse<AuthenticationResponse>> {
-        return AccountClient.apiService.login(request)
+        return apiService.login(request)
     }
 
     private fun createSignupCall(request: SignupRequest): Call<ApiResponse<UserResponse>> {
-        return AccountClient.apiService.signup(request)
+        return apiService.signup(request)
     }
 }
