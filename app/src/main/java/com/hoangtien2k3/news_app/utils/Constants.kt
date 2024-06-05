@@ -8,9 +8,17 @@ object Constants {
     const val BASE_URL = "https://newsapi.org/"
     const val SEARCH_TIME_DELAY = 500L
 
+<<<<<<< HEAD
+
+        const val BASE_URL_Foolball = "https://free-football-soccer-videos.p.rapidapi.com/"
+        const val BASE_URL_Weather = "https://api.openweathermap.org/data/2.5/"
+        const val apiKeyWeather = "037d21cb14640ecd9a4f4eca49e7ff3f"
+        const val iconWeather = "https://openweathermap.org/img/wn/"
+=======
     const val BASE_URL_Weather = "https://api.openweathermap.org/data/2.5/"
     const val apiKeyWeather = "037d21cb14640ecd9a4f4eca49e7ff3f"
     const val iconWeather = "https://openweathermap.org/img/wn/"
+>>>>>>> master
 
     const val google_link = "https://www.google.com"
     const val Link_Dang_Ky = "https://docs.google.com/forms/d/e/1FAIpQLSfuKRLsZXFOJ8S3oakeDXDTKq0XAXScVJJMHU-T6znMbGz05Q/viewform?usp=sf_link"
