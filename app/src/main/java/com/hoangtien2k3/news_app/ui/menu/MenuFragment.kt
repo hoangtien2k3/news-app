@@ -86,7 +86,6 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         }
     }
 
-
     private fun settingLightAndDartMode() {
         binding.apply {
             switchMode.isChecked =

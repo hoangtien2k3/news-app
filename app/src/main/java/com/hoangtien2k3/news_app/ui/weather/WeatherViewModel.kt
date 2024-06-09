@@ -2,7 +2,7 @@ package com.hoangtien2k3.news_app.ui.weather
 
 import androidx.lifecycle.MutableLiveData
 import com.hoangtien2k3.news_app.data.source.api.AppNewsService
-import com.hoangtien2k3.news_app.data.source.api.RetrofitBase
+import com.hoangtien2k3.news_app.data.source.api.RetrofitWeatherBase
 import com.hoangtien2k3.news_app.network.response.WeatherResponse
 import com.hoangtien2k3.news_app.ui.base.BaseViewModelImpl
 import com.hoangtien2k3.news_app.utils.Constants
@@ -12,7 +12,7 @@ class WeatherViewModel : BaseViewModelImpl() {
     private val _weatherResponse = MutableLiveData<Resource<WeatherResponse>>()
     val weatherResponse: MutableLiveData<Resource<WeatherResponse>> = _weatherResponse
 
-    val apiService = RetrofitBase.apiService(AppNewsService::class.java)
+    val apiService = RetrofitWeatherBase.apiService(AppNewsService::class.java)
 
     fun getCurrentWeatherData(city: String) {
         val apiKey = Constants.apiKeyWeather

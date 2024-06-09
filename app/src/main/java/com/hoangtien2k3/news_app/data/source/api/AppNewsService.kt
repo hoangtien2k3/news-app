@@ -23,6 +23,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
@@ -32,7 +33,7 @@ interface AppNewsService {
     /**
      * bản tin
      * **/
-    @GET("api/news/category/{category}")
+    @GET("/api/news/category/{category}")
     fun getBanTin(
         @Path("category") category: String?
     ): Call<ApiResponse<List<BanTin>>>
@@ -44,7 +45,7 @@ interface AppNewsService {
     /**
      * bóng đá:
      * **/
-    //    @Headers(
+//        @Headers(
 //        "x-rapidapi-host: free-football-soccer-videos.p.rapidapi.com",
 //        "x-rapidapi-key: 4877c410b9mshe7fe9517ac14094p1cd13ejsn6a566299c797"
 //    )
@@ -80,6 +81,10 @@ interface AppNewsService {
         @Body request: IntrospectRequest
     ): Call<ApiResponse<IntrospectResponse>>
 
+
+    @Headers(
+        "Authorizationt: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJob2FuZ3RpZW4yazMuY29tIiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTYwMTQ1MjgsImlhdCI6MTcxMzQyMjUyOCwic2NvcGUiOiJBRE1JTiJ9.47Cz77JJuod1aSLA2bHYL2TwFSuUxVcJg5XbmmJBagT1ntHMkftpLpL84LFTkI3XTBece7urIjFGmlxmJgKiKg"
+    )
     @GET("/api/user/my-info")
     fun myinfo(): Call<ApiResponse<UserResponse>>
 
@@ -116,7 +121,6 @@ interface AppNewsService {
         @Query("page") pageNumber: Int = 1,
         @Query("apiKey") apiKey: String = Constants.API_KEY
     ): Response<NewsResponse>
-
 
 
     /**

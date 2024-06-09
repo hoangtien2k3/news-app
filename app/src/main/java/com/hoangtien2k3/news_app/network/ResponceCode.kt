@@ -24,7 +24,12 @@ data class Timestamps(
 
 data class AuthenticationResponse(
     val authenticated: Boolean,
-    val token: String
+    val token: String,
+    val id: Long,
+    val name: String,
+    val username: String,
+    val email: String,
+    val role: Set<String>
 )
 
 data class IntrospectResponse(

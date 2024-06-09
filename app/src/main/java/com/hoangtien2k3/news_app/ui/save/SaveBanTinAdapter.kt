@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.databinding.ItemRowArticleBinding
-import com.hoangtien2k3.news_app.network.request.SavePosRequest
 import com.hoangtien2k3.news_app.network.response.SavePosResponse
 import com.hoangtien2k3.news_app.ui.webview.WebviewFragment
 

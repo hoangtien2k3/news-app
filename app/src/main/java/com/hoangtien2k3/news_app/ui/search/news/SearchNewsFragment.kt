@@ -7,6 +7,7 @@ import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hoangtien2k3.news_app.R
 import com.hoangtien2k3.news_app.databinding.FragmentSearchNewsBinding
@@ -21,13 +22,17 @@ import com.hoangtien2k3.news_app.utils.viewBinding
 
 class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
     private val binding by viewBinding(FragmentSearchNewsBinding::bind)
-    private val viewModel: SearchNewsViewModel by viewModels()
+//    private val viewModel: SearchNewsViewModel by viewModels()
+    private lateinit var viewModel: SearchNewsViewModel
     private lateinit var newsAdapter: NewsAdapter
 
     private val TAG = "SearchNewsFragment"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(this)[SearchNewsViewModel::class.java]
+
         setupRecyclerView()
         initUI()
         collectData()
@@ -50,7 +55,7 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
     private fun collectData() {
         with(viewModel) {
             searchNews("business")
-            searchNews.observe(viewLifecycleOwner, Observer { response ->
+            searchNews.observe(viewLifecycleOwner) { response ->
                 when (response) {
                     is Resource.Success -> {
                         hideProgressBar()
@@ -68,7 +73,7 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
                         showProgressBar()
                     }
                 }
-            })
+            }
         }
     }
 
